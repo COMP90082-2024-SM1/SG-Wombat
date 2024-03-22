@@ -2,6 +2,20 @@
 
 Welcome to the Science Gallery Booking System! This system aims to streamline the process of managing bookings for various engaging and educational experiences offered to secondary school groups. These experiences include free gallery tours and paid interactive workshops.
 
+## Github Structure
+
+### docs
+The docs folder includes all the Confluence pages. We export our Confluence pages as PDFs and upload them to the docs folder. The structure of docs mirrors that of Confluence. Some links in the PDFs are not clickable; therefore, we include those links in the README file for easier access by readers.
+
+### src
+The src folder is where we commit all our code. It was initiated for use in sprint 2.
+
+### README 
+
+The README file is constantly updated to explain our GitHub structure and generate changelogs for each sprint before tagging it.
+
+
+
 ## Important Documents
 
 ### Confluence Page:https://comp90082-2024-sg-wombat.atlassian.net/wiki/x/2AAI
