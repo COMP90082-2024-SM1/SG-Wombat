@@ -2,11 +2,11 @@
 
 Welcome to the Science Gallery Booking System! This system aims to streamline the process of managing bookings for various engaging and educational experiences offered to secondary school groups. These experiences include free gallery tours and paid interactive workshops.
 
-##Important Documents
+## Important Documents
 
-###Confluence Page:https://comp90082-2024-sg-wombat.atlassian.net/wiki/x/2AAI
+### Confluence Page:https://comp90082-2024-sg-wombat.atlassian.net/wiki/x/2AAI
 
-###Prototype Link:https://js.design/v?i=0G-ElJ&p=7MfmZw5wEX&f=0:1
+### Prototype Link:https://js.design/v?i=0G-ElJ&p=7MfmZw5wEX&f=0:1
 
 
 ## Background
@@ -28,8 +28,27 @@ The primary goal of this project is to develop a comprehensive booking managemen
 
 ## Sprint 1
 
+### Trello Link: https://trello.com/invite/b/8dly4T4G/ATTIc3f682ec9dcafd3842c9ef68338fe45d7011A3EA/sg-booking-system-sprint-1
 
-###What we do:
+### What we have done:
+At our core, we engage in client communication to initiate projects through kick-off meetings. Following this, we meticulously delve into Requirements Engineering, beginning with eliciting requirements from clients through various channels such as discussions, meetings, and emails. Our process further involves Motivational Modeling, where we develop Do-be-feel lists, create motivational models, and craft personas to deeply understand user needs. Subsequently, we analyze requirements, refining them through discussions on draft prototypes, technology stack considerations, and more. We then translate these requirements into actionable User Stories, estimating their size and prioritizing them based on client requirements and importance. Moving into the Design phase, we create initial digital prototypes of the booking management system, seeking stakeholder feedback to refine our designs. Additionally, we meticulously plan for upcoming development sprints, determining which features will be delivered and when. Finally, we ensure smooth transitions into Design and Development phases by setting up necessary environments, including Confluence, Slack, Trello, and Github, to facilitate collaboration and project management.
+
+## Sprint 2
+
+### Trello Link:https://trello.com/invite/b/Uis4BYVJ/ATTI361288635efd2b002e8e41b2300ce5678856509D/sg-booking-system-sprint-2
+
+### What we will do:
+In Sprint 2, we aim to establish the foundational features of the science gallery booking system, including booking request submission, program management and user log-in. By the end of this sprint, we plan to develop the interface for non-partner school teachers to submit their program requests. In addition, we will implement the log-in function for science gallery staff, as well as the list of programs, which is an essential part of the bookings.
+
+As the first development sprint, we also need to lay the groundwork for the system, which involves system design, environment configuration, and constructing the structure of the booking system.
+
+## Sprint 3 
+
+### Trello Link:https://trello.com/invite/b/cxmdL565/ATTI791cc23ecbab98e23c85bfee0ffa2900A5CC9676/sg-booking-system-sprint-3
+
+### What we will do:
+In Sprint 3, our goal is to develop core functionalities of the booking management system, including booking request management, to-do checklist, and reporting of booking data. By the end of this sprint, we aim to enable science gallery staff to efficiently manage booking requests from school teachers, by developing features including create, view, edit and delete bookings. We also target to complete the to-do list features. These functionalities have high priority and can help our client streamline the booking management process, improving operational efficiency. Additionally, we will implement features for managing the program list to ensure the system is flexible for future changes in programs. If time allows, we will discuss with client and implement some of the could-have features.
+
 
 
 
