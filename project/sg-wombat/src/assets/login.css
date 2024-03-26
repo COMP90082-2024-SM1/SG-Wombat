@@ -1,0 +1,140 @@
+.background {
+    font-family: 'Poppins', sans-serif;
+    background-color: #2E4DD4;
+    min-width: 1920px;
+    min-height: 1080px;
+    display: flex
+}
+
+.bigcontainer {
+    display: flex;
+    margin: auto;
+    padding: 0;
+    width: 500px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    z-index: 10;
+    border-radius: 20px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        right: -100px;
+        bottom: -100px;
+
+        background-attachment: fixed;
+        background-size: cover;
+        filter: blur(20px);
+        z-index: -1;
+    }
+}
+
+.innercontainer {
+    /* background-color: aqua; */
+
+    margin: auto;
+    padding: 0;
+    width: 450px;
+    height: 550px;
+}
+
+.science {
+    color: #2E4DD4;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    /* background-color: blueviolet; */
+    width: 330px;
+    height: 56px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admin {
+    color: #2E4DD4;
+    font-size: 15px;
+    margin-top: -5px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    /* background-color: yellow; */
+    width: 330px;
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.smallcontainer {
+
+    /* background-color: yellowgreen; */
+    margin: auto;
+    padding: 0;
+    width: 300px;
+    height: 280px;
+}
+
+.username {
+    color: rgb(63, 64, 121);
+    /* background-color: aquamarine; */
+    margin-top: 50px;
+    padding: 0;
+    font-weight: bold;
+
+}
+
+.usernameinput {
+    margin-top: 10px;
+}
+
+.password {
+    color: rgb(63, 64, 121);
+    /* background-color: aquamarine; */
+    margin-top: 40px;
+    padding: 0;
+    font-weight: bold;
+}
+
+.passwordinput {
+    margin-top: 10px;
+}
+
+input {
+    width: 300px;
+    height: 35px;
+    margin: auto;
+    border-radius: 50px;
+    border-color: aliceblue;
+}
+
+.forgetpass {
+    /* background-color: aquamarine; */
+    margin-top: 20px;
+    margin-left: 150px;
+    padding: 0;
+}
+
+button {
+    width: 250px;
+    height: 35px;
+    margin: auto;
+    border-radius: 50px;
+    background-color: rgba(90, 123, 239, 1);
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
