@@ -6,9 +6,10 @@
             </div>
             <div class="content">
                 <div class="innerbox">
-                    <div class="icon">
-                        tu
-                    </div>
+                    <el-icon class="icon">
+                        <Loading />
+                    </el-icon>
+                    
                     <div class="text">
                         Dashboard
                     </div>
