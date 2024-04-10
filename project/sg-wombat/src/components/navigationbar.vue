@@ -9,7 +9,7 @@
                     <el-icon class="icon">
                         <Loading />
                     </el-icon>
-                    
+
                     <div class="text">
                         Dashboard
                     </div>
@@ -51,12 +51,12 @@
                         tu
                     </div>
                     <div class="text">
-                        Export Report 
+                        Export Report
                     </div>
                 </div>
-                
-                
-                
+
+
+
 
             </div>
         </div>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-
+import 'element-plus/lib/theme-chalk/index.css';
 </script>
 
 <style scoped>
