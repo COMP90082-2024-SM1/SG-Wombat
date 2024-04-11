@@ -11,7 +11,7 @@
     padding: 0;
     width: 400px;
     height: 1080px;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     overflow: hidden;
     z-index: 10;
     border-radius: 30px;
@@ -20,13 +20,13 @@
 .science {
 
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     margin-top: 30px;
     width: 50%;
     margin-right: auto;
-    margin-left: 10px;
-    background-color: blueviolet;
+    margin-left: 30px;
+    /* background-color: blueviolet; */
     width: 330px;
     height: 56px;
     text-align: center;
@@ -37,13 +37,13 @@
 
 .content {
     color: #2E4DD4;
-    font-size: 15px;
-    margin-top: -5px;
+    font-size: 20px;
+
     margin-top: 30px;
     width: 50%;
     margin-right: auto;
-    margin-left: 10px;
-    background-color: yellow;
+    margin-left: 30px;
+    /* background-color: yellow; */
     width: 330px;
     height: 500px;
     flex-direction: column;
@@ -55,20 +55,28 @@
     font-size: 15px;
     margin-top: 10px;
     width: 20%;
-    background-color: blue;
+    /* background-color: blue; */
     width: 330px;
     height: 80px;
     display: flex;
 }
 
-.icon {
+.iconbox {
     text-align: center;
     font-size: 15px;
     width: 20%;
-    background-color: green;
+    /* background-color: green; */
     height: 80px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.icon {
+    height: 35%;
+    width: 35%;
+    margin-left: 20px;
+    text-align: center;
     justify-content: center;
 }
 
@@ -76,7 +84,7 @@
     color: white;
     font-size: 20px;
 
-    background-color: orange;
+    /* background-color: orange; */
     width: 80%;
     height: 80px;
     display: flex;
@@ -89,7 +97,7 @@
     font-size: 15px;
     margin-top: 430px;
     width: 20%;
-    background-color: blue;
+    /* background-color: blue; */
     width: 330px;
     height: 80px;
     display: flex;

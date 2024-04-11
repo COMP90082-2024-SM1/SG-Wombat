@@ -6,49 +6,55 @@
             </div>
             <div class="content">
                 <div class="innerbox">
-                    <el-icon class="icon">
-                        <Loading />
-                    </el-icon>
+                    
+                    <div class="iconbox">
+                        <div class="icon"><HomeFilled /></div>
+                 
+                    </div>
 
                     <div class="text">
                         Dashboard
                     </div>
                 </div>
                 <div class="innerbox">
-                    <div class="icon">
-                        tu
+                    <div class="iconbox">
+                        <div class="icon"><List /></div>
                     </div>
                     <div class="text">
                         Booking
                     </div>
                 </div>
                 <div class="innerbox">
-                    <div class="icon">
-                        tu
+                    <div class="iconbox">
+                        <div class="icon"><Opportunity /></div>
+                        
                     </div>
                     <div class="text">
                         Programs
                     </div>
                 </div>
                 <div class="innerbox">
-                    <div class="icon">
-                        tu
+                    <div class="iconbox">
+                        <div class="icon"><Place /></div>
+                        
                     </div>
                     <div class="text">
                         Room Information
                     </div>
                 </div>
                 <div class="innerbox">
-                    <div class="icon">
-                        tu
+                    <div class="iconbox">
+                        <div class="icon"><School /></div>
+                        
                     </div>
                     <div class="text">
                         Schools
                     </div>
                 </div>
                 <div class="lastbox">
-                    <div class="icon">
-                        tu
+                    <div class="iconbox">
+                        <div class="icon"><Share /></div>
+                        
                     </div>
                     <div class="text">
                         Export Report
@@ -64,7 +70,7 @@
 </template>
 
 <script>
-import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/dist/index.css';
 </script>
 
 <style scoped>

@@ -16,6 +16,6 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['element-plus/lib/theme-chalk/index.css']
+    include: ['element-plus/dist/index.css']
   }
 });
