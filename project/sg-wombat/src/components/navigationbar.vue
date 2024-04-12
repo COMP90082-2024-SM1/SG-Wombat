@@ -28,7 +28,7 @@
                         Booking
                     </div>
                 </a>
-                <a class="innerbox" @click="activate('a3')">
+                <a class="innerbox" @click="activateAndNavigate('a3', 'programpage')">
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a3' }">
                             <Opportunity />
@@ -39,7 +39,7 @@
                         Programs
                     </div>
                 </a>
-                <a class="innerbox" @click="activate('a4')">
+                <a class="innerbox" @click="activateAndNavigate('a4', 'roompage')">
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a4' }">
                             <Place />
@@ -50,7 +50,7 @@
                         Room Information
                     </div>
                 </a>
-                <a class="innerbox" @click="activate('a5')">
+                <a class="innerbox" @click="activateAndNavigate('a3', 'schoolpage')">
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a5' }">
                             <School />
