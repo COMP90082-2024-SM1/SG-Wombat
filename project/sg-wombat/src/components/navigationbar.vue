@@ -5,7 +5,7 @@
                 Science Gallery
             </div>
             <div class="content">
-                <a class="innerbox" @click="activate('a1'); goToDashboard">
+                <a class="innerbox" @click="gotodashboard('a1', 'dashboardPage')">
 
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a1' }">
@@ -17,7 +17,8 @@
                         Dashboard
                     </div>
                 </a>
-                <a class="innerbox" @click="activate('a2'); goTobooking">
+
+                <a class="innerbox" @click="activateAndNavigate('a2', 'bookingpage')">
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a2' }">
                             <List />
@@ -78,33 +79,21 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router'
-const activeItem = ref('a1');
-const router = useRouter()
+import { useRouter } from 'vue-router';
 
-function activate(item) {
+const activeItem = ref('a1');  // Assuming 'a1' is your default active item
+const router = useRouter();
+
+function activateAndNavigate(item, routeName) {
+    // Update the active item only if it's different
     if (activeItem.value !== item) {
         activeItem.value = item;
     }
+    // Navigate to the route
+    router.push({ name: routeName });
 }
-
-function goToDashboard() {
-    if (router.hasRoute('DashboardPage')) {
-        router.push({ name: 'DashboardPage' });
-    } else {
-        console.error('Route "DashboardPage" does not exist!');
-    }
-}
-
-function goTobooking() {
-    if (router.hasRoute('bookingpage')) {
-        router.push({ name: 'bookingpage' });
-    } else {
-        console.error('Route "bookingpage" does not exist!');
-    }
-}
-
 </script>
+
 
 <style scoped>
 @import '../assets/navigation_bar.css';

@@ -41,11 +41,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goToTargetPage() {
-    if (router.hasRoute('DashboardPage')) {
-        router.push({ name: 'DashboardPage' });
-    } else {
-        console.error('Route "DashboardPage" does not exist!');
-    }
+    router.push({ name: 'dashboardPage' });
 }
 
 </script>
