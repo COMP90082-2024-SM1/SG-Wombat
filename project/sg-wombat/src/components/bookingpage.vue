@@ -3,7 +3,7 @@
         <navigation_bar class="navigation-panel" />
         <div class="dashboard-content">
             <!-- Dashboard的其余内容 -->
-            <div>Dashboard Content Here</div>
+            <div>Booking Content Here</div>
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@
 }
 
 .dashboard-content {
-    background-color: white;
+    background-color: green;
     height: 1080px;
     width: 920px;
     width: 70%;

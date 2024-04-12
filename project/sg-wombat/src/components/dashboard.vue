@@ -52,4 +52,6 @@ export default {
         navigation_bar
     }
 }
+
+
 </script>

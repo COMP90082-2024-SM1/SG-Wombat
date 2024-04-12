@@ -5,7 +5,7 @@
                 Science Gallery
             </div>
             <div class="content">
-                <a class="innerbox" @click="activate('a1')">
+                <a class="innerbox" @click="activate('a1'); goToDashboard">
 
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a1' }">
@@ -17,7 +17,7 @@
                         Dashboard
                     </div>
                 </a>
-                <a class="innerbox" @click="activate('a2')">
+                <a class="innerbox" @click="activate('a2'); goTobooking">
                     <div class="iconbox">
                         <div class="icon" :class="{ 'new-text': activeItem === 'a2' }">
                             <List />
@@ -76,22 +76,34 @@
     </div>
 </template>
 
-<script>
-import 'element-plus/dist/index.css';
-export default {
-    data() {
-        return {
-            activeItem: 'a1'
-        }
-    },
-    methods: {
-        activate(item) {
-            if (this.activeItem !== item) {
-                this.activeItem = item;
-            }
-        }
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router'
+const activeItem = ref('a1');
+const router = useRouter()
+
+function activate(item) {
+    if (activeItem.value !== item) {
+        activeItem.value = item;
     }
 }
+
+function goToDashboard() {
+    if (router.hasRoute('DashboardPage')) {
+        router.push({ name: 'DashboardPage' });
+    } else {
+        console.error('Route "DashboardPage" does not exist!');
+    }
+}
+
+function goTobooking() {
+    if (router.hasRoute('bookingpage')) {
+        router.push({ name: 'bookingpage' });
+    } else {
+        console.error('Route "bookingpage" does not exist!');
+    }
+}
+
 </script>
 
 <style scoped>

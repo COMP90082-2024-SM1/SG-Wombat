@@ -1,7 +1,7 @@
 <template>
     <div class="background">
         <div class="bigcontainer">
-            <div class = "innercontainer">
+            <div class="innercontainer">
                 <div class="science">
                     Science Gallery
                 </div>
@@ -25,8 +25,8 @@
                         Forget Password?
                     </div>
                 </div>
-                <div class= "buttoncontainer">
-                    <button>
+                <div class="buttoncontainer">
+                    <button @click="goToTargetPage">
                         Log In
                     </button>
                 </div>
@@ -35,9 +35,21 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToTargetPage() {
+    if (router.hasRoute('DashboardPage')) {
+        router.push({ name: 'DashboardPage' });
+    } else {
+        console.error('Route "DashboardPage" does not exist!');
+    }
+}
 
 </script>
+
 
 <style scoped>
 @import '../assets/login.css';
