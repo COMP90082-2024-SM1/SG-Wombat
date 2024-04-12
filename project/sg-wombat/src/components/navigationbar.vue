@@ -81,7 +81,7 @@ import 'element-plus/dist/index.css';
 export default {
     data() {
         return {
-            activeItem: null
+            activeItem: 'a1'
         }
     },
     methods: {
