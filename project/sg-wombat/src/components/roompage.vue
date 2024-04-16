@@ -1,63 +1,61 @@
 <template>
-    <div class="container">
-        <NavigationBar class="navigation-panel" />
-        <div class="dashboard-content">
-            1
-        </div>
-    </div>
+    <el-table :data="tableData" style="width: 100%">
+        <el-table-column fixed prop="date" label="Date" width="150" />
+        <el-table-column prop="name" label="Name" width="120" />
+        <el-table-column prop="state" label="State" width="120" />
+        <el-table-column prop="city" label="City" width="120" />
+        <el-table-column prop="address" label="Address" width="600" />
+        <el-table-column prop="zip" label="Zip" width="120" />
+        <el-table-column fixed="right" label="Operations" width="120">
+            <template #default>
+                <el-button link type="primary" size="small" @click="handleClick">Detail</el-button>
+                <el-button link type="primary" size="small">Edit</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
 </template>
 
-<style scoped>
-.container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    min-height: 1080px;
-    border-radius: 30px;
+<script lang="ts" setup>
+const handleClick = () => {
+    console.log('click')
 }
 
-.navigation-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 100%;
-    z-index: 1000;
-}
-
-.dashboard-content {
-    background-color: white;
-    height: 1080px;
-    width: 920px;
-    width: 70%;
-    margin-left: 400px;
-    display: flex;
-    flex-grow: 1;
-    z-index: 1001;
-    border-radius: 30px;
-}
-
-.calendarbox {
-    margin-top: 50px;
-    margin-left: 30px;
-    background-color: white;
-    width: 1000px;
-    height: 900px;
-}
-</style>
-
-
-
-<script>
-import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-
-export default {
-    components: {
-        NavigationBar // Correct naming to match the import
-
-    }
-}
-
-
+const tableData = [
+    {
+        date: '2016-05-03',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home',
+    },
+    {
+        date: '2016-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office',
+    },
+    {
+        date: '2016-05-04',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home',
+    },
+    {
+        date: '2016-05-01',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office',
+    },
+]
 </script>

@@ -2,7 +2,7 @@
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            1
+            <BookingDetail class="listbox" />
         </div>
     </div>
 </template>
@@ -38,24 +38,27 @@
     border-radius: 30px;
 }
 
-.calendarbox {
+.listbox {
     margin-top: 50px;
     margin-left: 30px;
     background-color: white;
     width: 1000px;
     height: 900px;
 }
+
+
 </style>
 
 
 
 <script>
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
+import BookingDetail from './bookingdetail.vue';
 
 export default {
     components: {
-        NavigationBar // Correct naming to match the import
-
+        NavigationBar, // Correct naming to match the import
+        BookingDetail,
     }
 }
 
