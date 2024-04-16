@@ -1,9 +1,8 @@
 <template>
     <div class="container">
-        <navigation_bar class="navigation-panel" />
+        <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            <!-- Dashboard的其余内容 -->
-            <div>Dashboard Content Here</div>
+            1
         </div>
     </div>
 </template>
@@ -15,7 +14,7 @@
     display: flex;
     flex-direction: row;
     min-height: 1080px;
-    border-radius: 30px
+    border-radius: 30px;
 }
 
 .navigation-panel {
@@ -25,8 +24,6 @@
     width: 30%;
     height: 100%;
     z-index: 1000;
-
-
 }
 
 .dashboard-content {
@@ -38,18 +35,29 @@
     display: flex;
     flex-grow: 1;
     z-index: 1001;
-    border-radius: 30px
+    border-radius: 30px;
+}
+
+.calendarbox {
+    margin-top: 50px;
+    margin-left: 30px;
+    background-color: white;
+    width: 1000px;
+    height: 900px;
 }
 </style>
 
 
 
 <script>
-import navigation_bar from './navigationbar.vue'; // 确保路径正确
+import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
 
 export default {
     components: {
-        navigation_bar
+        NavigationBar // Correct naming to match the import
+
     }
 }
+
+
 </script>

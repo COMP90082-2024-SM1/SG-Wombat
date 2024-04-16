@@ -36,26 +36,19 @@
 }
 
 .content {
-    color: #2E4DD4;
-    font-size: 20px;
-
+    
     margin-top: 30px;
-    width: 50%;
-    margin-right: auto;
+    width: 900px;
     margin-left: 30px;
-    /* background-color: yellow; */
-    width: 330px;
-    height: 500px;
-    flex-direction: column;
-    justify-content: center;
+    
 }
 
 .innerbox {
     color: white;
-    font-size: 15px;
+    font-size: 100px;
     margin-top: 10px;
     width: 20%;
-    /* background-color: blue; */
+    background-color: #2E4DD4;
     width: 330px;
     height: 80px;
     display: flex;
@@ -63,9 +56,9 @@
 
 .iconbox {
     text-align: center;
-    font-size: 15px;
+    font-size: px;
     width: 20%;
-    /* background-color: green; */
+    background-color: green;
     height: 80px;
     display: flex;
     flex-direction: column;
@@ -73,27 +66,23 @@
 }
 
 .icon {
-    height: 35%;
-    width: 35%;
-    margin-left: 20px;
+    size: 50;
+    /* margin-left: 20px; */
     text-align: center;
     justify-content: center;
+    color: white;
     opacity: 0.6;
 }
 
 .text {
-    color: white;
-    font-size: 20px;
+    font-size: 30px;
+    margin-left: 10px;
     /* background-color: orange; */
     width: 80%;
     height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 0.6;
-}
-
-.new-text{
     opacity: 1;
 }
 
@@ -102,7 +91,7 @@
     font-size: 15px;
     margin-top: 430px;
     width: 20%;
-    /* background-color: blue; */
+    background-color: #2E4DD4;
     width: 330px;
     height: 80px;
     display: flex;
