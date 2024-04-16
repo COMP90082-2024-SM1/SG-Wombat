@@ -2,6 +2,7 @@
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
+            
             <BookingDetail class="listbox" />
         </div>
     </div>
@@ -41,7 +42,7 @@
 .listbox {
     margin-top: 50px;
     margin-left: 30px;
-    background-color: white;
+    background-color: yellow;
     width: 1000px;
     height: 900px;
 }
