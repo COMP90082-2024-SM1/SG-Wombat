@@ -2,13 +2,48 @@
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            
+            <div class="HeadTitle">
+                <el-menu mode="horizontal" :popper-offset="16">
+                    <el-sub-menu index="1">
+                        <template #title>Workspace</template>
+                        <el-menu-item index="1-1">item one</el-menu-item>
+                        <el-menu-item index="1-2">item two</el-menu-item>
+                        <el-menu-item index="1-3">item three</el-menu-item>
+                    </el-sub-menu>
+                </el-menu>
+            </div>
+
             <BookingDetail class="listbox" />
         </div>
     </div>
 </template>
 
 <style scoped>
+.HeadTitle {
+    width: 1000px;
+    height: 100px;
+    background-color: aqua;
+    margin-left: 20px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.block-col-2 .demonstration {
+    display: block;
+    color: var(--el-text-color-secondary);
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.block-col-2 .el-dropdown-link {
+    display: flex;
+    align-items: center;
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -46,13 +81,12 @@
     width: 1000px;
     height: 900px;
 }
-
-
 </style>
 
 
 
 <script>
+import { ArrowDown } from '@element-plus/icons-vue'
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
 import BookingDetail from './bookingdetail.vue';
 

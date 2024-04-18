@@ -1,60 +1,88 @@
 <template>
-    <el-table :data="tableData" style="width: 100%">
-        <el-table-column fixed prop="date" label="Date" width="150" />
-        <el-table-column prop="name" label="Name" width="120" />
-        <el-table-column prop="state" label="State" width="120" />
-        <el-table-column prop="city" label="City" width="120" />
-        <el-table-column prop="address" label="Address" width="600" />
-        <el-table-column prop="zip" label="Zip" width="120" />
-        <el-table-column fixed="right" label="Operations" width="120">
-            <template #default>
-                <el-button link type="primary" size="small" @click="handleClick">Detail</el-button>
-                <el-button link type="primary" size="small">Edit</el-button>
+    <el-button @click="resetDateFilter">reset date filter</el-button>
+    <el-button @click="clearFilter">reset all filters</el-button>
+    <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+        <el-table-column prop="date" label="Date" sortable width="180" column-key="date" :filters="[
+        { text: '2016-05-01', value: '2016-05-01' },
+        { text: '2016-05-02', value: '2016-05-02' },
+        { text: '2016-05-03', value: '2016-05-03' },
+        { text: '2016-05-04', value: '2016-05-04' },
+    ]" :filter-method="filterHandler" />
+        <el-table-column prop="name" label="Name" width="180" />
+        <el-table-column prop="address" label="Address" :formatter="formatter" />
+
+        <el-table-column prop="tag" label="Tag" width="100" :filters="[
+        { text: 'Home', value: 'Home' },
+        { text: 'Office', value: 'Office' },
+    ]" :filter-method="filterTag" filter-placement="bottom-end">
+            <template #default="scope">
+                <el-tag :type="scope.row.tag === 'Home' ? '' : 'success'" disable-transitions>{{ scope.row.tag
+                    }}</el-tag>
             </template>
         </el-table-column>
     </el-table>
 </template>
 
 <script lang="ts" setup>
-const handleClick = () => {
-    console.log('click')
+import { ref } from 'vue'
+import type { TableColumnCtx, TableInstance } from 'element-plus'
+
+interface User {
+    date: string
+    name: string
+    address: string
+    tag: string
 }
 
-const tableData = [
+const tableRef = ref<TableInstance>()
+
+const resetDateFilter = () => {
+    tableRef.value!.clearFilter(['date'])
+}
+// TODO: improvement typing when refactor table
+const clearFilter = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    tableRef.value!.clearFilter()
+}
+const formatter = (row: User, column: TableColumnCtx<User>) => {
+    return row.address
+}
+const filterTag = (value: string, row: User) => {
+    return row.tag === value
+}
+const filterHandler = (
+    value: string,
+    row: User,
+    column: TableColumnCtx<User>
+) => {
+    const property = column['property']
+    return row[property] === value
+}
+
+const tableData: User[] = [
     {
         date: '2016-05-03',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
         address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
         tag: 'Home',
     },
     {
         date: '2016-05-02',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
         address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
         tag: 'Office',
     },
     {
         date: '2016-05-04',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
         address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
         tag: 'Home',
     },
     {
         date: '2016-05-01',
         name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
         address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036',
         tag: 'Office',
     },
 ]
