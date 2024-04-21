@@ -13,7 +13,7 @@
                 <el-main>
                     <el-form :model="form" :rules="rules" label-position="top" class="booking-form" ref="formRef">
 
-                        <!-- 第八题 -->
+                      
                         <el-form-item label="8. Which program are you interested in?" prop="selectedProgram">
                             <el-radio-group v-model="form.selectedProgram">
                                 <el-radio label="halfDayTwoModules">Half day experience with two modules: NOT NATURA
@@ -27,7 +27,7 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <!-- 第九题 -->
+                       
                         <el-form-item
                             label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
                             prop="selectedDate">
@@ -288,12 +288,10 @@ const open = () => {
 
 .logo {
     max-width: 200px;
-    /* 或设置为固定的宽度 */
     height: auto;
     margin-left: 1000px;
     margin-top: 3%;
-    /* 保持图片的纵横比 */
-    /* 根据需要添加其他样式，比如padding或margin来定位图片 */
+    
 }
 
 .el-container {
@@ -379,7 +377,7 @@ const open = () => {
     display: block;
     text-align: left;
     font-size: 14px;
-    color: #999;
+    color: black;
     margin-top: 5px;
 }
 
