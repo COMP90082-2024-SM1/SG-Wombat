@@ -7,6 +7,7 @@ import schoolpage from '../src/components/schoolpage.vue';
 import programpage from '../src/components/programpage.vue';
 import newbar from '../src/components/newbar.vue';
 import teacherpage from '../src/components/teacherpage.vue';
+import teacherpage2 from '../src/components/teacherpage2.vue';
 
 const routes = [
     { path: '/', component: Login },
@@ -45,6 +46,11 @@ const routes = [
         path: '/teacherpage',
         name: 'teacherpage',
         component: teacherpage
+    },
+    {
+        path: '/teacherpage2',
+        name: 'teacherpage2',
+        component: teacherpage2
     },
 ];
 

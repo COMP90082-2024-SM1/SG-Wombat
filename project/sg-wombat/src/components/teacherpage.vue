@@ -2,14 +2,14 @@
     <div class="outcontainer">
         <div class="innercontainer">
             <img src="https://images.squarespace-cdn.com/content/v1/5dc2cd8defa71b41e983be85/1573049395906-VZ2UOOHN6KX47VYPAA11/logo.png?format=750w"
-                    alt="Logo" class="logo">
+                alt="Logo" class="logo">
             <el-container>
                 <el-header>Booking Details</el-header>
-                
+
                 <div class="smallhead">
                     Teacher and School Details
                 </div>
-                
+
                 <el-main>
                     <el-form label-position="top" class="booking-form">
                         <el-row :gutter="150">
@@ -67,7 +67,7 @@
 
 
                     </el-form>
-                    <el-button class="buttom" type="primary">Next</el-button>
+                    <el-button class="buttom" type="primary" @click="goToTargetPage">Next</el-button>
                 </el-main>
             </el-container>
 
@@ -98,6 +98,14 @@ const mobileNumber = ref('');
 const teachingArea = ref('');
 const visitDate = ref('');
 const datePreference = ref('');
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToTargetPage() {
+    router.push({ name: 'teacherpage2' });
+}
 
 </script>
 
@@ -136,9 +144,10 @@ const datePreference = ref('');
     /* 根据需要添加其他样式，比如padding或margin来定位图片 */
 }
 
-.el-container{
+.el-container {
     margin-top: -150px
 }
+
 .booking-form {
     max-width: 90%;
     margin-top: -20px;
