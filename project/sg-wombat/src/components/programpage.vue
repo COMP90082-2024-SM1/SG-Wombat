@@ -77,7 +77,9 @@ export default {
     },
     methods: {
         showAddNewProgramForm() {
+            console.log("Attempting to show form");
             this.isFormVisible = true; // 方法用来显示表单
+            console.log("Form visibility should now be true:", this.isFormVisible);
         }
     }
 }

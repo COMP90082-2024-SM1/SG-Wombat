@@ -1,6 +1,9 @@
+// Parent Component
+<addNewProgram :form-visible.sync="isFormVisible" />
 <template>
     <el-dialog :visible.sync="formVisible" title="Add New Program" width="700px">
       <el-form :model="form" label-width="120px">
+        <!-- Form fields here -->
         <el-form-item label="Program Name">
           <el-input v-model="form.name" />
         </el-form-item>
@@ -54,6 +57,7 @@
   
   <script setup>
   import { reactive } from 'vue';
+  import { defineProps, defineEmits } from 'vue';
   
   const props = defineProps({
     formVisible: {
@@ -61,6 +65,8 @@
       default: false
     }
   });
+  
+  const emits = defineEmits(['update:formVisible']);
   
   const form = reactive({
     name: '',
@@ -80,7 +86,11 @@
   
   const onCancel = () => {
     console.log('Cancelled');
-    // Logic to clear form or close dialog
+    emits('update:formVisible', false); // This will update the parent's `isFormVisible` value to `false`
+  };
+  
+  const updateVisibility = (value) => {
+    emits('update:formVisible', value);
   };
   </script>
   
