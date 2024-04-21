@@ -38,7 +38,9 @@
                             <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
                         <el-form-item label="Visit date" prop="visitDate">
-                            <el-date-picker placeholder="Visit date" v-model="form.visitDate"></el-date-picker>
+                            <el-date-picker v-model="form.visitDate" :disabled-date="disabledDate" type="date"
+                                placeholder="选择日期">
+                            </el-date-picker>
                         </el-form-item>
                         <el-form-item prop="datePreference">
                             <div class="question">
@@ -131,6 +133,12 @@ function goToTargetPage() {
     router.push({ name: 'teacherpage2' }); // 确保你的路由配置中有对应的路由
 }
 
+const disabledDate = (time) => {
+    // 获取日期是星期几（0 是星期日，1 是星期一，...，6 是星期六）
+    const dayOfWeek = new Date(time).getDay();
+    // 如果是星期一(1)、星期六(6)或星期日(0)，则禁用
+    return dayOfWeek === 1 || dayOfWeek === 6 || dayOfWeek === 0;
+};
 
 
 
