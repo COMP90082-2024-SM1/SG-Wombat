@@ -11,35 +11,36 @@
                 </div>
 
                 <el-main>
-                    <el-form label-position="top" class="booking-form">
+                    <el-form :model="form" :rules="rules" label-position="top" class="booking-form" ref="formRef">
+
                         <el-row :gutter="150">
                             <el-col :span="10">
-                                <el-form-item label="First Name">
-                                    <el-input placeholder="First Name" v-model="firstName"></el-input>
+                                <el-form-item label="First Name" prop="firstName">
+                                    <el-input placeholder="First Name" v-model="form.firstName">></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="10" class="input1">
-                                <el-form-item label="Last Name">
-                                    <el-input placeholder="Last Name" v-model="lastName"></el-input>
+                                <el-form-item label="Last Name" prop="lastName">
+                                    <el-input placeholder="Last Name" v-model="form.lastName"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
-                        <el-form-item label="School">
-                            <el-input placeholder="School" v-model="school"></el-input>
+                        <el-form-item label="School" prop="school">
+                            <el-input placeholder="School" v-model="form.school"></el-input>
                         </el-form-item>
-                        <el-form-item label="Email address">
-                            <el-input placeholder="Email" v-model="email"></el-input>
+                        <el-form-item label="Email address" prop="email">
+                            <el-input placeholder="Email" v-model="form.email"></el-input>
                         </el-form-item>
-                        <el-form-item label="Mobile number">
-                            <el-input placeholder="Mobile number" v-model="mobileNumber"></el-input>
+                        <el-form-item label="Mobile number" prop="mobileNumber">
+                            <el-input placeholder="Mobile number" v-model="form.mobileNumber"></el-input>
                         </el-form-item>
-                        <el-form-item label="Teaching area">
-                            <el-input placeholder="Teaching area" v-model="teachingArea"></el-input>
+                        <el-form-item label="Teaching area" prop="teachingArea">
+                            <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
-                        <el-form-item label="Visit date">
-                            <el-date-picker placeholder="Visit date" v-model="visitDate"></el-date-picker>
+                        <el-form-item label="Visit date" prop="visitDate">
+                            <el-date-picker placeholder="Visit date" v-model="form.visitDate"></el-date-picker>
                         </el-form-item>
-                        <el-form-item>
+                        <el-form-item prop="datePreference">
                             <div class="question">
                                 What is your first date preference?
                                 <span class="note">
@@ -48,7 +49,7 @@
                                     <a href="mailto:school-bookings@unimelb.edu.au">school-bookings@unimelb.edu.au</a>.
                                 </span>
                             </div>
-                            <el-radio-group v-model="datePreference">
+                            <el-radio-group v-model="form.datePreference">
                                 <div class='danxuan'>
                                     <el-radio label="2024-03-05">Tuesday 5 March 2024</el-radio>
                                 </div>
@@ -67,7 +68,8 @@
 
 
                     </el-form>
-                    <el-button class="buttom" type="primary" @click="goToTargetPage">Next</el-button>
+                    <el-button class="buttom" type="primary" @click="validateAndGoToTargetPage">Next</el-button>
+
                 </el-main>
             </el-container>
 
@@ -77,6 +79,32 @@
 
 <script setup>
 import { ref } from 'vue';
+
+// 数据属性
+const form = ref({
+    firstName: '',
+    lastName: '',
+    school: '',
+    email: '',
+    mobileNumber: '',
+    teachingArea: '',
+    visitDate: '',
+    datePreference: '',
+});
+
+// 验证规则
+const rules = ref({
+    firstName: [{ required: true, message: 'First name is required', trigger: 'blur' }],
+    lastName: [{ required: true, message: 'Last name is required', trigger: 'blur' }],
+    school: [{ required: true, message: 'School name is required', trigger: 'blur' }],
+    email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
+    mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
+    teachingArea: [{ required: true, message: 'Teaching Are is required', trigger: 'blur' }],
+    visitDate: [{ required: true, message: 'Visit Date is required', trigger: 'blur' }],
+    datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
+    // ...其他字段的规则
+});
+
 import {
     ElForm,
     ElFormItem,
@@ -89,23 +117,31 @@ import {
     ElCol
 } from 'element-plus';
 
-// 定义数据属性，用于与输入框进行双向绑定
-const firstName = ref('');
-const lastName = ref('');
-const school = ref('');
-const email = ref('');
-const mobileNumber = ref('');
-const teachingArea = ref('');
-const visitDate = ref('');
-const datePreference = ref('');
+
 
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+const formRef = ref(null);
+
+// 在这里定义 goToTargetPage 函数
 function goToTargetPage() {
-    router.push({ name: 'teacherpage2' });
+    // 使用 router.push 方法来导航
+    router.push({ name: 'teacherpage2' }); // 确保你的路由配置中有对应的路由
 }
+
+
+const validateAndGoToTargetPage = () => {
+    formRef.value.validate((valid) => {
+        if (valid) {
+            goToTargetPage();
+        } else {
+            console.log('error submit!!');
+            // 这里可以处理错误情况，比如显示一个错误消息
+        }
+    });
+};
 
 </script>
 
@@ -121,7 +157,7 @@ function goToTargetPage() {
     height: 1080px;
     background-color: #2E4DD4;
     justify-content: center;
-    text-align: center;
+
     display: flex;
     font-family: 'Poppins', sans-serif;
 }
@@ -161,7 +197,7 @@ function goToTargetPage() {
 }
 
 .danxuan {
-    background-color: yellow;
+    /* background-color: yellow; */
     margin-left: 20px;
 }
 
@@ -242,19 +278,5 @@ a:hover {
 
     /* 这将对齐单选按钮和文本 */
     margin-bottom: 10px;
-}
-
-.el-radio__label {
-    margin-left: 8px;
-    /* 可能需要调整以确保对齐 */
-    font-size: 18px;
-    /* 字体大小与问题文本一致 */
-    line-height: 1.5;
-}
-
-.el-radio__input .el-radio__inner {
-    margin-right: 8px;
-    /* 和label的间距一致 */
-    /* 如果需要，调整单选按钮大小 */
 }
 </style>
