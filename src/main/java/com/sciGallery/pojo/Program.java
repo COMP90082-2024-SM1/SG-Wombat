@@ -3,6 +3,8 @@ package com.sciGallery.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -12,8 +14,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Program {
-    private Integer id; //ID
-    private String name; //Program名称
-    private LocalDateTime createTime; //创建时间
-    private LocalDateTime updateTime; //修改时间
+    private int progId;
+    private String name;
+    private int maxCap;
+    private String techReq;
+    private BigDecimal costPerson;
+    private String duration;
+    private Integer status;
+    private Integer Monday;
+    private Integer Tuesday;
+    private Integer Wednesday;
+    private Integer Thursday;
+    private Integer Friday;
+    private String description;
+
 }

@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Emp {
     private Integer id; //ID
-    private String username; //用户名
+    private String userName; //用户名
     private String password; //密码
 }
