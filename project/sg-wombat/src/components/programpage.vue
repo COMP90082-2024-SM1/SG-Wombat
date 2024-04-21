@@ -2,7 +2,7 @@
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            <BookingDetail class="listbox" />
+            <Programtable class="listbox" />
         </div>
     </div>
 </template>
@@ -53,12 +53,12 @@
 
 <script>
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-import BookingDetail from './bookingdetail.vue';
+import Programtable from './programtable.vue';
 
 export default {
     components: {
         NavigationBar, // Correct naming to match the import
-        BookingDetail,
+        Programtable,
     }
 }
 
