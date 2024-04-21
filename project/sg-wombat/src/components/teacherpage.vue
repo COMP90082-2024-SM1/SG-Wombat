@@ -68,7 +68,7 @@
 
 
                     </el-form>
-                    <el-button class="buttom" type="primary" @click="validateAndGoToTargetPage">Next</el-button>
+                    <el-button class="buttom" type="primary" @click="submitForm">Next</el-button>
 
                 </el-main>
             </el-container>
@@ -132,21 +132,43 @@ function goToTargetPage() {
 }
 
 
-const validateAndGoToTargetPage = () => {
+
+
+import { ElMessageBox, ElMessage } from 'element-plus';
+
+const submitForm = () => {
     formRef.value.validate((valid) => {
         if (valid) {
-            goToTargetPage();
+            ElMessageBox.confirm(
+                'Do you want to submit the form and go to next page?',
+                'Confirm Submission',
+                {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning',
+                }
+            ).then(() => {
+                ElMessage({
+                    type: 'success',
+                    message: 'Submission Success',
+                });
+                // 如果确认提交，执行页面跳转
+                goToTargetPage();
+            }).catch(() => {
+                ElMessage({
+                    type: 'info',
+                    message: 'Submission Canceled',
+                });
+            });
         } else {
-            console.log('error submit!!');
-            // 这里可以处理错误情况，比如显示一个错误消息
+            ElMessage.error('Please correct the errors in the form.');
         }
     });
 };
-
 </script>
 
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .outcontainer {
@@ -219,7 +241,9 @@ const validateAndGoToTargetPage = () => {
     text-align: left;
     padding: 20px;
     margin-left: 100px;
-    font-size: 20px
+    font-size: 20px;
+
+    margin-top: 20px;
 }
 
 .el-header {
