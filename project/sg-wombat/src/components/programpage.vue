@@ -53,12 +53,12 @@
 
 <script>
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-import ProgramTable from './programpage.vue';
+import BookingDetail from './bookingdetail.vue';
 
 export default {
     components: {
         NavigationBar, // Correct naming to match the import
-        ProgramTable,
+        BookingDetail,
     }
 }
 
