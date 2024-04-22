@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { ref, computed } from 'vue';
 
 interface User {
   name: string
@@ -72,6 +72,25 @@ interface User {
 }
 
 const search = ref('');
+const tableData: User[] = [
+  {
+    name: 'Program A',
+    people: '20',
+    // Add other fields here to match your data structure
+  },
+  {
+    name: 'Program B',
+    people: '30',
+    // Add other fields here to match your data structure
+  },
+  {
+    name: 'Program C',
+    people: '40',
+    // Add other fields here to match your data structure
+  },
+  // Add more data as needed
+];
+
 const filterTableData = computed(() =>
   tableData.filter(
     (data) =>
@@ -108,25 +127,8 @@ const deleteProgram = (program: User) => {
     tableData.splice(index, 1);
   }
 };
-
-const tableData: User[] = [
-  {
-    name: 'Program A',
-    people: '20',
-    // Add other fields here to match your data structure
-  },
-  {
-    name: 'Program B',
-    people: '30',
-    // Add other fields here to match your data structure
-  },
-  {
-    name: 'Program C',
-    people: '40',
-    // Add other fields here to match your data structure
-  },
-  // Add more data as needed
-];
 </script>
+
+
 
 
