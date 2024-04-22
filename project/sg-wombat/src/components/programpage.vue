@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-import BookingDetail from './bookingdetail.vue';
+import programtable from './programtable.vue';
+
 import addNewProgram from './addNewProgram.vue';
 let isFormVisible = ref(false)
 const showAddNewProgramForm = () => {
@@ -14,7 +15,7 @@ const showAddNewProgramForm = () => {
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            <BookingDetail class="listbox" />
+            <programtable class="listbox" />
             <el-button @click="showAddNewProgramForm">Add New Program</el-button>
             <addNewProgram v-model:formVisible="isFormVisible" />
             <!-- v-model'deault props is modelValue -->
