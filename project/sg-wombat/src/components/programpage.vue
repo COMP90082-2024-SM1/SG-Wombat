@@ -1,20 +1,27 @@
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
+import BookingDetail from './bookingdetail.vue';
+import addNewProgram from './addNewProgram.vue';
+let isFormVisible = ref(false)
+const showAddNewProgramForm = () => {
+    console.log("Attempting to show form");
+    isFormVisible.value = true; 
+    console.log("Form visibility should now be true:", isFormVisible.value);
+}
+</script>
 <template>
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
             <BookingDetail class="listbox" />
-            <!-- 添加触发弹窗的按钮 -->
             <el-button @click="showAddNewProgramForm">Add New Program</el-button>
-            <!-- addNewProgram 组件实例，通过 form-visible 属性控制显示 -->
-            <addNewProgram :form-visible.sync="isFormVisible" />
+            <addNewProgram v-model:formVisible="isFormVisible" />
+            <!-- v-model'deault props is modelValue -->
         </div>
     </div>
 </template>
-
-
-
-
-<style scoped>
+<style lang="scss" scoped>
 .container {
     position: relative;
     width: 100%;
@@ -52,35 +59,4 @@
     width: 1000px;
     height: 900px;
 }
-
-
 </style>
-
-
-
-<script>
-import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-import BookingDetail from './bookingdetail.vue';
-import addNewProgram from './addNewProgram.vue';
-
-
-export default {
-    components: {
-        NavigationBar, // Correct naming to match the import
-        BookingDetail,
-        addNewProgram
-    },
-    data() {
-        return {
-            isFormVisible: false, // 控制表单弹窗的显示状态
-        };
-    },
-    methods: {
-        showAddNewProgramForm() {
-            console.log("Attempting to show form");
-            this.isFormVisible = true; // 方法用来显示表单
-            console.log("Form visibility should now be true:", this.isFormVisible);
-        }
-    }
-}
-</script>
