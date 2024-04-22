@@ -60,7 +60,6 @@
 
 <script>
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
-import BookingDetail from './bookingdetail.vue';
 import addNewProgram from './addNewProgram.vue';
 import Programtable from './programtable.vue';
 
