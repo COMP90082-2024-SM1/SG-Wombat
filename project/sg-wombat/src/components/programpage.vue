@@ -2,7 +2,6 @@
 import { reactive, ref } from 'vue'
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
 import programtable from './programtable.vue';
-
 import addNewProgram from './addNewProgram.vue';
 let isFormVisible = ref(false)
 const showAddNewProgramForm = () => {
