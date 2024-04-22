@@ -2,7 +2,7 @@
     <div class="container">
         <NavigationBar class="navigation-panel" />
         <div class="dashboard-content">
-            <BookingDetail class="listbox" />
+            <Programtable class="listbox" />
             <!-- 添加触发弹窗的按钮 -->
             <el-button @click="showAddNewProgramForm">Add New Program</el-button>
             <!-- addNewProgram 组件实例，通过 form-visible 属性控制显示 -->
@@ -62,12 +62,13 @@
 import NavigationBar from './newbar.vue'; // Ensure the import name matches the convention
 import BookingDetail from './bookingdetail.vue';
 import addNewProgram from './addNewProgram.vue';
+import Programtable from './programtable.vue';
 
 
 export default {
     components: {
         NavigationBar, // Correct naming to match the import
-        BookingDetail,
+        Programtable,
         addNewProgram
     },
     data() {
