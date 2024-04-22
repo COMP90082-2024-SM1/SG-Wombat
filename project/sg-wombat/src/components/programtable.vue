@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%">
+  <el-table :data="filterTableData" style="width: 100%" @row-click="handleRowClick">
     <el-table-column label="Program Name" prop="name" />
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column align="right">
@@ -60,10 +60,26 @@
       </el-form-item>
     </el-form>
   </el-dialog>
+
+    <!-- for view details by clicking on rows -->
+    <el-dialog v-model="dialogDescVisible" title="Program Details" width="800">
+    <el-descriptions :column="1" border>
+      <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
+      <el-descriptions-item label="Max People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
+      <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq}}</el-descriptions-item>
+      <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost}}</el-descriptions-item>
+      <el-descriptions-item label="Approximate Runtime">{{ ProgramDetails.runtime}}</el-descriptions-item>
+      <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc}}</el-descriptions-item>
+      <el-descriptions-item label="Available Workdays">{{ ProgramDetails.hostDays}}</el-descriptions-item>
+      <el-descriptions-item label="Status">{{ ProgramDetails.programStatus}}</el-descriptions-item>
+    </el-descriptions>
+    
+  </el-dialog>
+
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, reactive  } from 'vue';
 
 interface User {
   name: string
@@ -127,6 +143,25 @@ const deleteProgram = (program: User) => {
     tableData.splice(index, 1);
   }
 };
+
+// for view details by clicking on rows
+const dialogDescVisible = ref(false)
+const handleRowClick = (row: User) => {
+  console.log('Clicked row:', row)
+  dialogDescVisible.value = true
+}
+
+const ProgramDetails = reactive({
+  programName: 'Program A',
+  maxPpl: 30,
+  techReq: "10 ipads",
+  cost: 20,
+  runtime: 3,
+  programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
+  hostDays: "Tue, Wed, Thur",
+  programStatus: "Active"
+})
+
 </script>
 
 
