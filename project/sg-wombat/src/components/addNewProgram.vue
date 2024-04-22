@@ -1,7 +1,7 @@
 // Parent Component
 <addNewProgram :form-visible.sync="isFormVisible" />
 <template>
-    <el-dialog :visible.sync="formVisible" title="Add New Program" width="700px">
+    <el-dialog :visible.sync="formVisible" title="Add New Program" style="display: block;">
       <el-form :model="form" label-width="120px">
         <!-- Form fields here -->
         <el-form-item label="Program Name">
@@ -58,7 +58,7 @@
   <script setup>
   import { reactive } from 'vue';
   import { defineProps, defineEmits } from 'vue';
-  
+
   const props = defineProps({
     formVisible: {
       type: Boolean,
