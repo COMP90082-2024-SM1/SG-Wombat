@@ -39,7 +39,7 @@
                         </el-form-item>
                         <el-form-item label="Visit date" prop="visitDate">
                             <el-date-picker v-model="form.visitDate" :disabled-date="disabledDate" type="date"
-                                placeholder="选择日期">
+                                placeholder="Select Date">
                             </el-date-picker>
                         </el-form-item>
                         <el-form-item prop="datePreference">

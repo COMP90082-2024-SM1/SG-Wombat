@@ -13,7 +13,7 @@
                 <el-main>
                     <el-form :model="form" :rules="rules" label-position="top" class="booking-form" ref="formRef">
 
-                      
+
                         <el-form-item label="8. Which program are you interested in?" prop="selectedProgram">
                             <el-radio-group v-model="form.selectedProgram">
                                 <el-radio label="halfDayTwoModules">Half day experience with two modules: NOT NATURA
@@ -27,7 +27,7 @@
                             </el-radio-group>
                         </el-form-item>
 
-                       
+
                         <el-form-item
                             label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
                             prop="selectedDate">
@@ -81,7 +81,7 @@
 
                         <!-- Question 14 -->
                         <el-form-item label="14. What is the school's ABN number?" prop="abnNumber">
-                            <el-input v-model="form.abnNumber" placeholder="输入你的答案"></el-input>
+                            <el-input v-model="form.abnNumber" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
                         <!-- Question 15 -->
@@ -108,7 +108,7 @@
 
                         <!-- Question 18 -->
                         <el-form-item label="18. How did you hear about Science Gallery's excursions?">
-                            <el-input v-model="form.discoverySource" placeholder="输入你的答案"></el-input>
+                            <el-input v-model="form.discoverySource" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
                         <!-- Question 19 -->
@@ -291,7 +291,7 @@ const open = () => {
     height: auto;
     margin-left: 1000px;
     margin-top: 3%;
-    
+
 }
 
 .el-container {
