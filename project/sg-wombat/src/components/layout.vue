@@ -1,0 +1,107 @@
+<template>
+    <el-container class="layout-container">
+        <!-- navigation sidebar -->
+        <el-aside width="400px">
+            <div class="science">
+                Science Gallery
+            </div>
+            <!-- el-menu -->
+
+        </el-aside>
+
+        <!-- main content area on the right side-->
+        <el-container class="main-content">
+            <!-- header area -->
+            <el-header>
+                <div>Booking Management System</div>
+                <!-- user logout menu -->
+                <el-dropdown>
+                    <span class="el-dropdown-link">
+                        Admin User
+                        <el-icon class="el-icon--right">
+                            <arrow-down />
+                        </el-icon>
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item>Logout</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+            </el-header>
+
+            <!-- main content -->
+            <el-main>
+                
+            </el-main>
+
+            <el-footer>
+                Science Gallery Booking Management System @2024 Created by Team Wombat
+            </el-footer>
+
+        </el-container>
+
+    </el-container>
+</template>
+
+
+<script  lang="ts" setup>
+import { ArrowDown } from '@element-plus/icons-vue'
+
+</script>
+
+<style scoped>
+.layout-container {
+    height: 100vh;
+    /* width: 100vw;
+    display: flex;
+    flex-direction: row; */
+    border-radius: 30px;
+}
+.layout-container .el-aside {
+    background-color: #2E4DD4;
+    color: #fff;
+    border-radius: 30px
+}
+.layout-container .el-header {
+    font-size: 30px;
+    margin-top: 30px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.layout-container .el-footer {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+    font-size: 15px;
+}
+
+.layout-container .el-main {
+    background-color: lightblue;
+    border-radius: 30px;
+
+}
+
+.science {
+
+color: white;
+font-size: 40px;
+font-weight: bold;
+margin-top: 30px;
+width: 50%;
+margin-right: auto;
+margin-left: 30px;
+/* background-color: blueviolet; */
+width: 330px;
+height: 56px;
+text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+</style>

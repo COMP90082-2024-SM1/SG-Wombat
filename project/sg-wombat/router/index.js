@@ -8,6 +8,7 @@ import programpage from '../src/components/programpage.vue';
 import newbar from '../src/components/newbar.vue';
 import teacherpage from '../src/components/teacherpage.vue';
 import teacherpage2 from '../src/components/teacherpage2.vue';
+import layout from '../src/components/layout.vue';
 
 
 
@@ -53,6 +54,11 @@ const routes = [
         path: '/teacherpage2',
         name: 'teacherpage2',
         component: teacherpage2
+    },
+    {
+        path: '/layout',
+        name: 'layout',
+        component: layout
     },
 ];
 
