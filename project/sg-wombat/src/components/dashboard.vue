@@ -44,8 +44,8 @@
     margin-top: 50px;
     margin-left: 30px;
     background-color: white;
-    width: 1000px;
-    height: 900px;
+   
+    height: 80vh;
 }
 </style>
 
