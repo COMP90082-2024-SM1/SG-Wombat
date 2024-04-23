@@ -29,7 +29,7 @@
 }
 
 .dashboard-content {
-    background-color: green;
+    /* background-color: green; */
     height: 100vh;
 
     width: 60%;
