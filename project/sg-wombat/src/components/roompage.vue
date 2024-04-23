@@ -9,16 +9,16 @@
 
 <style scoped>
 .container {
-    position: relative;
+
     width: 100%;
     display: flex;
     flex-direction: row;
-    min-height: 1080px;
-    border-radius: 30px;
+    height: 100vh;
+    /* border-radius: 30px */
 }
 
 .navigation-panel {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     width: 30%;
@@ -27,15 +27,15 @@
 }
 
 .dashboard-content {
-    background-color: white;
-    height: 1080px;
-    width: 920px;
-    width: 70%;
-    margin-left: 400px;
+    background-color: green;
+    height: 100vh;
+
+    width: 60%;
+
     display: flex;
     flex-grow: 1;
     z-index: 1001;
-    border-radius: 30px;
+    /* border-radius: 30px */
 }
 
 .listbox {
@@ -45,8 +45,6 @@
     width: 1000px;
     height: 900px;
 }
-
-
 </style>
 
 

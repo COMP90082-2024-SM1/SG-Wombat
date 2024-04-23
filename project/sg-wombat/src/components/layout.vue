@@ -6,7 +6,7 @@
                 Science Gallery
             </div>
             <!-- el-menu -->
-            <navigationMenu />
+            <navigationMenu class="navigation-panel" />
         </el-aside>
 
         <!-- main content area on the right side-->
@@ -57,16 +57,23 @@ import navigationMenu from './navBarNew.vue';
 <style scoped>
 .layout-container {
     height: 100vh;
+    position: relative;
     /* width: 100vw;
     display: flex;
     flex-direction: row; */
-    border-radius: 30px;
+    /* border-radius: 30px; */
+}
+
+
+.navigation-panel {
+    
+    z-index: 1000;
 }
 
 .layout-container .el-aside {
     background-color: #2E4DD4;
     color: #fff;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     font-family: 'Poppins', sans-serif;
     padding-left: 20px;
 }
@@ -91,7 +98,7 @@ import navigationMenu from './navBarNew.vue';
 
 .layout-container .el-main {
     /* background-color: lightblue; */
-    border-radius: 30px;
+    /* border-radius: 30px; */
 
 }
 
@@ -112,5 +119,10 @@ import navigationMenu from './navBarNew.vue';
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.main-content {
+    
+    z-index: 1001;
 }
 </style>
