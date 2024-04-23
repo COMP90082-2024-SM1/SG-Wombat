@@ -1,0 +1,130 @@
+<template>
+    <el-menu :default-active="selectedIndex" @select='selected' background-color='#2E4DD4' active-text-color='#ffd04b'>
+        <el-menu-item class="innerbox" index='1' @click="activate('dashboardPage')">
+
+            <el-icon size="40" color="white" opacity=0.6>
+                <HomeFilled />
+            </el-icon>
+
+            <div class="text">
+                Dashboard
+            </div>
+        </el-menu-item>
+
+        <el-menu-item class="innerbox" index='2' @click="activate('bookingpage')">
+            <el-icon size="40" color="white">
+                <List />
+            </el-icon>
+
+            <template class="text">
+                Booking
+            </template>
+        </el-menu-item>
+        <el-menu-item class="innerbox" index='3' @click="activate('programpage')">
+            <el-icon size="40" color="white">
+                <Opportunity />
+            </el-icon>
+
+            <div class="text">
+                Programs
+            </div>
+        </el-menu-item>
+        <el-menu-item class="innerbox" index='4' @click="activate('roompage')">
+            <el-icon size="40" color="white">
+                <Place />
+            </el-icon>
+
+            <div class="text">
+                Room Information
+            </div>
+        </el-menu-item>
+        <el-menu-item class="innerbox" index='5' @click="activate('schoolpage')">
+            <el-icon size="40" color="white">
+                <School />
+            </el-icon>
+
+            <div class="text">
+                Schools
+            </div>
+        </el-menu-item>
+
+        <el-menu-item class="lastbox" index='6' plain @click="open">
+            <el-icon size="40" color="white">
+                <Share />
+            </el-icon>
+
+            <div class="text" size="40" color="white">
+                Export Report
+            </div>
+        </el-menu-item>
+    </el-menu>
+
+
+</template>
+
+<script setup>
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { watch, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
+
+const selectedIndex = ref('1');
+
+// Watch for route changes to update the active menu item
+watch(() => route.name, (newRouteName) => {
+    switch (newRouteName) {
+        case 'dashboardPage':
+            selectedIndex.value = '1';
+            break;
+        case 'bookingpage':
+            selectedIndex.value = '2';
+            break;
+        case 'programpage':
+            selectedIndex.value = '3';
+            break;
+        case 'roompage':
+            selectedIndex.value = '4';
+            break;
+        case 'schoolpage':
+            selectedIndex.value = '5';
+            break;
+        default:
+            selectedIndex.value = '1';
+            break;
+    }
+}, { immediate: true });
+
+const open = () => {
+    ElMessageBox.confirm(
+        'Do you want to export the report, Continue?',
+        'Notice',
+        {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'info',
+        }
+    ).then(() => {
+        ElMessage({
+            type: 'success',
+            message: 'Export Success',
+        });
+    }).catch(() => {
+        ElMessage({
+            type: 'info',
+            message: 'Export Canceled',
+        });
+    });
+};
+
+function activate(routeName) {
+    router.push({ name: routeName });
+}
+</script>
+
+
+<style scoped>
+@import '../assets/navigation_bar.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+</style>

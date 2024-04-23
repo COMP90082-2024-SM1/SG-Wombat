@@ -6,7 +6,7 @@
                 Science Gallery
             </div>
             <!-- el-menu -->
-
+            <navigationMenu />
         </el-aside>
 
         <!-- main content area on the right side-->
@@ -32,7 +32,10 @@
 
             <!-- main content -->
             <el-main>
-                
+                <el-card>
+                    random txt
+                </el-card>
+
             </el-main>
 
             <el-footer>
@@ -45,8 +48,9 @@
 </template>
 
 
-<script  lang="ts" setup>
+<script lang="ts" setup>
 import { ArrowDown } from '@element-plus/icons-vue'
+import navigationMenu from './navBarNew.vue';
 
 </script>
 
@@ -58,11 +62,15 @@ import { ArrowDown } from '@element-plus/icons-vue'
     flex-direction: row; */
     border-radius: 30px;
 }
+
 .layout-container .el-aside {
     background-color: #2E4DD4;
     color: #fff;
-    border-radius: 30px
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 20px;
 }
+
 .layout-container .el-header {
     font-size: 30px;
     margin-top: 30px;
@@ -71,6 +79,7 @@ import { ArrowDown } from '@element-plus/icons-vue'
     align-items: center;
     justify-content: space-between;
 }
+
 .layout-container .el-footer {
     background-color: #fff;
     display: flex;
@@ -81,27 +90,27 @@ import { ArrowDown } from '@element-plus/icons-vue'
 }
 
 .layout-container .el-main {
-    background-color: lightblue;
+    /* background-color: lightblue; */
     border-radius: 30px;
 
 }
 
 .science {
 
-color: white;
-font-size: 40px;
-font-weight: bold;
-margin-top: 30px;
-width: 50%;
-margin-right: auto;
-margin-left: 30px;
-/* background-color: blueviolet; */
-width: 330px;
-height: 56px;
-text-align: center;
-display: flex;
-flex-direction: column;
-justify-content: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    /* width: 50%; */
+    /* margin-right: auto; */
+    /* margin-left: 30px; */
+    /* background-color: blueviolet; */
+    /* width: 330px; */
+    /* height: 56px; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
 </style>
