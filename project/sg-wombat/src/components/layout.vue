@@ -66,16 +66,16 @@ import navigationMenu from './navBarNew.vue';
 
 
 .navigation-panel {
-    
+
     z-index: 1000;
 }
 
 .layout-container .el-aside {
     background-color: #2E4DD4;
     color: #fff;
-    /* border-radius: 30px; */
+    border-radius: 30px;
     font-family: 'Poppins', sans-serif;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 .layout-container .el-header {
@@ -122,7 +122,7 @@ import navigationMenu from './navBarNew.vue';
 }
 
 .main-content {
-    
+
     z-index: 1001;
 }
 </style>
