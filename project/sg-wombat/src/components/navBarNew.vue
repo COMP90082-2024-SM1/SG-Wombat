@@ -16,9 +16,11 @@
                 <List />
             </el-icon>
 
+
             <div class="text">
                 Booking
             </div>
+
         </el-menu-item>
         <el-menu-item class="innerbox" index='3' @click="activate('programpage')">
             <el-icon size="40" color="white">
@@ -49,6 +51,7 @@
         </el-menu-item>
 
         <el-menu-item class="innerbox" index='6' plain @click="open">
+
             <el-icon size="40" color="white">
                 <Share />
             </el-icon>
@@ -125,6 +128,7 @@ function activate(routeName) {
 
 
 <style scoped>
+
 /* @import '../assets/navigation_bar.css'; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -164,4 +168,5 @@ function activate(routeName) {
     display: flex;
     justify-content: center;
 }
+
 </style>

@@ -27,6 +27,8 @@ const showAddNewProgramForm = () => {
     display: flex;
     flex-direction: row;
     height: 100vh;
+
+    min-width: 1350px;
     /* border-radius: 30px */
 }
 
@@ -41,6 +43,7 @@ const showAddNewProgramForm = () => {
 }
 
 .dashboard-content {
+
     background-color: green;
     height: 100vh;
 

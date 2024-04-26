@@ -64,8 +64,8 @@ import navigationMenu from './navBarNew.vue';
     /* border-radius: 30px; */
 }
 
-.navigation-panel {
 
+.navigation-panel {
     z-index: 1000;
 }
 
@@ -75,6 +75,7 @@ import navigationMenu from './navBarNew.vue';
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
     /* padding-left: 20px; */
+
 }
 
 .layout-container .el-header {
@@ -121,7 +122,6 @@ import navigationMenu from './navBarNew.vue';
 }
 
 .main-content {
-
     z-index: 1001;
 }
 </style>

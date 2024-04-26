@@ -12,6 +12,7 @@ import layout from '../src/components/layout.vue';
 import programPage from '../src/components/programPageNew.vue';
 
 
+
 const routes = [
     { path: '/', component: Login },
     {
