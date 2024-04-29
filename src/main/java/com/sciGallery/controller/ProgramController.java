@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Program管理Controller
+ * Program controller
  */
 
 @Slf4j
