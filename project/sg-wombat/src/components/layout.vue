@@ -74,8 +74,6 @@ import navigationMenu from './navBarNew.vue';
     color: #fff;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
-    /* padding-left: 20px; */
-
 }
 
 .layout-container .el-header {
@@ -96,11 +94,10 @@ import navigationMenu from './navBarNew.vue';
     font-size: 15px;
 }
 
-.layout-container .el-main {
-    /* background-color: lightblue; */
-    /* border-radius: 30px; */
-
-}
+/* .layout-container .el-main {
+    background-color: lightblue;
+    border-radius: 30px;
+} */
 
 .science {
 
@@ -109,12 +106,6 @@ import navigationMenu from './navBarNew.vue';
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 20px;
-    /* width: 50%; */
-    /* margin-right: auto; */
-    /* margin-left: 30px; */
-    /* background-color: blueviolet; */
-    /* width: 330px; */
-    /* height: 56px; */
     text-align: center;
     display: flex;
     flex-direction: column;
