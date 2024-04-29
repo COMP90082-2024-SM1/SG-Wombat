@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
+
     min-width: 1350px;
     /* border-radius: 30px */
 }
@@ -28,7 +29,8 @@
 }
 
 .dashboard-content {
-    /* background-color: green; */
+
+    background-color: green;
     height: 100vh;
 
     width: 60%;

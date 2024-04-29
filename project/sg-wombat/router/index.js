@@ -4,11 +4,12 @@ import dashboardPage from '../src/components/dashboard.vue';
 import bookingpage from '../src/components/bookingpage.vue';
 import roompage from '../src/components/roompage.vue';
 import schoolpage from '../src/components/schoolpage.vue';
-import programpage from '../src/components/programpage.vue';
+// import programpage from '../src/components/programpage.vue';
 import newbar from '../src/components/newbar.vue';
 import teacherpage from '../src/components/teacherpage.vue';
 import teacherpage2 from '../src/components/teacherpage2.vue';
 import layout from '../src/components/layout.vue';
+import programPage from '../src/components/programPageNew.vue';
 
 
 
@@ -37,7 +38,7 @@ const routes = [
     {
         path: '/program',
         name: 'programpage',
-        component: programpage
+        component: programPage
     },
 
     {

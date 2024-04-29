@@ -16,9 +16,11 @@
                 <List />
             </el-icon>
 
-            <template class="text">
+
+            <div class="text">
                 Booking
-            </template>
+            </div>
+
         </el-menu-item>
         <el-menu-item class="innerbox" index='3' @click="activate('programpage')">
             <el-icon size="40" color="white">
@@ -48,7 +50,8 @@
             </div>
         </el-menu-item>
 
-        <el-menu-item class="lastbox" index='6' plain @click="open">
+        <el-menu-item class="innerbox" index='6' plain @click="open">
+
             <el-icon size="40" color="white">
                 <Share />
             </el-icon>
@@ -125,6 +128,45 @@ function activate(routeName) {
 
 
 <style scoped>
-@import '../assets/navigation_bar.css';
+
+/* @import '../assets/navigation_bar.css'; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.el-menu {
+    border-right: none;
+}
+
+.icon {
+    size: 50;
+    /* margin-left: 20px; */
+    text-align: center;
+    justify-content: center;
+    color: white;
+    opacity: 0.6;
+}
+
+.text {
+    font-size: 22px;
+    margin-left: 10px;
+    /* background-color: orange; */
+    width: 80%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1;
+}
+
+.innerbox {
+    color: white;
+    font-size: 100px;
+    /* margin-top: 10px; */
+    /* width: 20%; */
+    background-color: #2E4DD4;
+    /* width: 330px; */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
 </style>
