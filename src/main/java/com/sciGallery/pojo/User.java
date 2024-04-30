@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Emp {
+public class User {
     private Integer id; //ID
     private String userName; //用户名
     private String password; //密码

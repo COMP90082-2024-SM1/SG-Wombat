@@ -29,4 +29,14 @@ public class ProgramServiceImpl implements ProgramService {
     public void add(Program program) {
         programMapper.insert(program);
     }
+
+    @Override
+    public Program getById(Integer id) {
+        return programMapper.getById(id);
+    }
+
+    @Override
+    public void update(Program program) {
+        programMapper.update(program);
+    }
 }

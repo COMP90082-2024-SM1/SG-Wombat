@@ -30,7 +30,28 @@ public interface ProgramMapper {
     void deleteById(Integer id);
 
 
+    /**
+     * 新建program
+     * @param program
+     */
     @Insert("INSERT into tb_program(name, max_cap, tech_req, cost_person, duration, status, Monday, Tuesday, Wednesday, Thursday, Friday, description) " +
             "values(#{name}, #{maxCap}, #{techReq}, #{costPerson}, #{duration}, #{status}, #{Monday}, #{Tuesday}, #{Wednesday}, #{Thursday}, #{Friday}, #{description})")
     void insert(Program program);
+
+
+    /**
+     * 根据id查询program
+     * @param id
+     * @return
+     */
+
+    @Select("select * from tb_program where prog_id = #{id}")
+    Program getById(Integer id);
+
+
+    /**
+     * 更新program
+     * @param program
+     */
+    void update(Program program);
 }

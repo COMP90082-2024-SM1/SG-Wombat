@@ -37,6 +37,17 @@ public class ProgramController {
     }
 
 
+
+
+
+
+    @GetMapping("/progs/{id}")
+    public Result getById(@PathVariable Integer id){
+        log.info("根据id查询员工信息， id：{}", id);
+        Program program = programService.getById(id);
+        return Result.success(program);
+    }
+
     /**
      * 根据id删除对应program
      * @param id
@@ -51,7 +62,11 @@ public class ProgramController {
     }
 
 
-
+    /**
+     * 新增program
+     * @param program
+     * @return
+     */
     @PostMapping("/progs")
     public Result add(@RequestBody Program program){
         log.info("新增Program：{}", program);
@@ -59,6 +74,18 @@ public class ProgramController {
         programService.add(program);
 
         return Result.success();
+    }
+
+
+
+    @PutMapping("/progs")
+    public Result update(@RequestBody Program program){
+        log.info("根据id更新program");
+
+        programService.update(program);
+
+        return Result.success();
+
     }
 
 
