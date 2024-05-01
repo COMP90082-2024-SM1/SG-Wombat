@@ -1,22 +1,22 @@
 <template>
-  <el-dialog v-model="visible" title="Add New Program" >
-    <el-form :model="form" label-width="120px">
+  <el-dialog v-model="visible" title="Add New Program">
+    <el-form :model="form" label-width="auto">
       <!-- Form fields here -->
       <el-form-item label="Program Name">
         <el-input v-model="form.name" />
       </el-form-item>
 
-      <el-form-item label="Max People">
+      <el-form-item label="Maximum People">
         <el-input-number v-model="form.maxPeople" :min="1" />
       </el-form-item>
 
 
 
-      <el-form-item label="Requirement">
+      <el-form-item label="Tech Requirement">
         <el-input v-model="form.techRequirement" />
       </el-form-item>
 
-      <el-form-item label="Cost Per Person">
+      <el-form-item label="Cost per Person">
         <el-input-number v-model="form.costPerPerson" :min="0" />
       </el-form-item>
 
@@ -28,13 +28,13 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="Description">
+      <el-form-item label="Program Description">
         <el-input type="textarea" v-model="form.description" />
       </el-form-item>
 
-      
+
       <!-- Work Days checkbox group -->
-      <el-form-item label="Work Days">
+      <el-form-item label="Available Days">
         <el-checkbox-group v-model="form.workDays">
           <el-checkbox label="Tuesday">Tuesday</el-checkbox>
           <el-checkbox label="Wednesday">Wednesday</el-checkbox>

@@ -2,6 +2,7 @@
   <el-table :data="filterTableData" style="width: 100%" @row-click="handleRowClick">
     <el-table-column label="Program Name" prop="name" />
     <el-table-column label="Maximum People" prop="people" />
+    <el-table-column label="Status" prop="status" />
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -39,7 +40,7 @@
 
   <!-- Edit Program Dialog -->
   <el-dialog v-model="editDialogVisible" title="Edit Program">
-    <el-form :model="editedProgram" label-width="120px">
+    <el-form :model="editedProgram" label-width="auto">
       <!-- Form fields here -->
       <el-form-item label="Program Name">
         <el-input v-model="editedProgram.name" />
@@ -61,12 +62,12 @@
   <el-dialog v-model="dialogDescVisible" title="Program Details" width="800">
     <el-descriptions :column="1" border>
       <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
-      <el-descriptions-item label="Max People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
+      <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
       <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
       <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
-      <el-descriptions-item label="Approximate Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
+      <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
       <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
-      <el-descriptions-item label="Available Workdays">{{ ProgramDetails.hostDays }}</el-descriptions-item>
+      <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
       <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
     </el-descriptions>
 
@@ -80,6 +81,7 @@ import { ref, computed, reactive } from 'vue';
 interface User {
   name: string
   people: string
+  status: string
   // Add other fields here to match your data structure
 }
 
@@ -88,16 +90,19 @@ const tableData: User[] = [
   {
     name: 'Program A',
     people: '20',
+    status: 'Active',
     // Add other fields here to match your data structure
   },
   {
     name: 'Program B',
     people: '30',
+    status: 'Upcoming',
     // Add other fields here to match your data structure
   },
   {
     name: 'Program C',
     people: '40',
+    status: 'Archived',
     // Add other fields here to match your data structure
   },
   // Add more data as needed
