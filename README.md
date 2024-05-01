@@ -84,9 +84,45 @@ By adhering to this workflow, we ensure that our codebase remains clean and stab
 ### What we have done:
 At our core, we engage in client communication to initiate projects through kick-off meetings. Following this, we meticulously delve into Requirements Engineering, beginning with eliciting requirements from clients through various channels such as discussions, meetings, and emails. Our process further involves Motivational Modeling, where we develop Do-be-feel lists, create motivational models, and craft personas to deeply understand user needs. Subsequently, we analyze requirements, refining them through discussions on draft prototypes, technology stack considerations, and more. We then translate these requirements into actionable User Stories, estimating their size and prioritizing them based on client requirements and importance. Moving into the Design phase, we create initial digital prototypes of the booking management system, seeking stakeholder feedback to refine our designs. Additionally, we meticulously plan for upcoming development sprints, determining which features will be delivered and when. Finally, we ensure smooth transitions into Design and Development phases by setting up necessary environments, including Confluence, Slack, Trello, and Github, to facilitate collaboration and project management.
 
-### changelog
-sprint2时长
-改动内容
+### Changelog
+
+This section outlines the significant changes and updates made during Sprint 1 of our project. These entries provide insights into the development progress and highlight the key features and fixes introduced.
+
+#### Features
+- **User Story Implementation:**
+  - Completed the implementation of critical user stories which include the setup of the basic project architecture and foundational features.
+  - Updated user stories with acceptance criteria to ensure clarity and measurable outcomes.
+
+- **Prototype Development:**
+  - Developed and demonstrated an initial prototype featuring basic navigation and page layouts to solicit early feedback from stakeholders.
+
+#### Technical Updates
+- **Frontend Transition:**
+  - Transitioned the frontend technology from React to Vue to leverage Vue's capabilities in building more interactive and dynamic user interfaces.
+
+- **Database Migration:**
+  - Migrated the database system from MongoDB to MySQL to enhance data management and query performance.
+
+#### Code Reviews
+- Established a rigorous code review process to ensure all contributions are thoroughly vetted for quality and adherence to project standards before merging.
+
+#### Challenges and Fixes
+- **Automated Testing Setup:**
+  - Encountered issues with setting up automated tests as part of our CI/CD pipeline. Efforts are ongoing to resolve these challenges and integrate a robust testing framework.
+
+- **Icon Importing Issues:**
+  - Faced difficulties with importing icons into the frontend. The issue was systematically addressed by modifying the asset pipeline and ensuring compatibility with the Vue framework.
+
+#### Documentation and Cleanup
+- **Code Merge and Cleanup:**
+  - Successfully merged all feature branches into the master branch post-review.
+  - Implemented a clean-up procedure to delete feature branches after merging to maintain a tidy repository environment.
+
+#### Next Steps
+- Continue to resolve the automated testing issues.
+- Further refine the prototype based on feedback and prepare for more comprehensive user testing in Sprint 2.
+
+This changelog reflects our commitment to transparency and continuous improvement. We look forward to further enhancements and more detailed functionality in the upcoming sprints.
 
 ## Sprint 2
 
