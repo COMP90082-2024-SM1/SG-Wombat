@@ -32,6 +32,9 @@ The Science Gallery provides diverse educational experiences for secondary schoo
 The primary goal of this project is to develop a comprehensive booking management system for the Science Gallery, aimed at enhancing operational efficiency and improving user experience for both partner and non-partner school teachers. This system will enable teachers to easily book programs, manage bookings, and access educational experiences, while providing Science Gallery staff with the necessary tools to streamline booking processes, manage resources effectively, and ensure accurate record-keeping. Additionally, the system will support the expansion of program offerings, facilitate space management, and enable data-driven decision-making through comprehensive reporting capabilities. Overall, the goal is to create a user-friendly, efficient, and scalable platform that enhances the educational outreach efforts of the Science Gallery and optimizes the visitor experience.
 
 ## Workflow
+创建feature branch
+naming方法
+经过哪些步骤到master（pull request 找人review）
 
 ### Branches
 
@@ -50,6 +53,11 @@ At our core, we engage in client communication to initiate projects through kick
 ## Sprint 2
 
 ### Trello Link:https://trello.com/invite/b/Uis4BYVJ/ATTI361288635efd2b002e8e41b2300ce5678856509D/sg-booking-system-sprint-2
+
+### changelog
+sprint1时长
+改动内容
+完成哪些features
 
 ### What we will do:
 In Sprint 2, we aim to establish the foundational features of the science gallery booking system, including booking request submission, program management and user log-in. By the end of this sprint, we plan to develop the interface for non-partner school teachers to submit their program requests. In addition, we will implement the log-in function for science gallery staff, as well as the list of programs, which is an essential part of the bookings.
