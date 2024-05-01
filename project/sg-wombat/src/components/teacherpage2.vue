@@ -33,16 +33,16 @@
                         <el-form-item
                             label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
                             prop="datePreference2">
-                            
-                                <el-date-picker v-model="form.datePreference2" :disabled-date="disabledDate" type="date"
-                                    placeholder="Select Date">
-                                </el-date-picker>
+
+                            <el-date-picker v-model="form.datePreference2" :disabled-date="disabledDate" type="date"
+                                placeholder="Select Date">
+                            </el-date-picker>
                         </el-form-item>
 
-                        <el-form-item label="10. Approximately how many students will be attending?"
+                        <el-form-item
+                            label="10. Approximately how many students will be attending? Note: minimum 20 students, maximum 50 students."
                             prop="studentCount">
                             <el-input-number v-model.number="form.studentCount" :min="20" :max="50"></el-input-number>
-                            <div>Note: minimum 20 students, maximum 50 students</div>
                         </el-form-item>
 
 
@@ -65,7 +65,7 @@
                         <!-- Question 12 -->
                         <el-form-item label="12. What learning area or subject is the focus of this group?"
                             prop="learningArea">
-                            <el-input v-model="form.learningArea" placeholder="输入你的答案"></el-input>
+                            <el-input v-model="form.learningArea" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
                         <el-form-item label="13. Are you a low-SES (ICSEA<1000) School?" prop="isLowSES">
@@ -389,7 +389,7 @@ a:hover {
 
 .el-radio-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 
