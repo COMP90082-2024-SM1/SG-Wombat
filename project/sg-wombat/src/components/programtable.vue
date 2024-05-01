@@ -59,8 +59,8 @@
   </el-dialog>
 
   <!-- for view details by clicking on rows -->
-  <el-dialog v-model="dialogDescVisible" title="Program Details" width="800">
-    <el-descriptions :column="1" border>
+  <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
+    <el-descriptions :column="1" :size='large' border>
       <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
       <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
       <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
