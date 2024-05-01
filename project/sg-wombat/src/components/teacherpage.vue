@@ -37,11 +37,6 @@
                         <el-form-item label="Teaching area" prop="teachingArea">
                             <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
-                        <el-form-item label="Visit date" prop="visitDate">
-                            <el-date-picker v-model="form.visitDate" :disabled-date="disabledDate" type="date"
-                                placeholder="Select Date">
-                            </el-date-picker>
-                        </el-form-item>
                         <el-form-item prop="datePreference">
                             <div class="question">
                                 What is your first date preference?
@@ -81,7 +76,7 @@ const form = ref({
     email: '',
     mobileNumber: '',
     teachingArea: '',
-    visitDate: '',
+
     datePreference: '',
 });
 
@@ -93,7 +88,6 @@ const rules = ref({
     email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
     mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
     teachingArea: [{ required: true, message: 'Teaching Are is required', trigger: 'blur' }],
-    visitDate: [{ required: true, message: 'Visit Date is required', trigger: 'blur' }],
     datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     // ...其他字段的规则
 });
