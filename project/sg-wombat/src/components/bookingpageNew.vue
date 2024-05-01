@@ -33,18 +33,19 @@
             <!-- main content -->
             <el-main>
                 <el-card>
-                    <template #header>
-                        <div class="card-header">
-                            <span>Programs</span>
-                            <!-- <el-button>button</el-button> -->
-                            <el-button @click="showAddNewProgramForm">Add New Program</el-button>
-                            <addNewProgram v-model:formVisible="isFormVisible" />
-                            <!-- v-model'deault props is modelValue -->
+                    <div class="dashboard-content">
+                        <div class="HeadTitle">
+                            <el-menu mode="horizontal" :popper-offset="16">
+                                <el-sub-menu index="1">
+                                    <template #title>Workspace</template>
+                                    <el-menu-item index="1-1">item one</el-menu-item>
+                                    <el-menu-item index="1-2">item two</el-menu-item>
+                                    <el-menu-item index="1-3">item three</el-menu-item>
+                                </el-sub-menu>
+                            </el-menu>
                         </div>
-                    </template>
 
-                    <div class="card-content">
-                        <programtable class="listbox" />
+                        <BookingDetail class="listbox" />
                     </div>
                 </el-card>
 
@@ -60,18 +61,18 @@
 </template>
 
 
-<script lang="ts" setup>
+<script>
 import { ArrowDown } from '@element-plus/icons-vue'
 import navigationMenu from './navBarNew.vue';
-import { reactive, ref } from 'vue'
-import programtable from './programtable.vue';
-import addNewProgram from './addNewProgram.vue';
-let isFormVisible = ref(false)
-const showAddNewProgramForm = () => {
-    console.log("Attempting to show form");
-    isFormVisible.value = true;
-    console.log("Form visibility should now be true:", isFormVisible.value);
+import BookingDetail from './bookingdetail.vue';
+
+export default {
+    components: {
+        navigationMenu,
+        BookingDetail,
+    }
 }
+
 
 </script>
 

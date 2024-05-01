@@ -32,13 +32,11 @@
 
                         <el-form-item
                             label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
-                            prop="selectedDate">
-                            <el-radio-group v-model="form.selectedDate">
-                                <el-radio label="2024-05-14">Tuesday 14 May 2024</el-radio>
-                                <el-radio label="2024-05-21">Tuesday 21 May 2024</el-radio>
-                                <el-radio label="2024-06-04">Tuesday 4 June 2024</el-radio>
-                                <el-radio label="2024-06-18">Tuesday 18 June 2024</el-radio>
-                            </el-radio-group>
+                            prop="datePreference2">
+                            
+                                <el-date-picker v-model="form.datePreference2" :disabled-date="disabledDate" type="date"
+                                    placeholder="Select Date">
+                                </el-date-picker>
                         </el-form-item>
 
                         <el-form-item label="10. Approximately how many students will be attending?"
@@ -137,7 +135,7 @@ import { ref } from 'vue';
 // 数据属性
 const form = ref({
     selectedProgram: '',
-    selectedDate: '',
+    datePreference2: '',
     studentCount: '',
     studentLevels: [],
     learningArea: '',
@@ -154,7 +152,7 @@ const form = ref({
 // 表单验证规则
 const rules = {
     selectedProgram: [{ required: true, message: "Please select a program", trigger: "change" }],
-    selectedDate: [{ required: true, message: "Please select a date", trigger: "change" }],
+    datePreference2: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     studentCount: [
         { required: true, message: 'The student count is required', trigger: 'blur' },
         { type: 'number', min: 20, max: 50, message: 'Student count must be between 20 and 50', trigger: ['blur', 'change'] }
@@ -399,6 +397,9 @@ a:hover {
 
 
     /* 这将对齐单选按钮和文本 */
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
+
 }
 </style>

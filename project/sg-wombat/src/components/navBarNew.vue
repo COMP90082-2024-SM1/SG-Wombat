@@ -37,15 +37,6 @@
             </el-icon>
 
             <div class="text">
-                Room Information
-            </div>
-        </el-menu-item>
-        <el-menu-item class="innerbox" index='5' @click="activate('schoolpage')">
-            <el-icon size="40" color="white">
-                <School />
-            </el-icon>
-
-            <div class="text">
                 Schools
             </div>
         </el-menu-item>
