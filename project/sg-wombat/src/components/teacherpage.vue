@@ -87,7 +87,7 @@ const rules = ref({
     school: [{ required: true, message: 'School name is required', trigger: 'blur' }],
     email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
     mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
-    teachingArea: [{ required: true, message: 'Teaching Are is required', trigger: 'blur' }],
+    teachingArea: [{ required: true, message: 'Teaching Area is required', trigger: 'blur' }],
     datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     // ...其他字段的规则
 });

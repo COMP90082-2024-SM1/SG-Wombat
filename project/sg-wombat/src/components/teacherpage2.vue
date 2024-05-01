@@ -188,6 +188,12 @@ import {
 } from 'element-plus';
 
 
+const disabledDate = (time) => {
+    // 获取日期是星期几（0 是星期日，1 是星期一，...，6 是星期六）
+    const dayOfWeek = new Date(time).getDay();
+    // 如果是星期一(1)、星期六(6)或星期日(0)，则禁用
+    return dayOfWeek === 1 || dayOfWeek === 6 || dayOfWeek === 0;
+};
 
 import { useRouter } from 'vue-router'
 
