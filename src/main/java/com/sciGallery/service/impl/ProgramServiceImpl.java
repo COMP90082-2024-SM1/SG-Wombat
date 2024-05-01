@@ -16,8 +16,8 @@ public class ProgramServiceImpl implements ProgramService {
 
 
     @Override
-    public List<Program> list() {
-        return programMapper.list();
+    public List<Program> list(String name) {
+        return programMapper.list(name);
     }
 
     @Override

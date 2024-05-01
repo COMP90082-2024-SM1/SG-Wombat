@@ -17,9 +17,7 @@ public interface ProgramMapper {
      * 查询全部program
      * @return
      */
-
-    @Select("SELECT * from tb_program")
-    List<Program> list();
+    List<Program> list(String name);
 
 
     /**

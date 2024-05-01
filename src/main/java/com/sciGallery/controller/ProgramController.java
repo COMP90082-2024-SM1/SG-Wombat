@@ -22,16 +22,16 @@ public class ProgramController {
 
 
     /**
-     * 查询所有program
+     * 查询program
      * @return
      */
 
     //@RequestMapping(value = "/progs", method = RequestMethod.GET)
     @GetMapping("/progs")
-    public Result list(){
+    public Result list(String name){
         log.info("查询全部program数据");
 
-        List<Program> programList = programService.list();
+        List<Program> programList = programService.list(name);
 
         return Result.success(programList);
     }
