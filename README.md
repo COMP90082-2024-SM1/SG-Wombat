@@ -134,11 +134,51 @@ In Sprint 2, we aim to establish the foundational features of the science galler
 
 As the first development sprint, we also need to lay the groundwork for the system, which involves system design, environment configuration, and constructing the structure of the booking system.
 
-### changelog
-文件说明
-sprint2时长
-改动内容
-新增哪些features
+### Sprint 2 Changelog
+
+This section captures the essential updates and developments from Sprint 2 of our project. It outlines the advancements made, technical challenges addressed, and the new functionalities introduced.
+
+#### Features
+- **Program and School Page Development:**
+  - Completed the development of the Program Page, incorporating detailed features such as program name, capacity, technical requirements, cost per person, runtime options, and booking statuses.
+  - Enhanced the School Page with functionalities for better management and accessibility, focusing on integrating teacher information into the booking records.
+
+#### Technical Updates
+- **Backend and Frontend Integration:**
+  - Successfully integrated backend APIs with the frontend, ensuring seamless data flow and user interaction.
+  - Implemented comprehensive error handling and data validation across the platform to improve reliability and user experience.
+
+#### Code Reviews and Testing
+- **Enhanced Code Review Process:**
+  - Strengthened our code review practices, ensuring that every pull request undergoes thorough scrutiny for quality assurance before merging.
+  - Focused on peer reviews to foster a collaborative environment and enhance code quality.
+
+- **Deployment and Testing Challenges:**
+  - Addressed initial deployment issues by revising our deployment strategies and enhancing server configurations.
+  - Initiated manual testing protocols due to temporary setbacks with automated testing tools, ensuring all features function as expected despite these challenges.
+
+#### Challenges and Fixes
+- **Technical Setbacks in Automated Testing:**
+  - Continued to face challenges with automated testing setups, impacting our ability to perform seamless CI/CD operations.
+  - Actively worked on troubleshooting and optimizing our automated testing framework to ensure integration into our development workflow.
+
+#### Documentation and Cleanup
+- **Documentation Enhancement:**
+  - Updated and refined project documentation, including API documentation and user manuals, to aid in usability and maintenance.
+  - Documented all new features and updates thoroughly to ensure clear understanding and easy onboarding for new team members or external developers.
+
+#### Decisions Made
+- **Technology Stack Adjustments:**
+  - Agreed on adopting additional tools and technologies to address ongoing challenges and improve our development process.
+  - Decided to continue enhancing the frontend with additional Vue.js features to improve interactivity and responsiveness.
+
+#### Next Steps
+- Resolve the remaining issues with automated testing to fully restore our CI/CD pipeline.
+- Begin preparations for Sprint 3, focusing on advancing user engagement features and expanding the platform’s capabilities.
+
+This changelog represents our efforts to not only expand our project’s features but also to refine our processes and overcome technical challenges. We remain committed to delivering a high-quality product and improving our operations continuously.
+
+
 
 ## Sprint 3 
 
