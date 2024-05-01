@@ -145,7 +145,6 @@ This section captures the essential updates and developments from Sprint 2 of ou
 
 #### Technical Updates
 - **Backend and Frontend Integration:**
-  - Successfully integrated backend APIs with the frontend, ensuring seamless data flow and user interaction.
   - Implemented comprehensive error handling and data validation across the platform to improve reliability and user experience.
 
 #### Code Reviews and Testing
