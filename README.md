@@ -32,10 +32,11 @@ The Science Gallery provides diverse educational experiences for secondary schoo
 The primary goal of this project is to develop a comprehensive booking management system for the Science Gallery, aimed at enhancing operational efficiency and improving user experience for both partner and non-partner school teachers. This system will enable teachers to easily book programs, manage bookings, and access educational experiences, while providing Science Gallery staff with the necessary tools to streamline booking processes, manage resources effectively, and ensure accurate record-keeping. Additionally, the system will support the expansion of program offerings, facilitate space management, and enable data-driven decision-making through comprehensive reporting capabilities. Overall, the goal is to create a user-friendly, efficient, and scalable platform that enhances the educational outreach efforts of the Science Gallery and optimizes the visitor experience.
 
 ## Workflow
-创建feature branch
-naming方法
-经过哪些步骤到master（pull request 找人review）
-
+需要写：
+我们是根据feature去创建 branch
+我们的naming方法是。。。
+我们写完代码后经过哪些步骤merge到master的（pull request 找人review）
+后面的branch可以删除
 ### Branches
 
 - **Main Branch**: The main branch contains stable, production-ready code.
@@ -50,19 +51,25 @@ naming方法
 ### What we have done:
 At our core, we engage in client communication to initiate projects through kick-off meetings. Following this, we meticulously delve into Requirements Engineering, beginning with eliciting requirements from clients through various channels such as discussions, meetings, and emails. Our process further involves Motivational Modeling, where we develop Do-be-feel lists, create motivational models, and craft personas to deeply understand user needs. Subsequently, we analyze requirements, refining them through discussions on draft prototypes, technology stack considerations, and more. We then translate these requirements into actionable User Stories, estimating their size and prioritizing them based on client requirements and importance. Moving into the Design phase, we create initial digital prototypes of the booking management system, seeking stakeholder feedback to refine our designs. Additionally, we meticulously plan for upcoming development sprints, determining which features will be delivered and when. Finally, we ensure smooth transitions into Design and Development phases by setting up necessary environments, including Confluence, Slack, Trello, and Github, to facilitate collaboration and project management.
 
+### changelog
+sprint2时长
+改动内容
+
 ## Sprint 2
 
 ### Trello Link:https://trello.com/invite/b/Uis4BYVJ/ATTI361288635efd2b002e8e41b2300ce5678856509D/sg-booking-system-sprint-2
 
-### changelog
-sprint1时长
-改动内容
-完成哪些features
 
 ### What we will do:
 In Sprint 2, we aim to establish the foundational features of the science gallery booking system, including booking request submission, program management and user log-in. By the end of this sprint, we plan to develop the interface for non-partner school teachers to submit their program requests. In addition, we will implement the log-in function for science gallery staff, as well as the list of programs, which is an essential part of the bookings.
 
 As the first development sprint, we also need to lay the groundwork for the system, which involves system design, environment configuration, and constructing the structure of the booking system.
+
+### changelog
+文件说明
+sprint2时长
+改动内容
+新增哪些features
 
 ## Sprint 3 
 
