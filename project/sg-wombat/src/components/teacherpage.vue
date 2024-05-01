@@ -51,13 +51,11 @@
                                     <a href="mailto:school-bookings@unimelb.edu.au">school-bookings@unimelb.edu.au</a>.
                                 </span>
                             </div>
-                            <el-radio-group v-model="form.datePreference">
-                                <div class='danxuan'><el-radio label="2024-05-14">Tuesday 14 May 2024</el-radio></div>
-                                <div class='danxuan'><el-radio label="2024-05-21">Tuesday 21 May 2024</el-radio></div>
-                                <div class='danxuan'><el-radio label="2024-06-04">Tuesday 4 June 2024</el-radio></div>
-                                <div class='danxuan'><el-radio label="2024-06-18">Tuesday 18 June 2024</el-radio></div>
-
-                            </el-radio-group>
+                            <el-form-item label="First Preference Visit date" prop="datePreference">
+                                <el-date-picker v-model="form.datePreference" :disabled-date="disabledDate" type="date"
+                                    placeholder="Select Date">
+                                </el-date-picker>
+                            </el-form-item>
                         </el-form-item>
 
 
@@ -141,7 +139,7 @@ const submitForm = () => {
     formRef.value.validate((valid) => {
         if (valid) {
             ElMessageBox.confirm(
-                'Do you want to submit the form and go to next page?',
+                'Do you want to go to next page?',
                 'Confirm Submission',
                 {
                     confirmButtonText: 'OK',
