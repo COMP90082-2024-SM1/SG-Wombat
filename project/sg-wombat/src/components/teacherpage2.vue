@@ -15,26 +15,25 @@
 
 
                         <el-form-item label="8. Which program are you interested in?" prop="selectedProgram">
-                            <el-radio-group v-model="form.selectedProgram">
-                                <el-radio label="halfDayTwoModules">Half day experience with two modules: NOT NATURA
-                                    TOUR + (UN)EXPECTED WORKSHOP at 11am-2:15pm (with a 45min lunch break)</el-radio>
-                                <el-radio label="halfDayTwoModulesChicken">Half day experience with two modules: NOT
-                                    NATURAL TOUR + CHICKENOSAURUS WORKSHOP at 11am-2:15pm (with a 45min lunch
-                                    break)</el-radio>
-                                <el-radio label="fullDayThreeModules">Full day experience with three modules: NOT
-                                    NATURAL TOUR + (UN)EXPECTED WORKSHOP + CHICKENOSAURUS WORKSHOP at 9:30am-2:15pm
-                                    (with a 15min recess and a 45min lunch break)</el-radio>
-                            </el-radio-group>
+                            <el-select v-model="form.selectedProgram" placeholder="Select a program">
+                                <el-option
+                                    label="Half day experience with two modules: NOT NATURA TOUR + (UN)EXPECTED WORKSHOP at 11am-2:15pm (with a 45min lunch break)"
+                                    value="halfDayTwoModules"></el-option>
+                                <el-option
+                                    label="Half day experience with two modules: NOT NATURAL TOUR + CHICKENOSAURUS WORKSHOP at 11am-2:15pm (with a 45min lunch break)"
+                                    value="halfDayTwoModulesChicken"></el-option>
+                                <el-option
+                                    label="Full day experience with three modules: NOT NATURAL TOUR + (UN)EXPECTED WORKSHOP + CHICKENOSAURUS WORKSHOP at 9:30am-2:15pm (with a 15min recess and a 45min lunch break)"
+                                    value="fullDayThreeModules"></el-option>
+                            </el-select>
                         </el-form-item>
+
 
 
                         <el-form-item
                             label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
                             prop="selectedDate">
                             <el-radio-group v-model="form.selectedDate">
-                                <el-radio label="2024-03-05">Tuesday 5 March 2024</el-radio>
-                                <el-radio label="2024-03-12">Tuesday 12 March 2024</el-radio>
-                                <el-radio label="2024-04-23">Tuesday 23 April 2024</el-radio>
                                 <el-radio label="2024-05-14">Tuesday 14 May 2024</el-radio>
                                 <el-radio label="2024-05-21">Tuesday 21 May 2024</el-radio>
                                 <el-radio label="2024-06-04">Tuesday 4 June 2024</el-radio>

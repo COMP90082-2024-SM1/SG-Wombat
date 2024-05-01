@@ -52,13 +52,6 @@
                                 </span>
                             </div>
                             <el-radio-group v-model="form.datePreference">
-                                <div class='danxuan'>
-                                    <el-radio label="2024-03-05">Tuesday 5 March 2024</el-radio>
-                                </div>
-                                <div class='danxuan'><el-radio label="2024-03-12">Tuesday 12 March 2024</el-radio></div>
-                                <div class='danxuan'>
-                                    <el-radio label="2024-04-23">Tuesday 23 April 2024</el-radio>
-                                </div>
                                 <div class='danxuan'><el-radio label="2024-05-14">Tuesday 14 May 2024</el-radio></div>
                                 <div class='danxuan'><el-radio label="2024-05-21">Tuesday 21 May 2024</el-radio></div>
                                 <div class='danxuan'><el-radio label="2024-06-04">Tuesday 4 June 2024</el-radio></div>
