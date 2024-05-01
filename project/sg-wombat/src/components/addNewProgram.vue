@@ -1,4 +1,3 @@
-// Parent Component
 <template>
   <el-dialog v-model="visible" title="Add New Program" >
     <el-form :model="form" label-width="120px">
@@ -10,6 +9,8 @@
       <el-form-item label="Max People">
         <el-input-number v-model="form.maxPeople" :min="1" />
       </el-form-item>
+
+
 
       <el-form-item label="Requirement">
         <el-input v-model="form.techRequirement" />
@@ -31,14 +32,18 @@
         <el-input type="textarea" v-model="form.description" />
       </el-form-item>
 
-      <el-form-item label="Status">
-        <el-radio-group v-model="form.status">
-          <el-radio label="bookable">Bookable</el-radio>
-          <el-radio label="not bookable">Not Bookable</el-radio>
-        </el-radio-group>
+      
+      <!-- Work Days checkbox group -->
+      <el-form-item label="Work Days">
+        <el-checkbox-group v-model="form.workDays">
+          <el-checkbox label="Tuesday">Tuesday</el-checkbox>
+          <el-checkbox label="Wednesday">Wednesday</el-checkbox>
+          <el-checkbox label="Thursday">Thursday</el-checkbox>
+          <el-checkbox label="Friday">Friday</el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
 
-      <el-form-item label="Program State">
+      <el-form-item label="Status">
         <el-radio-group v-model="form.programState">
           <el-radio label="active">Active</el-radio>
           <el-radio label="archived">Archived</el-radio>
@@ -56,50 +61,37 @@
 
 <script setup>
 import { reactive, computed } from 'vue';
-
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
-  formVisible: {
-    type: Boolean,
-    default: false
-  }
+  formVisible: Boolean
 });
 
 const emits = defineEmits(['update:formVisible']);
+
 const visible = computed({
-  get: () => {
-    return props.formVisible
-  },
-  set: (value) => {
-    emits('update:formVisible', value)
-  }
-})
+  get: () => props.formVisible,
+  set: (value) => emits('update:formVisible', value)
+});
+
 const form = reactive({
   name: '',
   maxPeople: 1,
-  Requirement: '',
+  techRequirement: '',
   costPerPerson: 0,
   runtime: '',
   description: '',
-  status: 'not bookable',
-  programState: 'active'
+  status: 'active',
+  workDays: []  // Initialize the workDays array for checkboxes
 });
 
 const onSubmit = () => {
   console.log('Submitted:', form);
-  // Add API call logic here
-  visible.value = false
-  emits('update:formVisible', false); // Close the dialog after submit
+  visible.value = false;  // Close the dialog
 };
 
 const onCancel = () => {
-  visible.value = false
-  console.log('Cancelled',visible);
-
-  emits('update:formVisible', false); // This will update the parent's `isFormVisible` value to `false`
-};
-
-const updateVisibility = (value) => {
-  emits('update:formVisible', value);
+  visible.value = false;
+  console.log('Cancelled');
 };
 </script>
