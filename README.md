@@ -31,43 +31,45 @@ The Science Gallery provides diverse educational experiences for secondary schoo
 
 The primary goal of this project is to develop a comprehensive booking management system for the Science Gallery, aimed at enhancing operational efficiency and improving user experience for both partner and non-partner school teachers. This system will enable teachers to easily book programs, manage bookings, and access educational experiences, while providing Science Gallery staff with the necessary tools to streamline booking processes, manage resources effectively, and ensure accurate record-keeping. Additionally, the system will support the expansion of program offerings, facilitate space management, and enable data-driven decision-making through comprehensive reporting capabilities. Overall, the goal is to create a user-friendly, efficient, and scalable platform that enhances the educational outreach efforts of the Science Gallery and optimizes the visitor experience.
 
-## Workflow
+## Project Workflow
+
 This section outlines our workflow for managing code changes in our project repository on GitHub. We aim to maintain a clean, efficient workflow that ensures code quality and a clear history of changes.
 
-Branching Strategy
-Feature Branches:
+### Branching Strategy
+**Feature Branches:**
+- We create branches based on the features being developed to keep our work organized and isolated from the main codebase. This approach allows multiple features to be developed in parallel without interference.
 
-We create branches based on the features being developed to keep our work organized and isolated from the main codebase. This approach allows multiple features to be developed in parallel without interference.
-Naming Convention:
+**Naming Convention:**
+- Branch names should be descriptive and reflect the feature or bug fix they are intended to address. Our naming convention is as follows:
+  - For features: `feature/<feature-name>`
+  - For bug fixes: `fix/<bug-name>`
+  - For hotfixes: `hotfix/<hotfix-name>`
+  - Example: `feature/login-authentication`
 
-Branch names should be descriptive and reflect the feature or bug fix they are intended to address. Our naming convention is as follows:
-For features: feature/<feature-name>
-For bug fixes: fix/<bug-name>
-For hotfixes: hotfix/<hotfix-name>
-Example: feature/login-authentication
-Code Integration Process
-1. Pull Request:
+### Code Integration Process
+1. **Pull Request:**
+   - Once a feature or fix is completed on a branch, a pull request (PR) is created to merge the changes into the master branch.
+   - The PR title should clearly describe the change or enhancement and, if applicable, reference the related issue or task.
 
-Once a feature or fix is completed on a branch, a pull request (PR) is created to merge the changes into the master branch.
-The PR title should clearly describe the change or enhancement and, if applicable, reference the related issue or task.
-2. Code Review:
+2. **Code Review:**
+   - Every PR must be reviewed by at least one other team member before merging. This ensures that at least two sets of eyes have vetted the code, which helps maintain code quality and reduce bugs.
+   - Reviewers should check for code quality, adherence to project standards, functionality, and integration with existing code.
+   - Reviewers can comment, approve, or request changes. PRs should only be merged after receiving approval.
 
-Every PR must be reviewed by at least one other team member before merging. This ensures that at least two sets of eyes have vetted the code, which helps maintain code quality and reduce bugs.
-Reviewers should check for code quality, adherence to project standards, functionality, and integration with existing code.
-Reviewers can comment, approve, or request changes. PRs should only be merged after receiving approval.
-3. Automated Tests:
+3. **Automated Tests:**
+   - We are currently facing challenges with our automated testing setup, which are preventing us from running automated tests as part of our pull request process. We are actively working to resolve these issues to ensure that our testing framework integrates smoothly with our development workflow.
 
-Our repository is configured with continuous integration tools that automatically run tests when a PR is created or updated.
-PRs can only be merged if all automated tests pass successfully, ensuring that new changes do not break existing functionality.
-4. Merge and Clean-up:
+4. **Merge and Clean-up:**
+   - Once approved and all tests pass, the PR is merged into the master branch.
+   - After the merge, the feature branch should be deleted to keep the repository clean and manageable. This deletion should be part of the PR process.
 
-Once approved and all tests pass, the PR is merged into the master branch.
-After the merge, the feature branch should be deleted to keep the repository clean and manageable. This deletion should be part of the PR process.
-Best Practices
-Keep your branches up-to-date with the master branch to minimize merge conflicts.
-Regularly push your changes to remote branches to avoid losing work and to keep teammates informed of your progress.
-Use clear and descriptive commit messages that explain why the change was made.
+### Best Practices
+- Keep your branches up-to-date with the master branch to minimize merge conflicts.
+- Regularly push your changes to remote branches to avoid losing work and to keep teammates informed of your progress.
+- Use clear and descriptive commit messages that explain why the change was made.
+
 By adhering to this workflow, we ensure that our codebase remains clean and stable, and that our project progresses efficiently. This process also fosters collaboration and code quality assurance through peer reviews and automated testing.
+
 ### Branches
 
 - **Main Branch**: The main branch contains stable, production-ready code.
