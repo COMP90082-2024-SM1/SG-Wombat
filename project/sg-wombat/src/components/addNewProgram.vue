@@ -77,7 +77,7 @@ const visible = computed({
 const form = reactive({
   name: '',
   maxPeople: 1,
-  Requirement: '',
+  techRequirement: '',
   costPerPerson: 0,
   runtime: '',
   description: '',
