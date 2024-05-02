@@ -16,8 +16,8 @@ public class ProgramServiceImpl implements ProgramService {
 
 
     @Override
-    public List<Program> list() {
-        return programMapper.list();
+    public List<Program> list(String name) {
+        return programMapper.list(name);
     }
 
     @Override
@@ -28,5 +28,15 @@ public class ProgramServiceImpl implements ProgramService {
     @Override
     public void add(Program program) {
         programMapper.insert(program);
+    }
+
+    @Override
+    public Program getById(Integer id) {
+        return programMapper.getById(id);
+    }
+
+    @Override
+    public void update(Program program) {
+        programMapper.update(program);
     }
 }

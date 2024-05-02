@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface ProgramService {
     /**
-     * 查询全部program数据
+     * 查询program数据
      * @return
      */
-    List<Program> list();
+    List<Program> list(String name);
 
     /**
      * 根据id删除对应program
@@ -25,4 +25,18 @@ public interface ProgramService {
      * @param program
      */
     void add(Program program);
+
+
+    /**
+     * 根据id查询对应program
+     * @param id
+     */
+    Program getById(Integer id);
+
+
+    /**
+     * 根据id更新program
+     * @param program
+     */
+    void update(Program program);
 }

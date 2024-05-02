@@ -22,20 +22,31 @@ public class ProgramController {
 
 
     /**
-     * 查询所有program
+     * 查询program
      * @return
      */
 
     //@RequestMapping(value = "/progs", method = RequestMethod.GET)
     @GetMapping("/progs")
-    public Result list(){
+    public Result list(String name){
         log.info("查询全部program数据");
 
-        List<Program> programList = programService.list();
+        List<Program> programList = programService.list(name);
 
         return Result.success(programList);
     }
 
+
+
+
+
+
+    @GetMapping("/progs/{id}")
+    public Result getById(@PathVariable Integer id){
+        log.info("根据id查询员工信息， id：{}", id);
+        Program program = programService.getById(id);
+        return Result.success(program);
+    }
 
     /**
      * 根据id删除对应program
@@ -51,7 +62,11 @@ public class ProgramController {
     }
 
 
-
+    /**
+     * 新增program
+     * @param program
+     * @return
+     */
     @PostMapping("/progs")
     public Result add(@RequestBody Program program){
         log.info("新增Program：{}", program);
@@ -59,6 +74,18 @@ public class ProgramController {
         programService.add(program);
 
         return Result.success();
+    }
+
+
+
+    @PutMapping("/progs")
+    public Result update(@RequestBody Program program){
+        log.info("根据id更新program");
+
+        programService.update(program);
+
+        return Result.success();
+
     }
 
 
