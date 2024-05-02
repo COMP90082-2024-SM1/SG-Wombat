@@ -967,7 +967,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="279" parent="1" name="sci_gallery">
-      <LastIntrospectionLocalTimestamp>2024-04-18.06:52:26</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-01.15:30:08</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="280" parent="1" name="mysql.infoschema">
@@ -5066,11 +5066,11 @@ mysql&gt; SELECT VERSION(), sys.version_patch();
       <Definer>mysql.sys@localhost</Definer>
       <SourceTextLength>839</SourceTextLength>
     </view>
-    <table id="659" parent="279" name="tb_emp">
+    <table id="659" parent="279" name="tb_program">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="660" parent="279" name="tb_program">
+    <table id="660" parent="279" name="tb_user">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
@@ -23673,92 +23673,92 @@ VARIABLE_NAME</ColNames>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="4528" parent="659" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="4528" parent="659" name="prog_id">
+      <AutoIncrement>9</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4529" parent="659" name="user_name">
+    <column id="4529" parent="659" name="name">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="4530" parent="659" name="password">
+    <column id="4530" parent="659" name="max_cap">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="4531" parent="659" name="tech_req">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="4532" parent="659" name="cost_person">
+      <DasType>decimal(10,2 digit)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="4533" parent="659" name="duration">
+      <DasType>varchar(50)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="4534" parent="659" name="status">
+      <DasType>int|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="4535" parent="659" name="Monday">
+      <DasType>int|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="4536" parent="659" name="Tuesday">
+      <DasType>int|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="4537" parent="659" name="Wednesday">
+      <DasType>int|0s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="4538" parent="659" name="Thursday">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="4539" parent="659" name="Friday">
+      <DasType>int|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <column id="4540" parent="659" name="description">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <index id="4541" parent="659" name="PRIMARY">
+      <ColNames>prog_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="4542" parent="659" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="4543" parent="660" name="id">
+      <AutoIncrement>6</AutoIncrement>
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="4544" parent="660" name="username">
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="4545" parent="660" name="password">
       <DasType>varchar(20)|0s</DasType>
       <DefaultExpression>&apos;123456&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="4531" parent="659" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="4532" parent="659" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="4533" parent="660" name="prog_id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="4534" parent="660" name="name">
-      <DasType>varchar(20)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="4535" parent="660" name="max_cap">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="4536" parent="660" name="tech_req">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="4537" parent="660" name="cost_person">
-      <DasType>decimal(10,2 digit)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="4538" parent="660" name="duration">
-      <DasType>varchar(50)|0s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="4539" parent="660" name="status">
-      <DasType>int|0s</DasType>
-      <Position>7</Position>
-    </column>
-    <column id="4540" parent="660" name="Monday">
-      <DasType>int|0s</DasType>
-      <Position>8</Position>
-    </column>
-    <column id="4541" parent="660" name="Tuesday">
-      <DasType>int|0s</DasType>
-      <Position>9</Position>
-    </column>
-    <column id="4542" parent="660" name="Wednesday">
-      <DasType>int|0s</DasType>
-      <Position>10</Position>
-    </column>
-    <column id="4543" parent="660" name="Thursday">
-      <DasType>int|0s</DasType>
-      <Position>11</Position>
-    </column>
-    <column id="4544" parent="660" name="Friday">
-      <DasType>int|0s</DasType>
-      <Position>12</Position>
-    </column>
-    <column id="4545" parent="660" name="description">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>13</Position>
-    </column>
     <index id="4546" parent="660" name="PRIMARY">
-      <ColNames>prog_id</ColNames>
+      <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
