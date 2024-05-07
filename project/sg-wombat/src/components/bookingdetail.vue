@@ -1,6 +1,6 @@
 <template>
-    <el-button @click="resetDateFilter">reset date filter</el-button>
-    <el-button @click="clearFilter">reset all filters</el-button>
+
+
     <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
         <el-table-column prop="date" label="Date" sortable width="120" column-key="date" :filters="[
         { text: '2016-05-01', value: '2016-05-01' },
@@ -11,7 +11,8 @@
         <el-table-column prop="name" label="Name" width="120" />
         <el-table-column prop="address" label="Address" :formatter="formatter" />
 
-        <el-table-column prop="tag" label="Tag" width="110" :filters="[
+
+        <el-table-column prop="tag" label="All Bookings" width="150" :filters="[
         { text: 'Confirmed Bookings', value: 'Confirmed' },
         { text: 'Other Bookings', value: 'Other' },
     ]" :filter-method="filterTag" filter-placement="bottom-end">
@@ -21,6 +22,8 @@
             </template>
         </el-table-column>
     </el-table>
+    <el-button @click="resetDateFilter">Reset Date</el-button>
+    <el-button @click="clearFilter">Reset All</el-button>
 </template>
 
 <script lang="ts" setup>
@@ -39,6 +42,15 @@ const tableRef = ref<TableInstance>()
 const resetDateFilter = () => {
     tableRef.value!.clearFilter(['date'])
 }
+
+const filterData = (tag: string) => {
+    if (tableRef.value) {
+        // 正确调用 filter 方法，明确指定要筛选的列和值
+        tableRef.value.filter('tag', tag);
+    }
+}
+
+
 // TODO: improvement typing when refactor table
 const clearFilter = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -87,3 +99,7 @@ const tableData: User[] = [
     },
 ]
 </script>
+
+<style>
+
+</style>
