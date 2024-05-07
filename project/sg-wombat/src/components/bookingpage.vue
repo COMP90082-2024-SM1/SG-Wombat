@@ -5,7 +5,7 @@
             <div class="HeadTitle">
                 <el-menu mode="horizontal" :popper-offset="16">
                     <el-sub-menu index="1">
-                        <template #title>Workspace</template>
+                        <template #title>All Booking</template>
                         <el-menu-item index="1-1">item one</el-menu-item>
                         <el-menu-item index="1-2">item two</el-menu-item>
                         <el-menu-item index="1-3">item three</el-menu-item>
@@ -69,7 +69,7 @@
     height: 100vh;
 
     width: 60%;
-   
+
     display: flex;
     flex-grow: 1;
     z-index: 1001;

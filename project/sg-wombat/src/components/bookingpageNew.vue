@@ -37,10 +37,9 @@
                         <div class="HeadTitle">
                             <el-menu mode="horizontal" :popper-offset="16">
                                 <el-sub-menu index="1">
-                                    <template #title>Workspace</template>
-                                    <el-menu-item index="1-1">item one</el-menu-item>
-                                    <el-menu-item index="1-2">item two</el-menu-item>
-                                    <el-menu-item index="1-3">item three</el-menu-item>
+                                    <template #title>All Bookings</template>
+                                    <el-menu-item index="1-1">Confirmed Bookings</el-menu-item>
+                                    <el-menu-item index="1-2">Other Bookings</el-menu-item>
                                 </el-sub-menu>
                             </el-menu>
                         </div>
