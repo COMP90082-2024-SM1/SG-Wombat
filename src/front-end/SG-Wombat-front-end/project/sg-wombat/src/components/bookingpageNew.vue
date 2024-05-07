@@ -33,20 +33,21 @@
             <!-- main content -->
             <el-main>
                 <el-card>
-                    <div class="dashboard-content">
-                        <div class="HeadTitle">
-                            <el-menu mode="horizontal" :popper-offset="16">
-                                <el-sub-menu index="1">
-                                    <template #title>Workspace</template>
-                                    <el-menu-item index="1-1">item one</el-menu-item>
-                                    <el-menu-item index="1-2">item two</el-menu-item>
-                                    <el-menu-item index="1-3">item three</el-menu-item>
-                                </el-sub-menu>
-                            </el-menu>
+                    <template #header>
+                        <div class="card-header">
+                            <span>Bookings</span>
+                            <!-- <el-button>button</el-button> -->
+                            <el-button @click="showAddNewbooking" class="Addnewbooking">Add New Booking</el-button>
+                            <addNewbooking v-model:formVisible="isFormVisible" />
+                            <!-- v-model'deault props is modelValue -->
                         </div>
-
+                    </template>
+                    <div class="card-content">
                         <BookingDetail class="listbox" />
                     </div>
+
+                        
+                
                 </el-card>
 
             </el-main>
@@ -61,17 +62,19 @@
 </template>
 
 
-<script>
+<script lang="ts" setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import navigationMenu from './navBarNew.vue';
 import BookingDetail from './bookingdetail.vue';
-
-export default {
-    components: {
-        navigationMenu,
-        BookingDetail,
-    }
+import { reactive, ref } from 'vue'
+import addNewbooking from './addNewBooking.vue';
+let isFormVisible = ref(false)
+const showAddNewbooking = () => {
+    console.log("Attempting to show form");
+    isFormVisible.value = true;
+    console.log("Form visibility should now be true:", isFormVisible.value);
 }
+
 
 
 </script>
@@ -121,6 +124,12 @@ export default {
     /* background-color: lightblue; */
     /* border-radius: 30px; */
 
+}
+
+
+.Addnewbooking{
+    position: absolute;
+    right: 40px;
 }
 
 .science {
