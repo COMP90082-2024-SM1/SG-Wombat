@@ -37,7 +37,7 @@
                         <div class="card-header">
                             <span>Bookings</span>
                             <!-- <el-button>button</el-button> -->
-                            <el-button @click="showAddNewProgramForm" class="Addnewbooking">Add New Booking</el-button>
+                            <el-button @click="showAddNewbooking" class="Addnewbooking">Add New Booking</el-button>
                             <addNewbooking v-model:formVisible="isFormVisible" />
                             <!-- v-model'deault props is modelValue -->
                         </div>
@@ -69,7 +69,7 @@ import BookingDetail from './bookingdetail.vue';
 import { reactive, ref } from 'vue'
 import addNewbooking from './addNewBooking.vue';
 let isFormVisible = ref(false)
-const showAddNewProgramForm = () => {
+const showAddNewbooking = () => {
     console.log("Attempting to show form");
     isFormVisible.value = true;
     console.log("Form visibility should now be true:", isFormVisible.value);
