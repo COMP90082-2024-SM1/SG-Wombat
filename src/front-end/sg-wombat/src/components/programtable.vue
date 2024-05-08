@@ -1,6 +1,6 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%" @row-click="handleRowClick">
-    <el-table-column label="Program Name" prop="name" />
+    <el-table-column label="Program Name" width="100" prop="name" />
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
     <el-table-column align="right">

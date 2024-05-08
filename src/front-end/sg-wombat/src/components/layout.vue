@@ -32,9 +32,12 @@
 
             <!-- main content -->
             <el-main>
-                <el-card>
+                <el-scrollbar>
+                    <router-view></router-view>
+                </el-scrollbar>
+                <!-- <el-card>
                     random txt
-                </el-card>
+                </el-card> -->
 
             </el-main>
 
