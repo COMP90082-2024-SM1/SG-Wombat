@@ -16,7 +16,7 @@
 
         </el-sub-menu> -->
 
-        <el-menu-item class="innerbox" index='2' @click="activate('bookingpage')">
+        <el-menu-item class="innerbox" index='/booking' @click="activate('bookingpage')">
             <el-icon size="40" color="white">
                 <List />
             </el-icon>
@@ -78,7 +78,7 @@ watch(() => route.name, (newRouteName) => {
             selectedIndex.value = '/dashboard';
             break;
         case 'bookingpage':
-            selectedIndex.value = '2';
+            selectedIndex.value = '/booking';
             break;
         case 'programpage':
             selectedIndex.value = '3';
