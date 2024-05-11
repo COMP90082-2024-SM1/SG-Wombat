@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="visible" title="Add New Program">
+    <el-dialog v-model="visible" title="Add New Booking">
         <el-form :model="form" label-width="auto">
             <!-- Form fields here -->
             <el-form-item label="Program Name">

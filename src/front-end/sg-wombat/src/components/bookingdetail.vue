@@ -21,13 +21,84 @@
                     }}</el-tag>
             </template>
         </el-table-column>
+        <el-table-column align="right">
+      <template #header>
+        <el-input v-model="search" size="small" placeholder="Type to search" />
+      </template>
+      <template #default="scope">
+        <el-button size="small" @click="showDetails(scope.row)">
+          Show Details
+        </el-button>
+        <el-button size="small" @click="showEditForm(scope.row)">
+          Edit
+        </el-button>
+        <el-button size="small" type="danger" @click="deleteProgram(scope.row)">
+          Delete
+        </el-button>
+      </template>
+    </el-table-column>
     </el-table>
     <el-button @click="resetDateFilter">Reset Date</el-button>
     <el-button @click="clearFilter">Reset All</el-button>
+
+
+
+    <!-- Program Details Dialog -->
+  <el-dialog v-model="detailsDialogVisible" title="Booking Details">
+    <el-form :model="selectedProgram" label-width="120px">
+      <!-- Form fields here -->
+      <el-form-item label="Program Name">
+        <el-input v-model="selectedProgram.name" disabled />
+      </el-form-item>
+
+      <el-form-item label="Max People">
+        <el-input v-model="selectedProgram.people" disabled />
+      </el-form-item>
+
+      <!-- Add other fields here -->
+
+    </el-form>
+  </el-dialog>
+
+
+   <!-- Edit Program Dialog -->
+   <el-dialog v-model="editDialogVisible" title="Edit Program">
+    <el-form :model="editedProgram" label-width="auto">
+      <!-- Form fields here -->
+      <el-form-item label="Program Name">
+        <el-input v-model="editedProgram.name" />
+      </el-form-item>
+
+      <el-form-item label="Max People">
+        <el-input v-model="editedProgram.people" />
+      </el-form-item>
+
+      <!-- Add other fields here -->
+
+      <el-form-item>
+        <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+      </el-form-item>
+    </el-form>
+  </el-dialog>
+
+  <!-- for view details by clicking on rows -->
+  <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
+    <el-descriptions :column="1" :size='large' border>
+      <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
+      <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
+      <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
+      <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
+      <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
+      <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
+      <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
+      <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
+    </el-descriptions>
+
+  </el-dialog>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed, reactive } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
 
 interface User {
@@ -98,6 +169,36 @@ const tableData: User[] = [
         tag: 'Other',
     },
 ]
+
+const selectedProgram = ref<User | null>(null);
+const dialogDescVisible = ref(false)
+// handleRowClick: to be deleted later if not use row click
+const editedProgram = ref<User | null>(null);
+const editDialogVisible = ref(false);
+
+
+const showDetails = (program: User) => {
+  selectedProgram.value = program;
+  // detailsDialogVisible.value = true;
+  dialogDescVisible.value = true
+};
+
+const showEditForm = (program: User) => {
+  editedProgram.value = { ...program }; // Clone the program object
+  editDialogVisible.value = true;
+};
+
+const ProgramDetails = reactive({
+  programName: 'Program A',
+  maxPpl: 20,
+  techReq: "10 ipads",
+  cost: 20,
+  runtime: 3,
+  programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
+  hostDays: "Tuesday, Wednesday, Thursday",
+  programStatus: "Active"
+})
+
 </script>
 
 <style></style>
