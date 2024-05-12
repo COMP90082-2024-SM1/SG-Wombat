@@ -82,19 +82,40 @@
   </el-dialog>
 
   <!-- for view details by clicking on rows -->
-  <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
-    <el-descriptions :column="1" :size='large' border>
-      <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
-      <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
-      <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
-      <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
-      <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
-      <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
-      <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
-      <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
-    </el-descriptions>
+  <el-dialog v-model="dialogDescVisible" title="Program Details" width="80%">
+  <el-row gutter={20}>
+    <!-- 左侧栏，保留现有内容 -->
+    <el-col :span="12">
+      <el-descriptions :column="1" :size="large" border>
+        <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
+        <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
+        <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
+        <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
+        <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
+        <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
+        <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
+        <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
+      </el-descriptions>
+    </el-col>
+    <!-- 右侧栏，新的 Checklist 内容 -->
+    <el-col :span="12">
+      <div class="todo-list">
+        <div class="todo-header">TO DO LIST</div>
+        <el-checkbox-group v-model="todoList">
+          <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
+          <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
+          <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
+          <!-- 更多 checkbox -->
+        </el-checkbox-group>
+      </div>
+    </el-col>
+  </el-row>
+  <template #footer>
+    <el-button @click="closeDialog">Back</el-button>
+    <el-button type="primary" @click="saveTodoList">Save</el-button>
+  </template>
+</el-dialog>
 
-  </el-dialog>
 </template>
 
 <script lang="ts" setup>
@@ -171,7 +192,7 @@ const tableData: User[] = [
 ]
 
 const selectedProgram = ref<User | null>(null);
-const dialogDescVisible = ref(false)
+
 // handleRowClick: to be deleted later if not use row click
 const editedProgram = ref<User | null>(null);
 const editDialogVisible = ref(false);
@@ -199,6 +220,56 @@ const ProgramDetails = reactive({
   programStatus: "Active"
 })
 
+const dialogDescVisible = ref(false);
+const todoList = ref([]);
+
+// 关闭弹窗的方法
+const closeDialog = () => {
+  dialogDescVisible.value = false;
+};
+
+// 保存 ToDo List 的方法
+const saveTodoList = () => {
+  console.log('Saved ToDo List:', todoList.value);
+  // 在这里可以执行更多的保存逻辑，比如发送数据到服务器等
+  closeDialog();  // Optionally close dialog after save
+};
+
+
 </script>
 
-<style></style>
+<style>
+/* ToDo List 样式调整 */
+.todo-list {
+  padding: 20px;
+  background-color: #1E1E1E; /* 深蓝背景 */
+  color: white;
+  border-radius: 8px;
+}
+
+.todo-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.el-checkbox {
+  margin-bottom: 10px;
+  border-color: white;
+  color: white;
+}
+
+.el-checkbox__label {
+  font-size: 16px;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #409EFF; /* Element UI 蓝色 */
+  border-color: #409EFF;
+}
+
+.el-button {
+  margin-top: 20px;
+}
+</style>
