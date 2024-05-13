@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from '../router' // 确保这里的路径指向您的路由配置文件
+import router from 'router' // 从 src 目录跳出一级到根目录，再进入 router 目录
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
@@ -20,5 +20,5 @@ app.use(ElementPlus);
 app.use(router);
 
 app.mount('#app');
-axios.defaults.baseURL = 'http://localhost:5173'; // 适当调整为您的后端服务地址
+axios.defaults.baseURL = 'http://localhost:8080'; // 适当调整为您的后端服务地址
 app.config.globalProperties.$axios = axios;
