@@ -154,7 +154,7 @@ const handleRowClick = (row: User) => {
   // dialogDescVisible.value = true
 }
 
-const ProgramDetails = reactive({
+const ProgramDetails = ref({
   programName: 'Program A',
   maxPpl: 20,
   techReq: "10 ipads",

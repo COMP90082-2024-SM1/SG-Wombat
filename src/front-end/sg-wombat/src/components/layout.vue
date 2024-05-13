@@ -117,5 +117,7 @@ import navigationMenu from './navBarNew.vue';
 
 .main-content {
     z-index: 1001;
+    height: 100vh;
+    padding-right: 0;
 }
 </style>

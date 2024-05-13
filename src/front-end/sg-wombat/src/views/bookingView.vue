@@ -3,18 +3,18 @@
         <template #header>
             <div class="card-header">
                 <span>Bookings</span>
-                            <!-- <el-button>button</el-button> -->
+                <!-- <el-button>button</el-button> -->
                 <el-button @click="showAddNewbooking" class="Addnewbooking">Add New Booking</el-button>
-                            <addNewbooking v-model:formVisible="isFormVisible" />
-                            <!-- v-model'deault props is modelValue -->
+                <addNewbooking v-model:formVisible="isFormVisible" />
+                <!-- v-model'deault props is modelValue -->
             </div>
         </template>
-            <div class="card-content">
-                <BookingDetail class="listbox" />
-            </div>
+        <div class="card-content">
+            <BookingDetail class="listbox" />
+        </div>
 
-                        
-                
+
+
     </el-card>
 
 </template>
@@ -37,31 +37,23 @@ const showAddNewbooking = () => {
 </script>
 
 <style scoped>
-
-
-.Addnewbooking{
+/* .Addnewbooking {
     position: absolute;
     right: 40px;
-}
+} */
 
-.science {
+/* .science {
 
     color: white;
     font-size: 40px;
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 20px;
-    /* width: 50%; */
-    /* margin-right: auto; */
-    /* margin-left: 30px; */
-    /* background-color: blueviolet; */
-    /* width: 330px; */
-    /* height: 56px; */
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 .main-content {
 
@@ -72,6 +64,7 @@ const showAddNewbooking = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
 
 }
 </style>
