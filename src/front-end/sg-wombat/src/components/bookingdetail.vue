@@ -81,13 +81,13 @@
     </el-form>
   </el-dialog>
 
-  <!-- for view details by clicking on rows -->
-  <el-dialog v-model="dialogDescVisible" title="Booking Details" width="80%">
+  <!-- for view details by clicking on view details button -->
+  <el-dialog v-model="dialogDescVisible" title="Booking Details" width="80%" @closed="resetCurrentStep">
     <el-row gutter='20'>
       <!-- 左侧栏，保留现有内容 -->
       <el-col :span="15">
         <!-- steps to divide into different parts -->
-        <el-steps :active="currentStep" simple>
+        <el-steps :active="currentStep" align-center process-status="finish" finish-status="process">
           <el-step title="Delivery" :icon="Document" @click="currentStep = 0" />
           <el-step title="Cohort" :icon="School" @click="currentStep = 1" />
           <el-step title="Contact" :icon="User" @click="currentStep = 2" />
@@ -99,26 +99,79 @@
         <br />
         <!-- step 0 Delivery -->
         <div v-show="currentStep === 0">
-          <el-descriptions :column="1" size="large" border>
+          <el-descriptions :column="2" size="large" border>
             <el-descriptions-item label="Program Stream">{{ bookingDetails.programStream }}</el-descriptions-item>
-            <el-descriptions-item label="Request Confirmed? ">{{ bookingDetails.requestConfirmed
+            <el-descriptions-item label="Request Confirmed?">{{ bookingDetails.requestConfirmed
               }}</el-descriptions-item>
             <el-descriptions-item label="Status">{{ bookingDetails.status }}</el-descriptions-item>
             <el-descriptions-item label="Facilitators">{{ bookingDetails.facilitators }}</el-descriptions-item>
-            <el-descriptions-item label="Delivery Location">{{ bookingDetails.deliveryLocation }}</el-descriptions-item>
-            <el-descriptions-item label="School">{{ bookingDetails.school }}</el-descriptions-item>
+            <el-descriptions-item label="Delivery Location" span="2">{{ bookingDetails.deliveryLocation
+              }}</el-descriptions-item>
+            <el-descriptions-item label="School" span="2">{{ bookingDetails.school }}</el-descriptions-item>
             <el-descriptions-item label="Program Date">{{ bookingDetails.programDate }}</el-descriptions-item>
             <el-descriptions-item label="Start Time">{{ bookingDetails.startTime }}</el-descriptions-item>
+            <el-descriptions-item label="End Time">{{ bookingDetails.endTime }}</el-descriptions-item>
+            <el-descriptions-item label="Run Time">{{ bookingDetails.runTime }}</el-descriptions-item>
+            <el-descriptions-item label="Program">{{ bookingDetails.program }}</el-descriptions-item>
+            <el-descriptions-item label="Module 1">{{ bookingDetails.module1 }}</el-descriptions-item>
+            <el-descriptions-item label="Module 2">{{ bookingDetails.module2 }}</el-descriptions-item>
+            <el-descriptions-item label="Module 3">{{ bookingDetails.module3 }}</el-descriptions-item>
+            <el-descriptions-item label="Exhibition">{{ bookingDetails.exhibition }}</el-descriptions-item>
+            <el-descriptions-item label="Notes">{{ bookingDetails.notes }}</el-descriptions-item>
           </el-descriptions>
 
         </div>
 
         <!-- step 1 Cohort -->
         <div v-show="currentStep === 1">
+          <el-descriptions :column="1" size="large" border>
+            <el-descriptions-item label="School">{{ bookingDetails.school }}</el-descriptions-item>
+            <el-descriptions-item label="Organisation">{{ bookingDetails.organisation }}</el-descriptions-item>
+            <el-descriptions-item label="Student Year">{{ bookingDetails.studentYear }}</el-descriptions-item>
+            <el-descriptions-item label="Student # (Registered)">{{ bookingDetails.regStudentsNo
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Student #Hours (Registered)">{{ bookingDetails.regStudentHrs
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Student # (Attended)">{{ bookingDetails.attendedStudentsNo
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Student #Hours (Attended)">{{ bookingDetails.attendedStudentHrs
+              }}</el-descriptions-item>
+
+            <el-descriptions-item label="LGA">{{ bookingDetails.lga }}</el-descriptions-item>
+            <el-descriptions-item label="Low SES">{{ bookingDetails.lowSes }}</el-descriptions-item>
+            <el-descriptions-item label="Accessibility Needs">{{ bookingDetails.accNeeds
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Allergens & Anaphylaxis">{{ bookingDetails.allergyNeeds
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Teacher’s Notes">{{ bookingDetails.teacherNotes }}</el-descriptions-item>
+            <el-descriptions-item label="Comments">{{ bookingDetails.comments }}</el-descriptions-item>
+          </el-descriptions>
         </div>
 
         <!-- step 2 Contact -->
         <div v-show="currentStep === 2">
+          <el-descriptions :column="1" size="large" border>
+            <el-descriptions-item label="First Name">{{ bookingDetails.firstName }}</el-descriptions-item>
+            <el-descriptions-item label="Last Name">{{ bookingDetails.lastName }}</el-descriptions-item>
+            <el-descriptions-item label="Full Name">{{ bookingDetails.fullName }}</el-descriptions-item>
+            <el-descriptions-item label="Email Address">{{ bookingDetails.emailAddress }}</el-descriptions-item>
+            <el-descriptions-item label="Phone Number">{{ bookingDetails.phoneNumber }}</el-descriptions-item>
+            <el-descriptions-item label="Teaching Area">{{ bookingDetails.teachingArea }}</el-descriptions-item>
+          </el-descriptions>
+        </div>
+
+        <!-- step 3 Actions -->
+        <div v-show="currentStep === 3">
+          <el-descriptions :column="2" size="large" border>
+            <el-descriptions-item label="Bus Required?">{{ bookingDetails.busRequired
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Booked">{{ bookingDetails.busBooked }}</el-descriptions-item>
+            <el-descriptions-item label="Accessibility Needs Communicated">{{ bookingDetails.accNeedsCommunicated
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Allergen and Anaphylaxis Communicated">{{ bookingDetails.allergyCommunicated
+              }}</el-descriptions-item>
+            <el-descriptions-item label="40 Day Check-in">{{ bookingDetails.fortyDayCheckIn }}</el-descriptions-item>
+          </el-descriptions>
         </div>
 
       </el-col>
@@ -248,7 +301,10 @@ const ProgramDetails = ref({
 
 //// for booking details
 const currentStep = ref(0)
-// const ref storing program details // to be updated later to take data form api, no need to be ref actually
+const resetCurrentStep = () => {
+  currentStep.value = 0
+}
+// const ref storing program details // to be updated later to take data from api
 const bookingDetails = ref({
   programStream: 'SCoE: Excursions',
   requestConfirmed: 'Confirmed',
@@ -267,6 +323,7 @@ const bookingDetails = ref({
   module3: '',
   exhibition: 'Non-Exhbition Linked',
   notes: 'TBC whether SCoE paying for buses',
+  // cohort
   organisation: '',
   studentYear: '11,12',
   regStudentsNo: 50,
@@ -275,19 +332,23 @@ const bookingDetails = ref({
   attendedStudentHrs: 139.75,
   lga: 'Aireys',
   lowSes: 'N',
-  accessibilityNeeds: 'NA',
-  allergensAndAnaphylaxis: 'NA',
+  specificNeeds: 'NA',
+  accNeeds: 'NA',
+  allergyNeeds: 'NA',
+  teacherNotes: 'NA',
   comments: '',
+  // contact
   firstName: 'Bob',
   lastName: 'Ross',
   fullName: 'Bob Ross',
   emailAddress: 'bobross@gmail.com',
   phoneNumber: '0412345678',
   teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
+  // actions
   busRequired: 'N',
   busBooked: 'NA',
-  accessibilityNeedsCommunicated: 'NA',
-  allergenAndAnaphylaxisCommunicated: 'NA',
+  accNeedsCommunicated: 'NA',
+  allergyCommunicated: 'NA',
   fortyDayCheckIn: 'Delivered'
 })
 
@@ -351,9 +412,5 @@ const saveTodoList = () => {
 /* el steps style */
 .el-step {
   cursor: pointer;
-}
-
-.descTableItem .el-descriptions-item__label {
-  width: 100px;
 }
 </style>
