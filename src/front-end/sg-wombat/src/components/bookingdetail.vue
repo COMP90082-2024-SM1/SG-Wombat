@@ -82,23 +82,48 @@
   </el-dialog>
 
   <!-- for view details by clicking on rows -->
-  <el-dialog v-model="dialogDescVisible" title="Program Details" width="80%">
+  <el-dialog v-model="dialogDescVisible" title="Booking Details" width="80%">
     <el-row gutter='20'>
       <!-- 左侧栏，保留现有内容 -->
-      <el-col :span="12">
-        <el-descriptions :column="1" size="large" border>
-          <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
-          <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
-          <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
-          <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
-          <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
-          <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
-          <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
-          <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
-        </el-descriptions>
+      <el-col :span="15">
+        <!-- steps to divide into different parts -->
+        <el-steps :active="currentStep" simple>
+          <el-step title="Delivery" :icon="Document" @click="currentStep = 0" />
+          <el-step title="Cohort" :icon="School" @click="currentStep = 1" />
+          <el-step title="Contact" :icon="User" @click="currentStep = 2" />
+          <el-step title="Actions" :icon="Clock" @click="currentStep = 3" />
+          <el-step title="Bus" :icon="Van" @click="currentStep = 4" />
+          <el-step title="Invoice" :icon="Memo" @click="currentStep = 5" />
+          <el-step title="Budget" :icon="Money" @click="currentStep = 6" />
+        </el-steps>
+        <br />
+        <!-- step 0 Delivery -->
+        <div v-show="currentStep === 0">
+          <el-descriptions :column="1" size="large" border>
+            <el-descriptions-item label="Program Stream">{{ bookingDetails.programStream }}</el-descriptions-item>
+            <el-descriptions-item label="Request Confirmed? ">{{ bookingDetails.requestConfirmed
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Status">{{ bookingDetails.status }}</el-descriptions-item>
+            <el-descriptions-item label="Facilitators">{{ bookingDetails.facilitators }}</el-descriptions-item>
+            <el-descriptions-item label="Delivery Location">{{ bookingDetails.deliveryLocation }}</el-descriptions-item>
+            <el-descriptions-item label="School">{{ bookingDetails.school }}</el-descriptions-item>
+            <el-descriptions-item label="Program Date">{{ bookingDetails.programDate }}</el-descriptions-item>
+            <el-descriptions-item label="Start Time">{{ bookingDetails.startTime }}</el-descriptions-item>
+          </el-descriptions>
+
+        </div>
+
+        <!-- step 1 Cohort -->
+        <div v-show="currentStep === 1">
+        </div>
+
+        <!-- step 2 Contact -->
+        <div v-show="currentStep === 2">
+        </div>
+
       </el-col>
       <!-- 右侧栏，新的 Checklist 内容 -->
-      <el-col :span="12">
+      <el-col :span="9">
         <div class="todo-list">
           <div class="todo-header">TO DO LIST</div>
           <el-checkbox-group v-model="todoList">
@@ -121,6 +146,7 @@
 <script lang="ts" setup>
 import { ref, computed, reactive } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
+import { Clock, Document, School, Van, User, Money, Memo } from '@element-plus/icons-vue'
 
 interface User {
   date: string
@@ -209,7 +235,7 @@ const showEditForm = (program: User) => {
   editDialogVisible.value = true;
 };
 
-const ProgramDetails = reactive({
+const ProgramDetails = ref({
   programName: 'Program A',
   maxPpl: 20,
   techReq: "10 ipads",
@@ -219,6 +245,53 @@ const ProgramDetails = reactive({
   hostDays: "Tuesday, Wednesday, Thursday",
   programStatus: "Active"
 })
+
+//// for booking details
+const currentStep = ref(0)
+// const ref storing program details // to be updated later to take data form api, no need to be ref actually
+const bookingDetails = ref({
+  programStream: 'SCoE: Excursions',
+  requestConfirmed: 'Confirmed',
+  status: 'Processing',
+  facilitators: 'Teacher Delivered',
+  deliveryLocation: 'SGM: SGMT',
+  school: 'Aireys Inlet Primary School',
+  programDate: '2024-06-18',
+  startTime: '',
+  endTime: '',
+  runTime: '',
+  // reportingOver3hrs: '',
+  program: 'Program A',
+  module1: 'W: Future Food',
+  module2: '',
+  module3: '',
+  exhibition: 'Non-Exhbition Linked',
+  notes: 'TBC whether SCoE paying for buses',
+  organisation: '',
+  studentYear: '11,12',
+  regStudentsNo: 50,
+  regStudentHrs: 162.5,
+  attendedStudentsNo: 43,
+  attendedStudentHrs: 139.75,
+  lga: 'Aireys',
+  lowSes: 'N',
+  accessibilityNeeds: 'NA',
+  allergensAndAnaphylaxis: 'NA',
+  comments: '',
+  firstName: 'Bob',
+  lastName: 'Ross',
+  fullName: 'Bob Ross',
+  emailAddress: 'bobross@gmail.com',
+  phoneNumber: '0412345678',
+  teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
+  busRequired: 'N',
+  busBooked: 'NA',
+  accessibilityNeedsCommunicated: 'NA',
+  allergenAndAnaphylaxisCommunicated: 'NA',
+  fortyDayCheckIn: 'Delivered'
+})
+
+
 
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
@@ -238,7 +311,7 @@ const saveTodoList = () => {
 
 </script>
 
-<style>
+<style scoped>
 /* ToDo List 样式调整 */
 .todo-list {
   padding: 20px;
@@ -273,5 +346,14 @@ const saveTodoList = () => {
 
 .el-button {
   margin-top: 20px;
+}
+
+/* el steps style */
+.el-step {
+  cursor: pointer;
+}
+
+.descTableItem .el-descriptions-item__label {
+  width: 100px;
 }
 </style>
