@@ -267,12 +267,13 @@ const closeDialog = () => {
 
 </script>
 
-<style>
+<style scoped>
 /* ToDo List 样式调整 */
 .todo-list {
   padding: 20px;
-  background-color: #1E1E1E; /* 深蓝背景 */
+  background-color: #2E4DD4; /* 深蓝背景 */
   margin-left: 3%;
+  margin-right: 3%;
   color: white;
   border-radius: 8px;
 }
@@ -284,6 +285,7 @@ const closeDialog = () => {
 }
 
 .el-checkbox {
+  display: block;
   margin-bottom: 10px;
   border-color: white;
   color: white;
