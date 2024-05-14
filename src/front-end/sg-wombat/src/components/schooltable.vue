@@ -25,8 +25,8 @@
   <!-- Dialog for showing school details -->
   <el-dialog v-model="dialogVisible" title="School Details">
     <p>School Name: {{ selectedSchool?.schoolname }}</p>
-    <p>ABN Number: {{ selectedSchool?.abn }}</p>
-    <p>Location: {{ selectedSchool?.location }}</p>
+    <p>Postcode: {{ selectedSchool?.postcode }}</p>
+    <p>ICSEA: {{ selectedSchool?.icsea }}</p>
   </el-dialog>
   <!-- Dialog for editing school details -->
   <el-dialog v-model="editDialogVisible" title="Edit School">
@@ -35,11 +35,11 @@
       <el-form-item label="School Name">
         <el-input v-model="editedSchool.schoolname" />
       </el-form-item>
-      <el-form-item label="ABN Number">
-        <el-input v-model="editedSchool.abn" />
+      <el-form-item label="Postcode">
+        <el-input v-model="editedSchool.postcode" />
       </el-form-item>
-      <el-form-item label="Location">
-        <el-input v-model="editedSchool.location" />
+      <el-form-item label="ICSEA">
+        <el-input v-model="editedSchool.icsea" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -54,8 +54,8 @@ import { computed, ref } from 'vue'
 
 interface School {
   schoolname: string
-  abn: string
-  location: string
+  postcode: string
+  icsea: string
 }
 
 const search = ref('')
@@ -97,26 +97,27 @@ const saveEdit = () => {
 const tableData: School[] = [
   {
     schoolname: 'School A',
-    abn: '12345678901',
-    location: 'Location A'
+    postcode: '1234',
+    icsea: '5'
   },
   {
     schoolname: 'School B',
-    abn: '23456789012',
-    location: 'Location B'
+    postcode: '2345',
+    icsea: '4'
   },
   {
     schoolname: 'School C',
-    abn: '34567890123',
-    location: 'Location C'
+    postcode: '3456',
+    icsea: '3'
   },
   {
     schoolname: 'School D',
-    abn: '45678901234',
-    location: 'Location D'
+    postcode: '4567',
+    icsea: '2'
   },
 ]
 </script>
+
 
 
 

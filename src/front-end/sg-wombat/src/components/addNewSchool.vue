@@ -6,14 +6,14 @@
           <el-input v-model="form.name" />
         </el-form-item>
 
-        <el-form-item label="School Location">
-          <el-input type="textarea" v-model="form.location" />
+        <el-form-item label="Postcode">
+          <el-input type="textarea" v-model="form.postcode" />
         </el-form-item>
-  
-        <el-form-item label="ABN Number">
-          <el-input type="textarea" v-model="form.abnnumber" />
+
+        <el-form-item label="ICSEA">
+          <el-input type="textarea" v-model="form.icsea" />
         </el-form-item>
-  
+
         <el-form-item>
           <el-button type="primary" @click="onSubmit">Create New School</el-button>
           <el-button @click="onCancel">Cancel</el-button>
@@ -39,8 +39,9 @@
   
   const form = reactive({
       name: '',
-      location:'',
-      abnnumber:'',
+      postcode: '',
+      icsea: '',  
+      number:'',    
     
   });
   
