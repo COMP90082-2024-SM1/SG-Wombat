@@ -27,6 +27,7 @@
     <p>School Name: {{ selectedSchool?.schoolname }}</p>
     <p>Postcode: {{ selectedSchool?.postcode }}</p>
     <p>ICSEA: {{ selectedSchool?.icsea }}</p>
+    <p>ABN Number {{ selectedSchool?.number }}</p>
   </el-dialog>
   <!-- Dialog for editing school details -->
   <el-dialog v-model="editDialogVisible" title="Edit School">
@@ -40,6 +41,9 @@
       </el-form-item>
       <el-form-item label="ICSEA">
         <el-input v-model="editedSchool.icsea" />
+      </el-form-item>
+      <el-form-item label="ABN Number">
+        <el-input v-model="editedSchool.number" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -56,6 +60,7 @@ interface School {
   schoolname: string
   postcode: string
   icsea: string
+  number:String
 }
 
 const search = ref('')
@@ -98,22 +103,26 @@ const tableData: School[] = [
   {
     schoolname: 'School A',
     postcode: '1234',
-    icsea: '5'
+    icsea: '5',
+    number:'12'
   },
   {
     schoolname: 'School B',
     postcode: '2345',
-    icsea: '4'
+    icsea: '4',
+    number:'12'
   },
   {
     schoolname: 'School C',
     postcode: '3456',
-    icsea: '3'
+    icsea: '3',
+    number:'12'
   },
   {
     schoolname: 'School D',
     postcode: '4567',
-    icsea: '2'
+    icsea: '2',
+    number:'12'
   },
 ]
 </script>

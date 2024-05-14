@@ -14,6 +14,10 @@
           <el-input type="textarea" v-model="form.icsea" />
         </el-form-item>
 
+        <el-form-item label="ABN Number">
+          <el-input type="textarea" v-model="form.number" />
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="onSubmit">Create New School</el-button>
           <el-button @click="onCancel">Cancel</el-button>
