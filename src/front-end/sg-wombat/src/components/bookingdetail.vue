@@ -23,7 +23,7 @@
         </el-table-column>
         <el-table-column align="right">
         <template #header>
-            <el-input v-model="search" size="small" placeholder="Type to search by date or name" />
+            <el-input v-model="search" size="small" placeholder="Type to search" />
         </template>
 
       <template #default="scope">
