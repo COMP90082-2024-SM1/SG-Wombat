@@ -102,11 +102,12 @@
       <div class="todo-list">
         <div class="todo-header">TO DO LIST</div>
         <el-checkbox-group v-model="todoList">
-          <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
-          <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
-          <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
-          <!-- 更多 checkbox -->
+            <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
+            <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
+            <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
+  <!-- 更多 checkbox -->
         </el-checkbox-group>
+
       </div>
     </el-col>
   </el-row>
@@ -197,12 +198,29 @@ const selectedProgram = ref<User | null>(null);
 const editedProgram = ref<User | null>(null);
 const editDialogVisible = ref(false);
 
+// Checklist 状态存储
+const checklistStates = reactive(new Map<string, string[]>());
+
+const saveTodoList = () => {
+  if (selectedProgram.value) {
+    checklistStates.set(selectedProgram.value.date, todoList.value);
+    console.log('Saved ToDo List for', selectedProgram.value.date, ':', todoList.value);
+    closeDialog();  // Optionally close dialog after save
+  }
+};
+
+
 
 const showDetails = (program: User) => {
   selectedProgram.value = program;
-  // detailsDialogVisible.value = true;
-  dialogDescVisible.value = true
+  dialogDescVisible.value = true;
+
+  if (!checklistStates.has(program.date)) {
+    checklistStates.set(program.date, []);
+  }
+  todoList.value = checklistStates.get(program.date) || [];
 };
+
 
 const showEditForm = (program: User) => {
   editedProgram.value = { ...program }; // Clone the program object
@@ -223,17 +241,14 @@ const ProgramDetails = reactive({
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
 
-// 关闭弹窗的方法
 const closeDialog = () => {
   dialogDescVisible.value = false;
+  if (selectedProgram.value) {
+    todoList.value = checklistStates.get(selectedProgram.value.date) || [];
+  }
 };
 
-// 保存 ToDo List 的方法
-const saveTodoList = () => {
-  console.log('Saved ToDo List:', todoList.value);
-  // 在这里可以执行更多的保存逻辑，比如发送数据到服务器等
-  closeDialog();  // Optionally close dialog after save
-};
+
 
 
 </script>
