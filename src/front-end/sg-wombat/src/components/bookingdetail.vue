@@ -216,8 +216,7 @@
 <script lang="ts" setup>
 import { ref, computed, reactive } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
-import { Clock, Document, School, Van, User, Money, Memo } from '@element-plus/icons-vue'
-// import { todo } from 'node:test';
+import { Document, School, Van, User, Memo } from '@element-plus/icons-vue'
 
 interface User {
   date: string
