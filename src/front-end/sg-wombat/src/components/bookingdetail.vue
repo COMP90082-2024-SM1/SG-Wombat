@@ -288,16 +288,16 @@ const showEditForm = (program: User) => {
   editDialogVisible.value = true;
 };
 
-const ProgramDetails = ref({
-  programName: 'Program A',
-  maxPpl: 20,
-  techReq: "10 ipads",
-  cost: 20,
-  runtime: 3,
-  programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
-  hostDays: "Tuesday, Wednesday, Thursday",
-  programStatus: "Active"
-})
+// const ProgramDetails = ref({
+//   programName: 'Program A',
+//   maxPpl: 20,
+//   techReq: "10 ipads",
+//   cost: 20,
+//   runtime: 3,
+//   programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
+//   hostDays: "Tuesday, Wednesday, Thursday",
+//   programStatus: "Active"
+// })
 
 //// for booking details
 const currentStep = ref(0)
