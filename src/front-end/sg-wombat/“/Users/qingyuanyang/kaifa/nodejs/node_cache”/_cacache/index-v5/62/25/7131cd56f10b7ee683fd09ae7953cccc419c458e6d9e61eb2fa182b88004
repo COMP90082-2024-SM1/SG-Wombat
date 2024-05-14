@@ -1,0 +1,2 @@
+
+0761b25302303c03f6f0190bab9931e63717c951	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/path-key/-/path-key-3.1.1.tgz","integrity":null,"time":1715526006956,"size":"262","metadata":{"time":1715526006956,"url":"http://registry.npmmirror.com/path-key/-/path-key-3.1.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/path-key/-/path-key-3.1.1.tgz"},"options":{"compress":true},"status":301}}

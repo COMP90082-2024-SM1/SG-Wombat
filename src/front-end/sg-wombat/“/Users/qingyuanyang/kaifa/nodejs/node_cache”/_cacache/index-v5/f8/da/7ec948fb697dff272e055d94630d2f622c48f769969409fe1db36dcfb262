@@ -1,0 +1,2 @@
+
+3d10d6babc16955bc5d7c5fb7883cfebeedeaad0	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/debug/-/debug-4.3.4.tgz","integrity":null,"time":1715526007523,"size":"262","metadata":{"time":1715526007523,"url":"http://registry.npmmirror.com/debug/-/debug-4.3.4.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/debug/-/debug-4.3.4.tgz"},"options":{"compress":true},"status":301}}

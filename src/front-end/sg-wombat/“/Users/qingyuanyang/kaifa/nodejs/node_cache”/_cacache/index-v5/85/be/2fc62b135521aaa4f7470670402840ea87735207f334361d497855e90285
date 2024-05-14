@@ -1,0 +1,2 @@
+
+0b3b871e71d21967962ef0ba1b896c2e795a5457	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@vueuse/core/-/core-9.13.0.tgz","integrity":null,"time":1715526007769,"size":"262","metadata":{"time":1715526007769,"url":"http://registry.npmmirror.com/@vueuse/core/-/core-9.13.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@vueuse/core/-/core-9.13.0.tgz"},"options":{"compress":true},"status":301}}

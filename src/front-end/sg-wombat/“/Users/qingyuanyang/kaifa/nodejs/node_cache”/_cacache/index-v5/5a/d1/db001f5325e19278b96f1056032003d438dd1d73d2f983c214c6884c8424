@@ -1,0 +1,2 @@
+
+3260da561c854eb15469478be783733e5899e086	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz","integrity":null,"time":1715526007695,"size":"262","metadata":{"time":1715526007695,"url":"http://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz"},"options":{"compress":true},"status":301}}

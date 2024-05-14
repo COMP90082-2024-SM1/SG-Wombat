@@ -1,0 +1,2 @@
+
+f48718517fde5f574217312dea3725bc39b2bf32	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/computeds/-/computeds-0.0.1.tgz","integrity":null,"time":1715526007546,"size":"262","metadata":{"time":1715526007546,"url":"http://registry.npmmirror.com/computeds/-/computeds-0.0.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/computeds/-/computeds-0.0.1.tgz"},"options":{"compress":true},"status":301}}

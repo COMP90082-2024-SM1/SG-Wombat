@@ -1,0 +1,2 @@
+
+e2d99ae80e82686a323f28e551af8192a13abc60	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@rollup%2frollup-linux-arm64-gnu","integrity":null,"time":1715525909398,"size":"262","metadata":{"time":1715525909398,"url":"http://registry.npmmirror.com/@rollup%2frollup-linux-arm64-gnu","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:29 GMT","location":"https://registry.npmmirror.com/@rollup%2frollup-linux-arm64-gnu"},"options":{"compress":true},"status":301}}

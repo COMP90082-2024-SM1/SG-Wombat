@@ -1,0 +1,2 @@
+
+2c28da11a03c710604ed1c1dc6cdfa6ee4c1aa96	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2flinux-s390x","integrity":null,"time":1715525907755,"size":"262","metadata":{"time":1715525907755,"url":"http://registry.npmmirror.com/@esbuild%2flinux-s390x","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:27 GMT","location":"https://registry.npmmirror.com/@esbuild%2flinux-s390x"},"options":{"compress":true},"status":301}}

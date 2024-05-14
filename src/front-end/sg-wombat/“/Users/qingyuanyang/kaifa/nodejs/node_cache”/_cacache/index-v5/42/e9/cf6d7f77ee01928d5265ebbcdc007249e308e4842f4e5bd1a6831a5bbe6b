@@ -1,0 +1,2 @@
+
+f469208c7afbe502ec74a5d0292d3145b8f4c916	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/ms/-/ms-2.1.2.tgz","integrity":null,"time":1715526007106,"size":"262","metadata":{"time":1715526007106,"url":"http://registry.npmmirror.com/ms/-/ms-2.1.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/ms/-/ms-2.1.2.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+777353bdb152cf03e98a1bd702a0349e516b1ff6	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@tsconfig/node20/-/node20-20.1.3.tgz","integrity":null,"time":1715526007984,"size":"262","metadata":{"time":1715526007984,"url":"http://registry.npmmirror.com/@tsconfig/node20/-/node20-20.1.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@tsconfig/node20/-/node20-20.1.3.tgz"},"options":{"compress":true},"status":301}}

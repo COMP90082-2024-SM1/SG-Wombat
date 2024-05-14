@@ -1,0 +1,2 @@
+
+9e2f4ae5b3ae9399ba3cce5a7cd31769ba465ecb	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/vue","integrity":null,"time":1715526313003,"size":"262","metadata":{"time":1715526313002,"url":"http://registry.npmmirror.com/vue","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:05:13 GMT","location":"https://registry.npmmirror.com/vue"},"options":{"compress":true},"status":301}}

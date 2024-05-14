@@ -1,0 +1,2 @@
+
+b131b3b00b91b707f592f62dd69f8882e81a5057	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/semver/-/semver-6.3.1.tgz","integrity":null,"time":1715526006958,"size":"262","metadata":{"time":1715526006958,"url":"http://registry.npmmirror.com/semver/-/semver-6.3.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/semver/-/semver-6.3.1.tgz"},"options":{"compress":true},"status":301}}

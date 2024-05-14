@@ -1,0 +1,2 @@
+
+a58bb1e4513c12c84b777fa51ebc7112b04e6b04	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2flinux-ia32","integrity":null,"time":1715525907122,"size":"262","metadata":{"time":1715525907122,"url":"http://registry.npmmirror.com/@esbuild%2flinux-ia32","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:27 GMT","location":"https://registry.npmmirror.com/@esbuild%2flinux-ia32"},"options":{"compress":true},"status":301}}
