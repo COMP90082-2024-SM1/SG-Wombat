@@ -39,7 +39,7 @@
                             <span>Schools</span>
                             <!-- <el-button>button</el-button> -->
                             <el-button @click="showAddNewSchoolForm">Add New School</el-button>
-                            <addNewProgram v-model:formVisible="isFormVisible" />
+                            <addNewSchool v-model:formVisible="isFormVisible" />
                             <!-- v-model'deault props is modelValue -->
                         </div>
                     </template>
@@ -64,7 +64,14 @@
 import { ArrowDown } from '@element-plus/icons-vue'
 import navigationMenu from './navBarNew.vue';
 import schooltable from './schooltable.vue';
-
+import addNewSchool from './addNewSchool.vue';
+import { ref } from 'vue';
+let isFormVisible = ref(false)
+const showAddNewSchoolForm = () => {
+    console.log("Attempting to show form");
+    isFormVisible.value = true;
+    console.log("Form visibility should now be true:", isFormVisible.value);
+}
 </script>
 
 <style scoped>

@@ -28,6 +28,25 @@
     <p>ABN Number: {{ selectedSchool?.abn }}</p>
     <p>Location: {{ selectedSchool?.location }}</p>
   </el-dialog>
+  <!-- Dialog for editing school details -->
+  <el-dialog v-model="editDialogVisible" title="Edit School">
+    <!-- Add form elements to edit school details here -->
+    <el-form :model="editedSchool" label-width="100px">
+      <el-form-item label="School Name">
+        <el-input v-model="editedSchool.schoolname" />
+      </el-form-item>
+      <el-form-item label="ABN Number">
+        <el-input v-model="editedSchool.abn" />
+      </el-form-item>
+      <el-form-item label="Location">
+        <el-input v-model="editedSchool.location" />
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="editDialogVisible = false">Cancel</el-button>
+      <el-button type="primary" @click="saveEdit">Save</el-button>
+    </div>
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -41,7 +60,9 @@ interface School {
 
 const search = ref('')
 const dialogVisible = ref(false);
+const editDialogVisible = ref(false);
 let selectedSchool: School | null = null;
+let editedSchool: School | null = null;
 
 const filterTableData = computed(() =>
   tableData.filter(
@@ -52,14 +73,25 @@ const filterTableData = computed(() =>
 )
 
 const handleEdit = (index: number, row: School) => {
-  console.log(index, row)
+  selectedSchool = row;
+  editedSchool = { ...row }; // Make a copy of the selected school for editing
+  editDialogVisible.value = true;
 }
+
 const handleDelete = (index: number, row: School) => {
   console.log(index, row)
 }
+
 const handleShowDetails = (index: number, row: School) => {
   selectedSchool = row;
   dialogVisible.value = true;
+}
+
+const saveEdit = () => {
+  if (selectedSchool && editedSchool) {
+    Object.assign(selectedSchool, editedSchool);
+    editDialogVisible.value = false;
+  }
 }
 
 const tableData: School[] = [
@@ -85,6 +117,8 @@ const tableData: School[] = [
   },
 ]
 </script>
+
+
 
 
 
