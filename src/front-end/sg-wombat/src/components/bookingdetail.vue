@@ -1,7 +1,7 @@
 <template>
 
 
-    <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+    <el-table ref="tableRef" row-key="date" :data="filteredData" style="width: 100%">
         <el-table-column prop="date" label="Date" sortable width="120" column-key="date" :filters="[
             { text: '2016-05-01', value: '2016-05-01' },
             { text: '2016-05-02', value: '2016-05-02' },
@@ -22,9 +22,10 @@
             </template>
         </el-table-column>
         <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
+        <template #header>
+            <el-input v-model="search" size="small" placeholder="Type to search" />
+        </template>
+
       <template #default="scope">
         <el-button size="small" @click="showDetails(scope.row)">
           Show Details
@@ -102,11 +103,12 @@
       <div class="todo-list">
         <div class="todo-header">TO DO LIST</div>
         <el-checkbox-group v-model="todoList">
-          <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
-          <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
-          <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
-          <!-- 更多 checkbox -->
+            <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
+            <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
+            <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
+  <!-- 更多 checkbox -->
         </el-checkbox-group>
+
       </div>
     </el-col>
   </el-row>
@@ -129,6 +131,8 @@ interface User {
     tag: string
 }
 
+const search = ref('');
+
 const tableRef = ref<TableInstance>()
 
 const resetDateFilter = () => {
@@ -141,6 +145,7 @@ const filterData = (tag: string) => {
         tableRef.value.filter('tag', tag);
     }
 }
+
 
 
 // TODO: improvement typing when refactor table
@@ -164,7 +169,17 @@ const filterHandler = (
     return row[property] === value
 }
 
-const tableData: User[] = [
+const filteredData = computed(() => {
+    return tableData.filter((item) => {
+        return item.date.includes(search.value) ||
+               item.name.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.address.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.tag.toLowerCase().includes(search.value.toLowerCase());
+    });
+});
+
+
+const tableData: User[] = reactive([
     {
         date: '2016-05-03',
         name: 'Tom',
@@ -173,7 +188,7 @@ const tableData: User[] = [
     },
     {
         date: '2016-05-02',
-        name: 'Tom',
+        name: 'Jerry',
         address: 'No. 189, Grove St, Los Angeles',
         tag: 'Other',
     },
@@ -185,11 +200,11 @@ const tableData: User[] = [
     },
     {
         date: '2016-05-01',
-        name: 'Tom',
+        name: 'Jerry',
         address: 'No. 189, Grove St, Los Angeles',
         tag: 'Other',
     },
-]
+]);
 
 const selectedProgram = ref<User | null>(null);
 
@@ -197,12 +212,29 @@ const selectedProgram = ref<User | null>(null);
 const editedProgram = ref<User | null>(null);
 const editDialogVisible = ref(false);
 
+// Checklist 状态存储
+const checklistStates = reactive(new Map<string, string[]>());
+
+const saveTodoList = () => {
+  if (selectedProgram.value) {
+    checklistStates.set(selectedProgram.value.date, todoList.value);
+    console.log('Saved ToDo List for', selectedProgram.value.date, ':', todoList.value);
+    closeDialog();  // Optionally close dialog after save
+  }
+};
+
+
 
 const showDetails = (program: User) => {
   selectedProgram.value = program;
-  // detailsDialogVisible.value = true;
-  dialogDescVisible.value = true
+  dialogDescVisible.value = true;
+
+  if (!checklistStates.has(program.date)) {
+    checklistStates.set(program.date, []);
+  }
+  todoList.value = checklistStates.get(program.date) || [];
 };
+
 
 const showEditForm = (program: User) => {
   editedProgram.value = { ...program }; // Clone the program object
@@ -223,26 +255,25 @@ const ProgramDetails = reactive({
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
 
-// 关闭弹窗的方法
 const closeDialog = () => {
   dialogDescVisible.value = false;
+  if (selectedProgram.value) {
+    todoList.value = checklistStates.get(selectedProgram.value.date) || [];
+  }
 };
 
-// 保存 ToDo List 的方法
-const saveTodoList = () => {
-  console.log('Saved ToDo List:', todoList.value);
-  // 在这里可以执行更多的保存逻辑，比如发送数据到服务器等
-  closeDialog();  // Optionally close dialog after save
-};
+
 
 
 </script>
 
-<style>
+<style scoped>
 /* ToDo List 样式调整 */
 .todo-list {
   padding: 20px;
-  background-color: #1E1E1E; /* 深蓝背景 */
+  background-color: #2E4DD4; /* 深蓝背景 */
+  margin-left: 3%;
+  margin-right: 3%;
   color: white;
   border-radius: 8px;
 }
@@ -254,6 +285,7 @@ const saveTodoList = () => {
 }
 
 .el-checkbox {
+  display: block;
   margin-bottom: 10px;
   border-color: white;
   color: white;
