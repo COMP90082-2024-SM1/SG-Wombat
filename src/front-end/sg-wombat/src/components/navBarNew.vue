@@ -36,7 +36,7 @@
                 Programs
             </div>
         </el-menu-item>
-        <el-menu-item class="innerbox" index='4' @click="activate('roompage')">
+        <el-menu-item class="innerbox" index='5' @click="activate('schoolpage')">
             <el-icon size="40" color="white">
                 <Place />
             </el-icon>

@@ -32,22 +32,22 @@
 
             <!-- main content -->
             <el-main>
+                <!-- Insert schooltable component here -->
                 <el-card>
                     <template #header>
                         <div class="card-header">
-                            <span>Programs</span>
+                            <span>Schools</span>
                             <!-- <el-button>button</el-button> -->
-                            <el-button @click="showAddNewProgramForm">Add New Program</el-button>
+                            <el-button @click="showAddNewSchoolForm">Add New School</el-button>
                             <addNewProgram v-model:formVisible="isFormVisible" />
                             <!-- v-model'deault props is modelValue -->
                         </div>
                     </template>
 
                     <div class="card-content">
-                        <programtable class="listbox" />
+                        <schooltable class="listbox" />
                     </div>
                 </el-card>
-
             </el-main>
 
             <el-footer>
@@ -63,15 +63,7 @@
 <script lang="ts" setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import navigationMenu from './navBarNew.vue';
-import { reactive, ref } from 'vue'
-import programtable from './programtable.vue';
-import addNewProgram from './addNewProgram.vue';
-let isFormVisible = ref(false)
-const showAddNewProgramForm = () => {
-    console.log("Attempting to show form");
-    isFormVisible.value = true;
-    console.log("Form visibility should now be true:", isFormVisible.value);
-}
+import schooltable from './schooltable.vue';
 
 </script>
 
@@ -79,14 +71,9 @@ const showAddNewProgramForm = () => {
 .layout-container {
     height: 100vh;
     position: relative;
-    /* width: 100vw;
-    display: flex;
-    flex-direction: row; */
-    /* border-radius: 30px; */
 }
 
 .navigation-panel {
-
     z-index: 1000;
 }
 
@@ -95,7 +82,6 @@ const showAddNewProgramForm = () => {
     color: #fff;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
-    /* padding-left: 20px; */
 }
 
 .layout-container .el-header {
@@ -117,24 +103,14 @@ const showAddNewProgramForm = () => {
 }
 
 .layout-container .el-main {
-    /* background-color: lightblue; */
-    /* border-radius: 30px; */
-
 }
 
 .science {
-
     color: white;
     font-size: 40px;
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 20px;
-    /* width: 50%; */
-    /* margin-right: auto; */
-    /* margin-left: 30px; */
-    /* background-color: blueviolet; */
-    /* width: 330px; */
-    /* height: 56px; */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -142,7 +118,6 @@ const showAddNewProgramForm = () => {
 }
 
 .main-content {
-
     z-index: 1001;
 }
 
@@ -150,6 +125,6 @@ const showAddNewProgramForm = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 </style>
+
