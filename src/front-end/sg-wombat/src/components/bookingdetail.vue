@@ -1,30 +1,30 @@
 <template>
 
+    <el-table ref="tableRef" row-key="date" :data="filteredData" style="width: 100%">
+        <el-table-column prop="date" label="Date" sortable width="120" column-key="date" :filters="[
+            { text: '2016-05-01', value: '2016-05-01' },
+            { text: '2016-05-02', value: '2016-05-02' },
+            { text: '2016-05-03', value: '2016-05-03' },
+            { text: '2016-05-04', value: '2016-05-04' },
+        ]" :filter-method="filterHandler" />
+        <el-table-column prop="name" label="Name" width="120" />
+        <el-table-column prop="address" label="Address" :formatter="formatter" />
 
-  <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
-    <el-table-column prop="date" label="Date" sortable width="120" column-key="date" :filters="[
-      { text: '2016-05-01', value: '2016-05-01' },
-      { text: '2016-05-02', value: '2016-05-02' },
-      { text: '2016-05-03', value: '2016-05-03' },
-      { text: '2016-05-04', value: '2016-05-04' },
-    ]" :filter-method="filterHandler" />
-    <el-table-column prop="name" label="Name" width="120" />
-    <el-table-column prop="address" label="Address" :formatter="formatter" />
 
+        <el-table-column prop="tag" label="All Bookings" width="150" :filters="[
+            { text: 'Confirmed Bookings', value: 'Confirmed' },
+            { text: 'Other Bookings', value: 'Other' },
+        ]" :filter-method="filterTag" filter-placement="bottom-end">
+            <template #default="scope">
+                <el-tag :type="scope.row.tag === 'Other' ? '' : 'success'" disable-transitions>{{ scope.row.tag
+                    }}</el-tag>
+            </template>
+        </el-table-column>
+        <el-table-column align="right">
+        <template #header>
+            <el-input v-model="search" size="small" placeholder="Type to search" />
+        </template>
 
-    <el-table-column prop="tag" label="All Bookings" width="150" :filters="[
-      { text: 'Confirmed Bookings', value: 'Confirmed' },
-      { text: 'Other Bookings', value: 'Other' },
-    ]" :filter-method="filterTag" filter-placement="bottom-end">
-      <template #default="scope">
-        <el-tag :type="scope.row.tag === 'Other' ? '' : 'success'" disable-transitions>{{ scope.row.tag
-          }}</el-tag>
-      </template>
-    </el-table-column>
-    <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
       <template #default="scope">
         <el-button size="small" @click="showDetails(scope.row)">
           Show Details
@@ -225,6 +225,8 @@ interface User {
   tag: string
 }
 
+const search = ref('');
+
 const tableRef = ref<TableInstance>()
 
 const resetDateFilter = () => {
@@ -237,6 +239,7 @@ const filterData = (tag: string) => {
     tableRef.value.filter('tag', tag);
   }
 }
+
 
 
 // TODO: improvement typing when refactor table
@@ -260,32 +263,44 @@ const filterHandler = (
   return row[property] === value
 }
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    tag: 'Confirmed',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    tag: 'Other',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    tag: 'Confirmed',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    tag: 'Other',
-  },
-]
+
+const filteredData = computed(() => {
+    return tableData.filter((item) => {
+        return item.date.includes(search.value) ||
+               item.name.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.address.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.tag.toLowerCase().includes(search.value.toLowerCase());
+    });
+});
+
+
+const tableData: User[] = reactive([
+    {
+        date: '2016-05-03',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Confirmed',
+    },
+    {
+        date: '2016-05-02',
+        name: 'Jerry',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Other',
+    },
+    {
+        date: '2016-05-04',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Confirmed',
+    },
+    {
+        date: '2016-05-01',
+        name: 'Jerry',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Other',
+    },
+]);
+
 
 const selectedProgram = ref<User | null>(null);
 
@@ -293,12 +308,29 @@ const selectedProgram = ref<User | null>(null);
 const editedProgram = ref<User | null>(null);
 const editDialogVisible = ref(false);
 
+// Checklist 状态存储
+const checklistStates = reactive(new Map<string, string[]>());
+
+const saveTodoList = () => {
+  if (selectedProgram.value) {
+    checklistStates.set(selectedProgram.value.date, todoList.value);
+    console.log('Saved ToDo List for', selectedProgram.value.date, ':', todoList.value);
+    closeDialog();  // Optionally close dialog after save
+  }
+};
+
+
 
 const showDetails = (program: User) => {
   selectedProgram.value = program;
-  // detailsDialogVisible.value = true;
-  dialogDescVisible.value = true
+  dialogDescVisible.value = true;
+
+  if (!checklistStates.has(program.date)) {
+    checklistStates.set(program.date, []);
+  }
+  todoList.value = checklistStates.get(program.date) || [];
 };
+
 
 const showEditForm = (program: User) => {
   editedProgram.value = { ...program }; // Clone the program object
@@ -377,17 +409,14 @@ const bookingDetails = ref({
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
 
-// 关闭弹窗的方法
 const closeDialog = () => {
   dialogDescVisible.value = false;
+  if (selectedProgram.value) {
+    todoList.value = checklistStates.get(selectedProgram.value.date) || [];
+  }
 };
 
-// 保存 ToDo List 的方法
-const saveTodoList = () => {
-  console.log('Saved ToDo List:', todoList.value);
-  // 在这里可以执行更多的保存逻辑，比如发送数据到服务器等
-  closeDialog();  // Optionally close dialog after save
-};
+
 
 
 </script>
@@ -396,8 +425,9 @@ const saveTodoList = () => {
 /* ToDo List 样式调整 */
 .todo-list {
   padding: 20px;
-  background-color: #1E1E1E;
-  /* 深蓝背景 */
+  background-color: #2E4DD4; /* 深蓝背景 */
+  margin-left: 3%;
+  margin-right: 3%;
   color: white;
   border-radius: 8px;
 }
@@ -409,6 +439,7 @@ const saveTodoList = () => {
 }
 
 .el-checkbox {
+  display: block;
   margin-bottom: 10px;
   border-color: white;
   color: white;
