@@ -91,10 +91,10 @@
           <el-step title="Delivery" :icon="Document" @click="currentStep = 0" />
           <el-step title="Cohort" :icon="School" @click="currentStep = 1" />
           <el-step title="Contact" :icon="User" @click="currentStep = 2" />
-          <el-step title="Actions" :icon="Clock" @click="currentStep = 3" />
-          <el-step title="Bus" :icon="Van" @click="currentStep = 4" />
-          <el-step title="Invoice" :icon="Memo" @click="currentStep = 5" />
-          <el-step title="Budget" :icon="Money" @click="currentStep = 6" />
+          <!-- <el-step title="Actions" :icon="Clock" @click="currentStep = 3" /> -->
+          <el-step title="Bus" :icon="Van" @click="currentStep = 3" />
+          <el-step title="Invoice" :icon="Memo" @click="currentStep = 4" />
+          <!-- <el-step title="Budget" :icon="Money" @click="currentStep = 6" /> -->
         </el-steps>
         <br />
         <!-- step 0 Delivery -->
@@ -108,43 +108,43 @@
             <el-descriptions-item label="Delivery Location" span="2">{{ bookingDetails.deliveryLocation
               }}</el-descriptions-item>
             <el-descriptions-item label="School" span="2">{{ bookingDetails.school }}</el-descriptions-item>
+            <el-descriptions-item label="1st Date Preference">{{ bookingDetails.prefDate1 }}</el-descriptions-item>
+            <el-descriptions-item label="2nd Date Preference">{{ bookingDetails.prefDate2 }}</el-descriptions-item>
             <el-descriptions-item label="Program Date">{{ bookingDetails.programDate }}</el-descriptions-item>
             <el-descriptions-item label="Start Time">{{ bookingDetails.startTime }}</el-descriptions-item>
             <el-descriptions-item label="End Time">{{ bookingDetails.endTime }}</el-descriptions-item>
             <el-descriptions-item label="Run Time">{{ bookingDetails.runTime }}</el-descriptions-item>
-            <el-descriptions-item label="Program">{{ bookingDetails.program }}</el-descriptions-item>
-            <el-descriptions-item label="Module 1">{{ bookingDetails.module1 }}</el-descriptions-item>
-            <el-descriptions-item label="Module 2">{{ bookingDetails.module2 }}</el-descriptions-item>
-            <el-descriptions-item label="Module 3">{{ bookingDetails.module3 }}</el-descriptions-item>
+            <el-descriptions-item label="Reporting>3hrs">{{ bookingDetails.reporting3hrs }}</el-descriptions-item>
+            <el-descriptions-item label="Program Category">{{ bookingDetails.programCat }}</el-descriptions-item>
+            <el-descriptions-item label="Modules" span="2">{{ bookingDetails.modules }}</el-descriptions-item>
             <el-descriptions-item label="Exhibition">{{ bookingDetails.exhibition }}</el-descriptions-item>
-            <el-descriptions-item label="Notes">{{ bookingDetails.notes }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Required?">{{ bookingDetails.busRequired
+              }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Booked">{{ bookingDetails.busBooked }}</el-descriptions-item>
+            <el-descriptions-item label="To-do list">{{ bookingDetails.todoListType }}</el-descriptions-item>
+            <el-descriptions-item label="Notes" span="2">{{ bookingDetails.notes }}</el-descriptions-item>
           </el-descriptions>
 
         </div>
 
         <!-- step 1 Cohort -->
         <div v-show="currentStep === 1">
-          <el-descriptions :column="1" size="large" border>
-            <el-descriptions-item label="School">{{ bookingDetails.school }}</el-descriptions-item>
-            <el-descriptions-item label="Organisation">{{ bookingDetails.organisation }}</el-descriptions-item>
+          <el-descriptions :column="2" size="large" border>
+            <el-descriptions-item label="School" span="2">{{ bookingDetails.school }}</el-descriptions-item>
+            <el-descriptions-item label="Partner School?">{{ bookingDetails.partnerSchool }}</el-descriptions-item>
             <el-descriptions-item label="Student Year">{{ bookingDetails.studentYear }}</el-descriptions-item>
             <el-descriptions-item label="Student # (Registered)">{{ bookingDetails.regStudentsNo
               }}</el-descriptions-item>
-            <el-descriptions-item label="Student #Hours (Registered)">{{ bookingDetails.regStudentHrs
-              }}</el-descriptions-item>
             <el-descriptions-item label="Student # (Attended)">{{ bookingDetails.attendedStudentsNo
               }}</el-descriptions-item>
-            <el-descriptions-item label="Student #Hours (Attended)">{{ bookingDetails.attendedStudentHrs
+            <el-descriptions-item label="Low SES" span="2">{{ bookingDetails.lowSes }}</el-descriptions-item>
+            <el-descriptions-item label="Accessibility Needs" span="2">{{ bookingDetails.accNeeds
               }}</el-descriptions-item>
-
-            <el-descriptions-item label="LGA">{{ bookingDetails.lga }}</el-descriptions-item>
-            <el-descriptions-item label="Low SES">{{ bookingDetails.lowSes }}</el-descriptions-item>
-            <el-descriptions-item label="Accessibility Needs">{{ bookingDetails.accNeeds
+            <el-descriptions-item label="Allergens & Anaphylaxis" span="2">{{ bookingDetails.allergyNeeds
               }}</el-descriptions-item>
-            <el-descriptions-item label="Allergens & Anaphylaxis">{{ bookingDetails.allergyNeeds
+            <el-descriptions-item label="Teacher’s Notes" span="2">{{ bookingDetails.teacherNotes
               }}</el-descriptions-item>
-            <el-descriptions-item label="Teacher’s Notes">{{ bookingDetails.teacherNotes }}</el-descriptions-item>
-            <el-descriptions-item label="Comments">{{ bookingDetails.comments }}</el-descriptions-item>
+            <el-descriptions-item label="Comments">{{ bookingDetails.commentsSG }}</el-descriptions-item>
           </el-descriptions>
         </div>
 
@@ -153,24 +153,41 @@
           <el-descriptions :column="1" size="large" border>
             <el-descriptions-item label="First Name">{{ bookingDetails.firstName }}</el-descriptions-item>
             <el-descriptions-item label="Last Name">{{ bookingDetails.lastName }}</el-descriptions-item>
-            <el-descriptions-item label="Full Name">{{ bookingDetails.fullName }}</el-descriptions-item>
             <el-descriptions-item label="Email Address">{{ bookingDetails.emailAddress }}</el-descriptions-item>
             <el-descriptions-item label="Phone Number">{{ bookingDetails.phoneNumber }}</el-descriptions-item>
             <el-descriptions-item label="Teaching Area">{{ bookingDetails.teachingArea }}</el-descriptions-item>
           </el-descriptions>
         </div>
 
-        <!-- step 3 Actions -->
+        <!-- step 3 Bus -->
         <div v-show="currentStep === 3">
           <el-descriptions :column="2" size="large" border>
-            <el-descriptions-item label="Bus Required?">{{ bookingDetails.busRequired
+            <el-descriptions-item label="Process Status">{{ bookingDetails.processStatus }}</el-descriptions-item>
+            <el-descriptions-item label="Days Remaining">{{ bookingDetails.daysRemaining }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Status">{{ bookingDetails.busStatus }}</el-descriptions-item>
+            <el-descriptions-item label="Quote #">{{ bookingDetails.quote }}</el-descriptions-item>
+            <el-descriptions-item label="Price w/o GST">{{ bookingDetails.priceWoGST }}</el-descriptions-item>
+            <el-descriptions-item label="Price in Full">{{ bookingDetails.priceFull }}</el-descriptions-item>
+            <el-descriptions-item label="Credit Surcharge">{{ bookingDetails.creditSurcharge
               }}</el-descriptions-item>
-            <el-descriptions-item label="Bus Booked">{{ bookingDetails.busBooked }}</el-descriptions-item>
-            <el-descriptions-item label="Accessibility Needs Communicated">{{ bookingDetails.accNeedsCommunicated
+            <el-descriptions-item label="Date Paid">{{ bookingDetails.datePaid }}</el-descriptions-item>
+            <el-descriptions-item label="Card Owner">{{ bookingDetails.cardOwner }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Invoice #">{{ bookingDetails.busInvoiceNo }}</el-descriptions-item>
+            <el-descriptions-item label="Saved Receipt">{{ bookingDetails.savedReceipt }}</el-descriptions-item>
+            <el-descriptions-item label="Enter into Expense Master">{{ bookingDetails.expenseMaster
               }}</el-descriptions-item>
-            <el-descriptions-item label="Allergen and Anaphylaxis Communicated">{{ bookingDetails.allergyCommunicated
-              }}</el-descriptions-item>
-            <el-descriptions-item label="40 Day Check-in">{{ bookingDetails.fortyDayCheckIn }}</el-descriptions-item>
+            <el-descriptions-item label="Pin/Categorise Email">{{ bookingDetails.pinEmail }}</el-descriptions-item>
+            <el-descriptions-item label="Times in MSC">{{ bookingDetails.timesInMSC }}</el-descriptions-item>
+            <el-descriptions-item label="Bus Notes">{{ bookingDetails.busNotes }}</el-descriptions-item>
+          </el-descriptions>
+        </div>
+
+        <!-- step 4 Invoice -->
+        <div v-show="currentStep === 4">
+          <el-descriptions :column="2" size="large" border>
+            <el-descriptions-item label="Amount">{{ bookingDetails.amount }}</el-descriptions-item>
+            <el-descriptions-item label="ABN">{{ bookingDetails.abn }}</el-descriptions-item>
+            <el-descriptions-item label="Invoice #" span="2">{{ bookingDetails.invoiceNo }}</el-descriptions-item>
           </el-descriptions>
         </div>
 
@@ -200,6 +217,7 @@
 import { ref, computed, reactive } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
 import { Clock, Document, School, Van, User, Money, Memo } from '@element-plus/icons-vue'
+// import { todo } from 'node:test';
 
 interface User {
   date: string
@@ -288,16 +306,6 @@ const showEditForm = (program: User) => {
   editDialogVisible.value = true;
 };
 
-// const ProgramDetails = ref({
-//   programName: 'Program A',
-//   maxPpl: 20,
-//   techReq: "10 ipads",
-//   cost: 20,
-//   runtime: 3,
-//   programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
-//   hostDays: "Tuesday, Wednesday, Thursday",
-//   programStatus: "Active"
-// })
 
 //// for booking details
 const currentStep = ref(0)
@@ -312,44 +320,57 @@ const bookingDetails = ref({
   facilitators: 'Teacher Delivered',
   deliveryLocation: 'SGM: SGMT',
   school: 'Aireys Inlet Primary School',
+  prefDate1: '2024-06-18',
+  prefDate2: '2024-06-20',
   programDate: '2024-06-18',
   startTime: '',
   endTime: '',
   runTime: '',
-  // reportingOver3hrs: '',
-  program: 'Program A',
-  module1: 'W: Future Food',
-  module2: '',
-  module3: '',
+  reporting3hrs: '',
+  programCat: 'Other Workshops',
+  modules: 'W: Future Food; W: Sustainable Communities',
   exhibition: 'Non-Exhbition Linked',
+  busRequired: 'N',
+  busBooked: 'NA',
+  todoListType: 'Todo List Template1',
   notes: 'TBC whether SCoE paying for buses',
   // cohort
-  organisation: '',
+  partnerSchool: 'Y',
   studentYear: '11,12',
   regStudentsNo: 50,
-  regStudentHrs: 162.5,
   attendedStudentsNo: 43,
-  attendedStudentHrs: 139.75,
-  lga: 'Aireys',
   lowSes: 'N',
-  specificNeeds: 'NA',
   accNeeds: 'NA',
   allergyNeeds: 'NA',
   teacherNotes: 'NA',
-  comments: '',
+  commentsSG: '',
   // contact
   firstName: 'Bob',
   lastName: 'Ross',
-  fullName: 'Bob Ross',
   emailAddress: 'bobross@gmail.com',
   phoneNumber: '0412345678',
   teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
-  // actions
-  busRequired: 'N',
-  busBooked: 'NA',
-  accNeedsCommunicated: 'NA',
-  allergyCommunicated: 'NA',
-  fortyDayCheckIn: 'Delivered'
+  // bus
+  processStatus: '',
+  daysRemaining: '',
+  busStatus: '',
+  quote: '',
+  priceWoGST: '',
+  priceFull: '',
+  creditSurcharge: '',
+  datePaid: '',
+  cardOwner: '',
+  busInvoiceNo: '',
+  savedReceipt: '',
+  expenseMaster: '',
+  pinEmail: '',
+  timesInMSC: '',
+  busNotes: '',
+  // invoice
+  amount: '',
+  abn: '',
+  invoiceNo: ''
+
 })
 
 
