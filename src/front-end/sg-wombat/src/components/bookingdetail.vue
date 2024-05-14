@@ -22,9 +22,10 @@
             </template>
         </el-table-column>
         <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
+        <template #header>
+            <el-input v-model="search" size="small" placeholder="Type to search by date or name" />
+        </template>
+
       <template #default="scope">
         <el-button size="small" @click="showDetails(scope.row)">
           Show Details
@@ -170,9 +171,13 @@ const filterHandler = (
 
 const filteredData = computed(() => {
     return tableData.filter((item) => {
-        return item.date.includes(search.value) || item.name.toLowerCase().includes(search.value.toLowerCase());
+        return item.date.includes(search.value) ||
+               item.name.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.address.toLowerCase().includes(search.value.toLowerCase()) ||
+               item.tag.toLowerCase().includes(search.value.toLowerCase());
     });
 });
+
 
 const tableData: User[] = reactive([
     {
