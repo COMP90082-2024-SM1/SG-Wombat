@@ -1,7 +1,7 @@
 <template>
 
 
-    <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+    <el-table ref="tableRef" row-key="date" :data="filteredData" style="width: 100%">
         <el-table-column prop="date" label="Date" sortable width="120" column-key="date" :filters="[
             { text: '2016-05-01', value: '2016-05-01' },
             { text: '2016-05-02', value: '2016-05-02' },
@@ -130,6 +130,8 @@ interface User {
     tag: string
 }
 
+const search = ref('');
+
 const tableRef = ref<TableInstance>()
 
 const resetDateFilter = () => {
@@ -142,6 +144,7 @@ const filterData = (tag: string) => {
         tableRef.value.filter('tag', tag);
     }
 }
+
 
 
 // TODO: improvement typing when refactor table
@@ -165,7 +168,13 @@ const filterHandler = (
     return row[property] === value
 }
 
-const tableData: User[] = [
+const filteredData = computed(() => {
+    return tableData.filter((item) => {
+        return item.date.includes(search.value) || item.name.toLowerCase().includes(search.value.toLowerCase());
+    });
+});
+
+const tableData: User[] = reactive([
     {
         date: '2016-05-03',
         name: 'Tom',
@@ -174,7 +183,7 @@ const tableData: User[] = [
     },
     {
         date: '2016-05-02',
-        name: 'Tom',
+        name: 'Jerry',
         address: 'No. 189, Grove St, Los Angeles',
         tag: 'Other',
     },
@@ -186,11 +195,11 @@ const tableData: User[] = [
     },
     {
         date: '2016-05-01',
-        name: 'Tom',
+        name: 'Jerry',
         address: 'No. 189, Grove St, Los Angeles',
         tag: 'Other',
     },
-]
+]);
 
 const selectedProgram = ref<User | null>(null);
 
@@ -258,6 +267,7 @@ const closeDialog = () => {
 .todo-list {
   padding: 20px;
   background-color: #1E1E1E; /* 深蓝背景 */
+  margin-left: 3%;
   color: white;
   border-radius: 8px;
 }
