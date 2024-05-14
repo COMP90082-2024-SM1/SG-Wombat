@@ -22,16 +22,27 @@
       </template>
     </el-table-column>
   </el-table>
+  <!-- Dialog for showing school details -->
+  <el-dialog v-model="dialogVisible" title="School Details">
+    <p>School Name: {{ selectedSchool?.schoolname }}</p>
+    <p>ABN Number: {{ selectedSchool?.abn }}</p>
+    <p>Location: {{ selectedSchool?.location }}</p>
+  </el-dialog>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 
 interface School {
   schoolname: string
+  abn: string
+  location: string
 }
 
 const search = ref('')
+const dialogVisible = ref(false);
+let selectedSchool: School | null = null;
+
 const filterTableData = computed(() =>
   tableData.filter(
     (data) =>
@@ -39,6 +50,7 @@ const filterTableData = computed(() =>
       data.schoolname.toLowerCase().includes(search.value.toLowerCase())
   )
 )
+
 const handleEdit = (index: number, row: School) => {
   console.log(index, row)
 }
@@ -46,24 +58,36 @@ const handleDelete = (index: number, row: School) => {
   console.log(index, row)
 }
 const handleShowDetails = (index: number, row: School) => {
-  console.log("Details of", row)
+  selectedSchool = row;
+  dialogVisible.value = true;
 }
 
 const tableData: School[] = [
   {
     schoolname: 'School A',
+    abn: '12345678901',
+    location: 'Location A'
   },
   {
     schoolname: 'School B',
+    abn: '23456789012',
+    location: 'Location B'
   },
   {
     schoolname: 'School C',
+    abn: '34567890123',
+    location: 'Location C'
   },
   {
     schoolname: 'School D',
+    abn: '45678901234',
+    location: 'Location D'
   },
 ]
 </script>
+
+
+
 
   
   
