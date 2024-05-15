@@ -16,7 +16,7 @@
                         <el-row :gutter="150">
                             <el-col :span="10">
                                 <el-form-item label="First Name" prop="firstName">
-                                    <el-input placeholder="First Name" v-model="form.firstName">></el-input>
+                                    <el-input placeholder="First Name" v-model="form.firstName"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="10" class="input1">
@@ -37,8 +37,12 @@
                         <el-form-item label="Teaching area" prop="teachingArea">
                             <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
-
-
+                        <el-form-item label="Preferred Program Category" prop="preferredDay">
+                            <el-radio-group v-model="form.preferredDay">
+                                <el-radio label="Tuesday">Tuesday(Programs available on Tuesdays only.)</el-radio>
+                                <el-radio label="Other">Other(Programs available on Tuesday to Friday.)</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
 
                     </el-form>
                     <el-button class="buttom" type="primary" @click="submitForm">Next</el-button>
@@ -52,8 +56,11 @@
 
 <script setup>
 import { ref } from 'vue';
+import { ElForm, ElFormItem, ElInput, ElRadioGroup, ElRadio, ElButton, ElRow, ElCol, ElMessageBox, ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router'
 
-// 数据属性
+const router = useRouter()
+
 const form = ref({
     firstName: '',
     lastName: '',
@@ -61,11 +68,9 @@ const form = ref({
     email: '',
     mobileNumber: '',
     teachingArea: '',
-
-    //datePreference: '',
+    preferredDay: ''
 });
 
-// 验证规则
 const rules = ref({
     firstName: [{ required: true, message: 'First name is required', trigger: 'blur' }],
     lastName: [{ required: true, message: 'Last name is required', trigger: 'blur' }],
@@ -73,43 +78,18 @@ const rules = ref({
     email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
     mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
     teachingArea: [{ required: true, message: 'Teaching Area is required', trigger: 'blur' }],
-    //datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
-    // ...其他字段的规则
+    preferredDay: [{ required: true, message: 'Please select a preferred day', trigger: 'change' }]
 });
-
-import {
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElRadioGroup,
-    ElRadio,
-   //ElDatePicker,
-    ElButton,
-    ElRow,
-    ElCol
-} from 'element-plus';
-
-
-
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 const formRef = ref(null);
 
-// 在这里定义 goToTargetPage 函数
 function goToTargetPage2() {
-    // 使用 router.push 方法来导航
-    router.push({ name: 'teacherpage2' }); // 确保你的路由配置中有对应的路由
+    router.push({ name: 'teacherpage2' });
 }
 
 function goToTargetPage3() {
-    // 使用 router.push 方法来导航
-    router.push({ name: 'teacherpage3' }); // 确保你的路由配置中有对应的路由
+    router.push({ name: 'teacherpage3' });
 }
-
-
-import { ElMessageBox, ElMessage } from 'element-plus';
 
 const submitForm = () => {
     formRef.value.validate((valid) => {
@@ -127,8 +107,12 @@ const submitForm = () => {
                     type: 'success',
                     message: 'Submission Success',
                 });
-                // 如果确认提交，执行页面跳转
-                goToTargetPage2();
+                // If confirmed, navigate based on preferred day
+                if (form.value.preferredDay === 'Tuesday') {
+                    goToTargetPage3();
+                } else {
+                    goToTargetPage2();
+                }
             }).catch(() => {
                 ElMessage({
                     type: 'info',
@@ -141,6 +125,7 @@ const submitForm = () => {
     });
 };
 </script>
+
 
 
 <style scoped>
