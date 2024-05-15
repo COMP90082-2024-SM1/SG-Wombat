@@ -37,21 +37,6 @@
                         <el-form-item label="Teaching area" prop="teachingArea">
                             <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
-                        <el-form-item prop="datePreference">
-                            <div class="question">
-                                What is your first date preference?
-                                <span class="note">
-                                    Please note: Workshop availability for Term 1 and 2 is limited.
-                                    Please contact our team to discuss on 03 8344 1420 or via email:
-                                    <a href="mailto:school-bookings@unimelb.edu.au">school-bookings@unimelb.edu.au</a>.
-                                </span>
-                            </div>
-                            <el-form-item label="First Preference Visit date" prop="datePreference">
-                                <el-date-picker v-model="form.datePreference" :disabled-date="disabledDate" type="date"
-                                    placeholder="Select Date">
-                                </el-date-picker>
-                            </el-form-item>
-                        </el-form-item>
 
 
 
@@ -77,7 +62,7 @@ const form = ref({
     mobileNumber: '',
     teachingArea: '',
 
-    datePreference: '',
+    //datePreference: '',
 });
 
 // 验证规则
@@ -88,7 +73,7 @@ const rules = ref({
     email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
     mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
     teachingArea: [{ required: true, message: 'Teaching Area is required', trigger: 'blur' }],
-    datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
+    //datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     // ...其他字段的规则
 });
 
@@ -98,7 +83,7 @@ import {
     ElInput,
     ElRadioGroup,
     ElRadio,
-    ElDatePicker,
+   //ElDatePicker,
     ElButton,
     ElRow,
     ElCol
@@ -113,18 +98,15 @@ const router = useRouter()
 const formRef = ref(null);
 
 // 在这里定义 goToTargetPage 函数
-function goToTargetPage() {
+function goToTargetPage2() {
     // 使用 router.push 方法来导航
     router.push({ name: 'teacherpage2' }); // 确保你的路由配置中有对应的路由
 }
 
-const disabledDate = (time) => {
-    // 获取日期是星期几（0 是星期日，1 是星期一，...，6 是星期六）
-    const dayOfWeek = new Date(time).getDay();
-    // 如果是星期一(1)、星期六(6)或星期日(0)，则禁用
-    return dayOfWeek === 1 || dayOfWeek === 6 || dayOfWeek === 0;
-};
-
+function goToTargetPage3() {
+    // 使用 router.push 方法来导航
+    router.push({ name: 'teacherpage3' }); // 确保你的路由配置中有对应的路由
+}
 
 
 import { ElMessageBox, ElMessage } from 'element-plus';
@@ -146,7 +128,7 @@ const submitForm = () => {
                     message: 'Submission Success',
                 });
                 // 如果确认提交，执行页面跳转
-                goToTargetPage();
+                goToTargetPage2();
             }).catch(() => {
                 ElMessage({
                     type: 'info',
@@ -287,13 +269,14 @@ a:hover {
 .el-radio-group {
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* 垂直方向上左对齐 */
 }
 
-
 .el-radio {
-
-
-    /* 这将对齐单选按钮和文本 */
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
 }
 </style>
+
+
