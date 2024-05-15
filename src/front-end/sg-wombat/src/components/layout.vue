@@ -1,7 +1,7 @@
 <template>
     <el-container class="layout-container">
         <!-- navigation sidebar -->
-        <el-aside width="400px">
+        <el-aside width="330px">
             <div class="science">
                 Science Gallery
             </div>
@@ -105,7 +105,7 @@ import navigationMenu from './navBarNew.vue';
 .science {
 
     color: white;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 20px;
@@ -117,5 +117,7 @@ import navigationMenu from './navBarNew.vue';
 
 .main-content {
     z-index: 1001;
+    height: 100vh;
+    padding-right: 0;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%" @row-click="handleRowClick">
-    <el-table-column label="Program Name" width="100" prop="name" />
+    <el-table-column label="Program Name" width="auto" prop="name" />
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
-    <el-table-column align="right">
+    <el-table-column width="auto" align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
@@ -60,7 +60,7 @@
 
   <!-- for view details by clicking on rows -->
   <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
-    <el-descriptions :column="1" :size='large' border>
+    <el-descriptions :column="1" size='large' border>
       <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
       <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
       <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
@@ -154,7 +154,7 @@ const handleRowClick = (row: User) => {
   // dialogDescVisible.value = true
 }
 
-const ProgramDetails = reactive({
+const ProgramDetails = ref({
   programName: 'Program A',
   maxPpl: 20,
   techReq: "10 ipads",

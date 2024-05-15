@@ -15,10 +15,11 @@ import programPage from '@/views/programView.vue';
 
 
 const routes = [
-    { path: '/', component: Login },
+    { path: '/login', component: Login },
     {
         path: '/',
         name: 'layout',
+        redirect: '/dashboard',
         component: layout,
         children: [
             {
