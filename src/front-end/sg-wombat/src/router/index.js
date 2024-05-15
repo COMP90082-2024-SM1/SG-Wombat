@@ -15,7 +15,7 @@ import programPage from '@/views/programView.vue';
 
 
 const routes = [
-    { path: '/login', component: Login },
+    { path: '/', component: Login },
     {
         path: '/',
         name: 'layout',
