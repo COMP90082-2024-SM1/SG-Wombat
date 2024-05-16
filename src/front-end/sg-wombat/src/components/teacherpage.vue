@@ -39,7 +39,7 @@
                         </el-form-item>
                         <el-form-item label="Preferred Program Category" prop="preferredDay">
                             <el-radio-group v-model="form.preferredDay">
-                                <el-radio label="Tuesday">Tuesday(Programs available on Tuesdays only.)</el-radio>
+                                <el-radio label="Tuesday">Tuesday Only.(Programs available on Tuesdays only.)</el-radio>
                                 <el-radio label="Other">Other(Programs available on Tuesday to Friday.)</el-radio>
                             </el-radio-group>
                         </el-form-item>

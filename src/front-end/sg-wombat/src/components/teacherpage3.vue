@@ -22,7 +22,7 @@
                         </el-form-item>
                         
                         <el-form-item
-                            label="9. What is your second date preference? "
+                            label="9. What is your second date preference?"
                             prop="datePreference2">
                             <el-date-picker v-model="form.datePreference2" :disabled-date="disabledDate" type="date"
                                 placeholder="Select Date">
@@ -31,21 +31,21 @@
 
                         <div style="margin-top: 2px;">For the free program and paid program, please at least select one.</div>
                         <el-form-item label="10. Which free program are you interested in?" prop="selectedFreeProgram">
-                            <el-checkbox-group v-model="form.selectedFreeProgram">
-                                <el-checkbox label="NOT">NOT NATURA EXHIBITION TOUR</el-checkbox>
-                                <el-checkbox label="SCI">SCI-FI EXHIBITION VISIT</el-checkbox>
-                            </el-checkbox-group>
+                            <el-select v-model="form.selectedFreeProgram" multiple placeholder="Select free programs">
+                                <el-option label="NOT NATURA EXHIBITION TOUR" value="NOT"></el-option>
+                                <el-option label="SCI-FI EXHIBITION VISIT" value="SCI"></el-option>
+                            </el-select>
                         </el-form-item>
 
                         <el-form-item label="11. Which paid program are you interested in?" prop="selectedPaidProgram">
-                            <el-checkbox-group v-model="form.selectedPaidProgram">
-                                <el-checkbox label="Fire">Fire Practice</el-checkbox>
-                                <el-checkbox label="Future">Future Foods</el-checkbox>
-                                <el-checkbox label="Interactive">Not Natural Interactive Tour</el-checkbox>
-                                <el-checkbox label="SCIInteractive">SCI-FI Interactive Tour</el-checkbox>
-                                <el-checkbox label="Sustainable">Sustainable Communities</el-checkbox>
-                                <el-checkbox label="Take">Take Flight</el-checkbox>
-                            </el-checkbox-group>
+                            <el-select v-model="form.selectedPaidProgram" multiple placeholder="Select paid programs">
+                                <el-option label="Fire Practice" value="Fire"></el-option>
+                                <el-option label="Future Foods" value="Future"></el-option>
+                                <el-option label="Not Natural Interactive Tour" value="Interactive"></el-option>
+                                <el-option label="SCI-FI Interactive Tour" value="SCIInteractive"></el-option>
+                                <el-option label="Sustainable Communities" value="Sustainable"></el-option>
+                                <el-option label="Take Flight" value="Take"></el-option>
+                            </el-select>
                         </el-form-item>
 
                         <el-form-item label="12. Choose a preferred start time." prop="startTime">
@@ -138,27 +138,16 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import {
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElRadioGroup,
-    ElRadio,
-    ElDatePicker,
-    ElButton,
-    ElInputNumber,
-    ElCheckboxGroup,
-    ElCheckbox,
-    ElMessageBox,
-    ElMessage
+    ElForm, ElFormItem, ElInput, ElRadioGroup, ElRadio, ElDatePicker, ElButton,
+    ElInputNumber, ElCheckboxGroup, ElCheckbox, ElMessageBox, ElMessage,
+    ElSelect, ElOption
 } from 'element-plus';
 
-// 数据属性
 const form = ref({
-    selectedProgram: '',
     datePreference1: '',
     datePreference2: '',
     selectedFreeProgram: [],
-    selectedPaidProgram:[],
+    selectedPaidProgram: [],
     studentCount: '',
     studentLevels: [],
     learningArea: '',
@@ -172,7 +161,6 @@ const form = ref({
     bookingTerms: []
 });
 
-// 表单验证规则
 const rules = {
     datePreference1: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     datePreference2: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
@@ -266,6 +254,42 @@ const open = () => {
     });
 };
 </script>
+
+<style scoped>
+.outcontainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.innercontainer {
+    width: 60%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.smallhead {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.booking-form {
+    margin-top: 20px;
+}
+
+.buttom {
+    margin: 10px;
+}
+</style>
+
 
 
 

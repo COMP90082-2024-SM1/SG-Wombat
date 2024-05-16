@@ -63,7 +63,6 @@
                                 <el-checkbox label="10">10</el-checkbox>
                                 <el-checkbox label="11">11</el-checkbox>
                                 <el-checkbox label="12">12</el-checkbox>
-
                                 <el-checkbox label="VCE">VCE</el-checkbox>
                                 <el-checkbox label="VCE Vocational Major or VET">VCE Vocational Major or
                                     VET</el-checkbox>
