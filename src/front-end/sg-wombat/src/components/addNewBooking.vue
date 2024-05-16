@@ -14,15 +14,25 @@
             <!-- step 0 Delivery -->
             <div v-show="currentStep === 0">
                 <el-form-item label="Program Stream">
-                    <el-select v-model="form.programStream" placeholder="Select Program Stream" filterable clearable>
-                        <el-option label="SCoE: Excursions" value="SCoE: Excursions"></el-option>
-                        <el-option label="Another Program Stream" value="Another Program Stream"></el-option>
+                    <el-select v-model="form.programStream" filterable clearable placeholder="Select Program Stream">
+                        <el-option v-for="option in programStreamOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
                     </el-select>
                 </el-form-item>
 
-                <el-form-item label="Request Confirmed？">
-                    <el-input v-model="form.requestConfirmed"></el-input>
+                <el-form-item label="Request Confirmed?">
+                    <el-radio-group v-model="form.requestConfirmed">
+                        <el-radio label="confirmed">Confirmed</el-radio>
+                        <el-radio label="unconfirmed">Unconfirmed</el-radio>
+                    </el-radio-group>
                 </el-form-item>
+                <el-form-item label="Status">
+                    <el-select v-model="form.status" placeholder="Select Status">
+                        <el-option v-for="option in statusOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+
                 <el-form-item label="Status">
                     <el-input v-model="form.status"></el-input>
                 </el-form-item>
@@ -287,8 +297,6 @@ const form = ref({
 
 })
 
-
-
 // const form = reactive({
 //     name: '',
 //     maxPeople: 1,
@@ -309,6 +317,22 @@ const onCancel = () => {
     visible.value = false;
     console.log('Cancelled');
 };
+
+const programStreamOptions = ref([
+    { label: 'SCoE: Excursions', value: 'SCoE: Excursions' },
+    { label: 'Another Program Stream', value: 'Another Program Stream' },
+    { label: 'Program Stream 3', value: 'Program Stream 3' },
+    //
+])
+
+const statusOptions = ref([
+    { label: 'Processing', value: 'Processing' },
+    { label: 'Completed', value: 'Completed' },
+    { label: 'Pending', value: 'Pending' },
+    { label: 'Cancelled', value: 'Cancelled' },
+    //
+])
+
 </script>
 
 <style scoped>
