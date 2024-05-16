@@ -9,6 +9,7 @@ import schoolpage from '@/components/schoolpage.vue';
 import newbar from '@/components/newbar.vue';
 import teacherpage from '@/components/teacherpage.vue';
 import teacherpage2 from '@/components/teacherpage2.vue';
+import teacherpage3 from '@/components/teacherpage3.vue';
 import layout from '@/components/layout.vue';
 // import programPage from '../src/components/programPageNew.vue';
 import programPage from '@/views/programView.vue';
@@ -76,6 +77,11 @@ const routes = [
         path: '/teacherpage2',
         name: 'teacherpage2',
         component: teacherpage2
+    },
+    {
+        path: '/teacherpage3',
+        name: 'teacherpage3',
+        component: teacherpage3
     },
     // {
     //     path: '/layout',
