@@ -109,9 +109,9 @@ const submitForm = () => {
                 });
                 // If confirmed, navigate based on preferred day
                 if (form.value.preferredDay === 'Tuesday') {
-                    goToTargetPage3();
-                } else {
                     goToTargetPage2();
+                } else {
+                    goToTargetPage3();
                 }
             }).catch(() => {
                 ElMessage({
