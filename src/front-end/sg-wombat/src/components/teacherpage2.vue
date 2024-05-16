@@ -54,7 +54,7 @@
                         </el-form-item>
 
 
-                        <!-- Question 11 -->
+                        <!-- Question 12 -->
                         <el-form-item label="12. What are the student level(s)?" prop="studentLevels">
                             <el-checkbox-group v-model="form.studentLevels">
                                 <el-checkbox label="7">7</el-checkbox>
@@ -70,7 +70,7 @@
                             </el-checkbox-group>
                         </el-form-item>
 
-                        <!-- Question 12 -->
+                        <!-- Question 13 -->
                         <el-form-item label="13. What learning area or subject is the focus of this group?"
                             prop="learningArea">
                             <el-input v-model="form.learningArea" placeholder="Enter your answer"></el-input>
@@ -84,12 +84,12 @@
 
                         </el-form-item>
 
-                        <!-- Question 14 -->
+                        <!-- Question 15 -->
                         <el-form-item label="15. What is the school's ABN number?" prop="abnNumber">
                             <el-input v-model="form.abnNumber" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
-                        <!-- Question 15 -->
+                        <!-- Question 16 -->
                         <el-form-item
                             label="16. Does your student cohort have any specific needs that we should be aware of?"
                             prop="specificNeeds">
@@ -97,7 +97,7 @@
                                 placeholder="This could be accessibility or sensory needs, or it could be that attending students need a prayer room during breaks."></el-input>
                         </el-form-item>
 
-                        <!-- Question 16 -->
+                        <!-- Question 17 -->
                         <el-form-item label="17. Anything else you want us to know?" prop="additionalInfo">
                             <el-input type="textarea" v-model="form.additionalInfo"
                                 placeholder="Please note here if the organising teacher is different to the teacher attending the program"></el-input>
@@ -111,12 +111,12 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <!-- Question 18 -->
+                        <!-- Question 19 -->
                         <el-form-item label="19. How did you hear about Science Gallery's excursions?">
                             <el-input v-model="form.discoverySource" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
-                        <!-- Question 19 -->
+                        <!-- Question 20-->
                         <el-form-item
                             label="20. Please note that bookings can be amended or cancelled by emailing school-bookings@unimelb.edu.au up until 14 days before the excursion date, at which point you will be issued an invoice based on the registered number of students. After that date, cancellations and amendments will be charged."
                             prop="bookingTerms">

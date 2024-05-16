@@ -13,41 +13,56 @@
                 <el-main>
                     <el-form :model="form" :rules="rules" label-position="top" class="booking-form" ref="formRef">
 
-
-                        <el-form-item label="8. Which program are you interested in?" prop="selectedProgram">
-                            <el-select v-model="form.selectedProgram" placeholder="Select a program">
-                                <el-option
-                                    label="Half day experience with two modules: NOT NATURA TOUR + (UN)EXPECTED WORKSHOP at 11am-2:15pm (with a 45min lunch break)"
-                                    value="halfDayTwoModules"></el-option>
-                                <el-option
-                                    label="Half day experience with two modules: NOT NATURAL TOUR + CHICKENOSAURUS WORKSHOP at 11am-2:15pm (with a 45min lunch break)"
-                                    value="halfDayTwoModulesChicken"></el-option>
-                                <el-option
-                                    label="Full day experience with three modules: NOT NATURAL TOUR + (UN)EXPECTED WORKSHOP + CHICKENOSAURUS WORKSHOP at 9:30am-2:15pm (with a 15min recess and a 45min lunch break)"
-                                    value="fullDayThreeModules"></el-option>
-                            </el-select>
-                        </el-form-item>
-
-
-
                         <el-form-item
-                            label="9. What is your second date preference? Please note: Workshop availability for Term 1 and 2 is limited. Please contact our team to discuss on 03 8344 1420 or via email: school-bookings@unimelb.edu.au."
+                            label="8. What is your first date preference?"
+                            prop="datePreference1">
+                            <el-date-picker v-model="form.datePreference1" :disabled-date="disabledDate" type="date"
+                                placeholder="Select Date">
+                            </el-date-picker>
+                        </el-form-item>
+                        
+                        <el-form-item
+                            label="9. What is your second date preference? "
                             prop="datePreference2">
-
                             <el-date-picker v-model="form.datePreference2" :disabled-date="disabledDate" type="date"
                                 placeholder="Select Date">
                             </el-date-picker>
                         </el-form-item>
 
+                        <div style="margin-top: 2px;">For the free program and paid program, please at least select one.</div>
+                        <el-form-item label="10. Which free program are you interested in?" prop="selectedFreeProgram">
+                            <el-checkbox-group v-model="form.selectedFreeProgram">
+                                <el-checkbox label="NOT">NOT NATURA EXHIBITION TOUR</el-checkbox>
+                                <el-checkbox label="SCI">SCI-FI EXHIBITION VISIT</el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+
+                        <el-form-item label="11. Which paid program are you interested in?" prop="selectedPaidProgram">
+                            <el-checkbox-group v-model="form.selectedPaidProgram">
+                                <el-checkbox label="Fire">Fire Practice</el-checkbox>
+                                <el-checkbox label="Future">Future Foods</el-checkbox>
+                                <el-checkbox label="Interactive">Not Natural Interactive Tour</el-checkbox>
+                                <el-checkbox label="SCIInteractive">SCI-FI Interactive Tour</el-checkbox>
+                                <el-checkbox label="Sustainable">Sustainable Communities</el-checkbox>
+                                <el-checkbox label="Take">Take Flight</el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+
+                        <el-form-item label="12. Choose a preferred start time." prop="startTime">
+                            <el-radio-group v-model="form.startTime">
+                                <el-radio :label="'morning'">9:30am</el-radio>
+                                <el-radio :label="'afternoon'">11am</el-radio>
+                                <el-radio :label="'evening'">1pm</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+
                         <el-form-item
-                            label="10. Approximately how many students will be attending? Note: minimum 20 students, maximum 50 students."
+                            label="13. Approximately how many students will be attending? Note: minimum 20 students, maximum 50 students."
                             prop="studentCount">
                             <el-input-number v-model.number="form.studentCount" :min="20" :max="50"></el-input-number>
                         </el-form-item>
 
-
-                        <!-- Question 11 -->
-                        <el-form-item label="11. What are the student level(s)?" prop="studentLevels">
+                        <el-form-item label="14. What are the student level(s)?" prop="studentLevels">
                             <el-checkbox-group v-model="form.studentLevels">
                                 <el-checkbox label="7">7</el-checkbox>
                                 <el-checkbox label="8">8</el-checkbox>
@@ -55,47 +70,41 @@
                                 <el-checkbox label="10">10</el-checkbox>
                                 <el-checkbox label="11">11</el-checkbox>
                                 <el-checkbox label="12">12</el-checkbox>
-
                                 <el-checkbox label="VCE">VCE</el-checkbox>
                                 <el-checkbox label="VCE Vocational Major or VET">VCE Vocational Major or
                                     VET</el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
 
-                        <!-- Question 12 -->
-                        <el-form-item label="12. What learning area or subject is the focus of this group?"
+                        <el-form-item label="15. What learning area or subject is the focus of this group?"
                             prop="learningArea">
                             <el-input v-model="form.learningArea" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="13. Are you a low-SES (ICSEA<1000) School?" prop="isLowSES">
+                        <el-form-item label="16. Are you a low-SES (ICSEA<1000) School?" prop="isLowSES">
                             <el-radio-group v-model="form.isLowSES">
                                 <el-radio :label="true">Yes</el-radio>
                                 <el-radio :label="false">No</el-radio>
                             </el-radio-group>
-
                         </el-form-item>
 
-                        <!-- Question 14 -->
-                        <el-form-item label="14. What is the school's ABN number?" prop="abnNumber">
+                        <el-form-item label="17. What is the school's ABN number?" prop="abnNumber">
                             <el-input v-model="form.abnNumber" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
-                        <!-- Question 15 -->
                         <el-form-item
-                            label="15. Does your student cohort have any specific needs that we should be aware of?"
+                            label="18. Does your student cohort have any specific needs that we should be aware of?"
                             prop="specificNeeds">
                             <el-input type="textarea" v-model="form.specificNeeds"
                                 placeholder="This could be accessibility or sensory needs, or it could be that attending students need a prayer room during breaks."></el-input>
                         </el-form-item>
 
-                        <!-- Question 16 -->
-                        <el-form-item label="16. Anything else you want us to know?" prop="additionalInfo">
+                        <el-form-item label="19. Anything else you want us to know?" prop="additionalInfo">
                             <el-input type="textarea" v-model="form.additionalInfo"
                                 placeholder="Please note here if the organising teacher is different to the teacher attending the program"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="17. Can we sign you up to our SGM Excursions mailing list?"
+                        <el-form-item label="20. Can we sign you up to our SGM Excursions mailing list?"
                             prop="mailingListSignup">
                             <el-radio-group v-model="form.mailingListSignup">
                                 <el-radio :label="true">Yes please</el-radio>
@@ -103,25 +112,21 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <!-- Question 18 -->
-                        <el-form-item label="18. How did you hear about Science Gallery's excursions?">
+                        <el-form-item label="21. How did you hear about Science Gallery's excursions?">
                             <el-input v-model="form.discoverySource" placeholder="Enter your answer"></el-input>
                         </el-form-item>
 
-                        <!-- Question 19 -->
                         <el-form-item
-                            label="19. Please note that bookings can be amended or cancelled by emailing school-bookings@unimelb.edu.au up until 14 days before the excursion date, at which point you will be issued an invoice based on the registered number of students. After that date, cancellations and amendments will be charged."
+                            label="22. Please note that bookings can be amended or cancelled by emailing school-bookings@unimelb.edu.au up until 14 days before the excursion date, at which point you will be issued an invoice based on the registered number of students. After that date, cancellations and amendments will be charged."
                             prop="bookingTerms">
                             <el-checkbox-group v-model="form.bookingTerms">
                                 <el-checkbox :label="true">I accept</el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
 
-
                     </el-form>
-                    <el-button class="buttom" type="primary" @click="goToTargetPage"> Last Page</el-button>
+                    <el-button class="buttom" type="primary" @click="validateAndGoToTargetPage"> Last Page</el-button>
                     <el-button class="buttom" type="primary" plain @click="submitForm"> Submit</el-button>
-
                 </el-main>
             </el-container>
 
@@ -131,27 +136,45 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import {
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElRadioGroup,
+    ElRadio,
+    ElDatePicker,
+    ElButton,
+    ElInputNumber,
+    ElCheckboxGroup,
+    ElCheckbox,
+    ElMessageBox,
+    ElMessage
+} from 'element-plus';
 
 // 数据属性
 const form = ref({
     selectedProgram: '',
+    datePreference1: '',
     datePreference2: '',
+    selectedFreeProgram: [],
+    selectedPaidProgram:[],
     studentCount: '',
     studentLevels: [],
     learningArea: '',
-    isLowSES: null,
+    startTime: '',
+    isLowSES: '',
     abnNumber: '',
     specificNeeds: '',
     additionalInfo: '',
-    mailingListSignup: null,
+    mailingListSignup: '',
     discoverySource: '',
-    bookingTerms: [],
-    // 其他字段...
+    bookingTerms: []
 });
 
 // 表单验证规则
 const rules = {
-    selectedProgram: [{ required: true, message: "Please select a program", trigger: "change" }],
+    datePreference1: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     datePreference2: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
     studentCount: [
         { required: true, message: 'The student count is required', trigger: 'blur' },
@@ -164,6 +187,7 @@ const rules = {
         { required: true, message: 'Please enter the learning area or subject', trigger: 'blur' }
     ],
     isLowSES: [{ required: true, message: 'Please select an option', trigger: 'change' }],
+    startTime: [{ required: true, message: 'Please select an option', trigger: 'change' }],
     abnNumber: [{ required: true, message: 'ABN number is required', trigger: 'blur' }],
     specificNeeds: [{ required: true, message: 'Please describe any specific needs', trigger: 'blur' }],
     additionalInfo: [{ required: false }], // This field is not marked as required
@@ -172,21 +196,8 @@ const rules = {
     ],
     bookingTerms: [
         { type: 'array', required: true, message: 'You must accept the terms', trigger: 'change' }
-    ],
-    // 其他验证规则...
+    ]
 };
-import {
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElRadioGroup,
-    ElRadio,
-    ElDatePicker,
-    ElButton,
-    ElRow,
-    ElCol
-} from 'element-plus';
-
 
 const disabledDate = (time) => {
     // 获取日期是星期几（0 是星期日，1 是星期一，...，6 是星期六）
@@ -195,18 +206,9 @@ const disabledDate = (time) => {
     return dayOfWeek === 1 || dayOfWeek === 6 || dayOfWeek === 0;
 };
 
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
+const router = useRouter();
 
 const formRef = ref(null);
-
-// 在这里定义 goToTargetPage 函数
-function goToTargetPage() {
-    // 使用 router.push 方法来导航
-    router.push({ name: 'teacherpage' }); // 确保你的路由配置中有对应的路由
-}
-
 
 const validateAndGoToTargetPage = () => {
     formRef.value.validate((valid) => {
@@ -219,8 +221,10 @@ const validateAndGoToTargetPage = () => {
     });
 };
 
-
-import { ElMessageBox, ElMessage } from 'element-plus';
+function goToTargetPage() {
+    // 使用 router.push 方法来导航
+    router.push({ name: 'teacherpage' }); // 确保你的路由配置中有对应的路由
+}
 
 const submitForm = () => {
     formRef.value.validate((valid) => {
@@ -261,8 +265,8 @@ const open = () => {
         });
     });
 };
-
 </script>
+
 
 
 <style scoped>
