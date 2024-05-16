@@ -33,15 +33,17 @@
                     </el-select>
                 </el-form-item>
 
-                <el-form-item label="Status">
-                    <el-input v-model="form.status"></el-input>
-                </el-form-item>
                 <el-form-item label="Facilitators">
                     <el-input v-model="form.facilitators"></el-input>
                 </el-form-item>
                 <el-form-item label="Delivery Location">
-                    <el-input v-model="form.deliveryLocation"></el-input>
+                    <el-select v-model="form.deliveryLocation" multiple filterable
+                        placeholder="Select Delivery Location">
+                        <el-option v-for="option in deliveryLocationOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
                 </el-form-item>
+
                 <el-form-item label="School">
                     <el-input v-model="form.school"></el-input>
                 </el-form-item>
@@ -242,7 +244,7 @@ const form = ref({
     requestConfirmed: '',
     status: '',
     facilitators: 'Teacher Delivered',
-    deliveryLocation: 'SGM: SGMT',
+    deliveryLocation: ['SGM: SGMT'],
     school: 'Aireys Inlet Primary School',
     prefDate1: '2024-06-18',
     prefDate2: '2024-06-20',
@@ -331,6 +333,13 @@ const statusOptions = ref([
     { label: 'Pending', value: 'Pending' },
     { label: 'Cancelled', value: 'Cancelled' },
     //
+])
+
+const deliveryLocationOptions = ref([
+    { label: 'SGM: SGMT', value: 'SGM: SGMT' },
+    { label: 'Location 2', value: 'Location 2' },
+    { label: 'Location 3', value: 'Location 3' },
+    // 
 ])
 
 </script>
