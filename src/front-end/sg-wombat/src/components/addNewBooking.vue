@@ -14,8 +14,12 @@
             <!-- step 0 Delivery -->
             <div v-show="currentStep === 0">
                 <el-form-item label="Program Stream">
-                    <el-input v-model="form.programStream"></el-input>
+                    <el-select v-model="form.programStream" placeholder="Select Program Stream" filterable clearable>
+                        <el-option label="SCoE: Excursions" value="SCoE: Excursions"></el-option>
+                        <el-option label="Another Program Stream" value="Another Program Stream"></el-option>
+                    </el-select>
                 </el-form-item>
+
                 <el-form-item label="Request Confirmed？">
                     <el-input v-model="form.requestConfirmed"></el-input>
                 </el-form-item>
