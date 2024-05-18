@@ -386,10 +386,12 @@ const programStreamOptions = ref([
 ])
 
 const statusOptions = ref([
+    { label: 'Booking Request', value: 'Request' },
     { label: 'Processing', value: 'Processing' },
-    { label: 'Completed', value: 'Completed' },
-    { label: 'Pending', value: 'Pending' },
+    { label: 'Delivered', value: 'Delivered' },
+    { label: 'Postponed', value: 'Postponed' },
     { label: 'Cancelled', value: 'Cancelled' },
+    { label: 'Upcoming', value: 'Upcoming' },
     //
 ])
 
@@ -421,10 +423,10 @@ const todoListTypeOptions = ref([
 ])
 
 const busStatusOptions = ref([
-    { label: 'Requested Quote', value: 'quote' },
-    { label: 'Processing', value: 'processing' },
-    { label: 'Paid', value: 'paid' },
-    { label: 'Cancelled', value: 'cancelled' },
+    { label: 'Requested Quote', value: 'Quote' },
+    { label: 'Processing', value: 'Processing' },
+    { label: 'Paid', value: 'Paid' },
+    { label: 'Cancelled', value: 'Cancelled' }
 
 ])
 
