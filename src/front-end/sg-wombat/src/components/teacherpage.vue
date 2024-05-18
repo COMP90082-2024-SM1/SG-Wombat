@@ -16,7 +16,7 @@
                         <el-row :gutter="150">
                             <el-col :span="10">
                                 <el-form-item label="First Name" prop="firstName">
-                                    <el-input placeholder="First Name" v-model="form.firstName">></el-input>
+                                    <el-input placeholder="First Name" v-model="form.firstName"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="10" class="input1">
@@ -37,23 +37,12 @@
                         <el-form-item label="Teaching area" prop="teachingArea">
                             <el-input placeholder="Teaching area" v-model="form.teachingArea"></el-input>
                         </el-form-item>
-                        <el-form-item prop="datePreference">
-                            <div class="question">
-                                What is your first date preference?
-                                <span class="note">
-                                    Please note: Workshop availability for Term 1 and 2 is limited.
-                                    Please contact our team to discuss on 03 8344 1420 or via email:
-                                    <a href="mailto:school-bookings@unimelb.edu.au">school-bookings@unimelb.edu.au</a>.
-                                </span>
-                            </div>
-                            <el-form-item label="First Preference Visit date" prop="datePreference">
-                                <el-date-picker v-model="form.datePreference" :disabled-date="disabledDate" type="date"
-                                    placeholder="Select Date">
-                                </el-date-picker>
-                            </el-form-item>
+                        <el-form-item label="Preferred Program Category" prop="preferredDay">
+                            <el-radio-group v-model="form.preferredDay">
+                                <el-radio label="Tuesday">Tuesday Only.(Programs available on Tuesdays only.)</el-radio>
+                                <el-radio label="Other">Other(Programs available on Tuesday to Friday.)</el-radio>
+                            </el-radio-group>
                         </el-form-item>
-
-
 
                     </el-form>
                     <el-button class="buttom" type="primary" @click="submitForm">Next</el-button>
@@ -67,8 +56,11 @@
 
 <script setup>
 import { ref } from 'vue';
+import { ElForm, ElFormItem, ElInput, ElRadioGroup, ElRadio, ElButton, ElRow, ElCol, ElMessageBox, ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router'
 
-// 数据属性
+const router = useRouter()
+
 const form = ref({
     firstName: '',
     lastName: '',
@@ -76,11 +68,9 @@ const form = ref({
     email: '',
     mobileNumber: '',
     teachingArea: '',
-
-    datePreference: '',
+    preferredDay: ''
 });
 
-// 验证规则
 const rules = ref({
     firstName: [{ required: true, message: 'First name is required', trigger: 'blur' }],
     lastName: [{ required: true, message: 'Last name is required', trigger: 'blur' }],
@@ -88,46 +78,18 @@ const rules = ref({
     email: [{ required: true, message: 'Email is required', trigger: 'blur' }],
     mobileNumber: [{ required: true, message: 'Mobile Number is required', trigger: 'blur' }],
     teachingArea: [{ required: true, message: 'Teaching Area is required', trigger: 'blur' }],
-    datePreference: [{ required: true, message: 'Preference Data is required', trigger: 'blur' }],
-    // ...其他字段的规则
+    preferredDay: [{ required: true, message: 'Please select a preferred day', trigger: 'change' }]
 });
-
-import {
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElRadioGroup,
-    ElRadio,
-    ElDatePicker,
-    ElButton,
-    ElRow,
-    ElCol
-} from 'element-plus';
-
-
-
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 const formRef = ref(null);
 
-// 在这里定义 goToTargetPage 函数
-function goToTargetPage() {
-    // 使用 router.push 方法来导航
-    router.push({ name: 'teacherpage2' }); // 确保你的路由配置中有对应的路由
+function goToTargetPage2() {
+    router.push({ name: 'teacherpage2' });
 }
 
-const disabledDate = (time) => {
-    // 获取日期是星期几（0 是星期日，1 是星期一，...，6 是星期六）
-    const dayOfWeek = new Date(time).getDay();
-    // 如果是星期一(1)、星期六(6)或星期日(0)，则禁用
-    return dayOfWeek === 1 || dayOfWeek === 6 || dayOfWeek === 0;
-};
-
-
-
-import { ElMessageBox, ElMessage } from 'element-plus';
+function goToTargetPage3() {
+    router.push({ name: 'teacherpage3' });
+}
 
 const submitForm = () => {
     formRef.value.validate((valid) => {
@@ -145,8 +107,12 @@ const submitForm = () => {
                     type: 'success',
                     message: 'Submission Success',
                 });
-                // 如果确认提交，执行页面跳转
-                goToTargetPage();
+                // If confirmed, navigate based on preferred day
+                if (form.value.preferredDay === 'Tuesday') {
+                    goToTargetPage2();
+                } else {
+                    goToTargetPage3();
+                }
             }).catch(() => {
                 ElMessage({
                     type: 'info',
@@ -159,6 +125,7 @@ const submitForm = () => {
     });
 };
 </script>
+
 
 
 <style scoped>
@@ -287,13 +254,14 @@ a:hover {
 .el-radio-group {
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* 垂直方向上左对齐 */
 }
 
-
 .el-radio {
-
-
-    /* 这将对齐单选按钮和文本 */
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
 }
 </style>
+
+

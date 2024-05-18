@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from '../router' // 从 src 目录跳出一级到根目录，再进入 router 目录
+import router from './router' // 确保这里的路径指向您的路由配置文件
+// import router from '../router' // 确保这里的路径指向您的路由配置文件
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

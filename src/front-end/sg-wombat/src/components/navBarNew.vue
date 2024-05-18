@@ -1,6 +1,7 @@
 <template>
-    <el-menu :default-active="selectedIndex" @select='selected' background-color='#2E4DD4' active-text-color='#ffd04b'>
-        <el-menu-item class="innerbox" index='1' @click="activate('dashboardPage')">
+    <el-menu :default-active="selectedIndex" @select='selected' background-color='#2E4DD4' active-text-color='#ffd04b'
+        router>
+        <el-menu-item class="innerbox" index='/dashboard'>
 
             <el-icon size="40" color="white" opacity=0.6>
                 <HomeFilled />
@@ -11,7 +12,11 @@
             </div>
         </el-menu-item>
 
-        <el-menu-item class="innerbox" index='2' @click="activate('bookingpage')">
+        <!-- <el-sub-menu>
+
+        </el-sub-menu> -->
+
+        <el-menu-item class="innerbox" index='/booking' @click="activate('bookingpage')">
             <el-icon size="40" color="white">
                 <List />
             </el-icon>
@@ -31,7 +36,7 @@
                 Programs
             </div>
         </el-menu-item>
-        <el-menu-item class="innerbox" index='4' @click="activate('roompage')">
+        <el-menu-item class="innerbox" index='5' @click="activate('schoolpage')">
             <el-icon size="40" color="white">
                 <Place />
             </el-icon>
@@ -70,10 +75,10 @@ const selectedIndex = ref('1');
 watch(() => route.name, (newRouteName) => {
     switch (newRouteName) {
         case 'dashboardPage':
-            selectedIndex.value = '1';
+            selectedIndex.value = '/dashboard';
             break;
         case 'bookingpage':
-            selectedIndex.value = '2';
+            selectedIndex.value = '/booking';
             break;
         case 'programpage':
             selectedIndex.value = '3';
@@ -119,7 +124,6 @@ function activate(routeName) {
 
 
 <style scoped>
-
 /* @import '../assets/navigation_bar.css'; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -159,5 +163,4 @@ function activate(routeName) {
     display: flex;
     justify-content: center;
 }
-
 </style>
