@@ -1,0 +1,2 @@
+
+8d9426a7710657724d36be466a1e17b8e431004f	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/typescript/-/typescript-5.4.3.tgz","integrity":null,"time":1715526007027,"size":"262","metadata":{"time":1715526007027,"url":"http://registry.npmmirror.com/typescript/-/typescript-5.4.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/typescript/-/typescript-5.4.3.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+b41877a4a788f08a79ef83a42802b7948b792f4b	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/which/-/which-2.0.2.tgz","integrity":null,"time":1715526006812,"size":"262","metadata":{"time":1715526006812,"url":"http://registry.npmmirror.com/which/-/which-2.0.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/which/-/which-2.0.2.tgz"},"options":{"compress":true},"status":301}}

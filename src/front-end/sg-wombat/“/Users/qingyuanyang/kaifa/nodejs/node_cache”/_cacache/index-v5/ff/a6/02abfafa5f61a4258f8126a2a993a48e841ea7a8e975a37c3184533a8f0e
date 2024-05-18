@@ -1,0 +1,2 @@
+
+a7f00f686a92d3f1882f709b260fb5805ce6b1c5	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2flinux-mips64el","integrity":null,"time":1715525907660,"size":"262","metadata":{"time":1715525907660,"url":"http://registry.npmmirror.com/@esbuild%2flinux-mips64el","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:27 GMT","location":"https://registry.npmmirror.com/@esbuild%2flinux-mips64el"},"options":{"compress":true},"status":301}}

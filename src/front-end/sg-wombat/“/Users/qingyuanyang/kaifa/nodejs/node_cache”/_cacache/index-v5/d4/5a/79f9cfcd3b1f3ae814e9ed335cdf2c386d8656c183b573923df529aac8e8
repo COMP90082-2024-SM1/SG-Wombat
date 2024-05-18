@@ -1,0 +1,2 @@
+
+d36c218bf84ebd77bd2064df3ea8b4272f84f7ed	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/color-convert/-/color-convert-1.9.3.tgz","integrity":null,"time":1715526007548,"size":"262","metadata":{"time":1715526007548,"url":"http://registry.npmmirror.com/color-convert/-/color-convert-1.9.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/color-convert/-/color-convert-1.9.3.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+76ffac53fbc99a278d2bd2fddf6461d6299e255f	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/memorystream/-/memorystream-0.3.1.tgz","integrity":null,"time":1715526007160,"size":"262","metadata":{"time":1715526007160,"url":"http://registry.npmmirror.com/memorystream/-/memorystream-0.3.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/memorystream/-/memorystream-0.3.1.tgz"},"options":{"compress":true},"status":301}}

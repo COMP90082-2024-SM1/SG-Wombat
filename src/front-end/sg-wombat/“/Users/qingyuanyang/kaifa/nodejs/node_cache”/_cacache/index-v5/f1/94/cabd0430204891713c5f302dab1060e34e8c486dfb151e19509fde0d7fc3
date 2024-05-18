@@ -1,0 +1,2 @@
+
+8a8bb9388ca675fb869a9e083329ccac0526784d	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@vue/shared/-/shared-3.4.21.tgz","integrity":null,"time":1715526007747,"size":"262","metadata":{"time":1715526007747,"url":"http://registry.npmmirror.com/@vue/shared/-/shared-3.4.21.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@vue/shared/-/shared-3.4.21.tgz"},"options":{"compress":true},"status":301}}

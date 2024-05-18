@@ -1,0 +1,2 @@
+
+e7f12fc03e06f98d25c7cda250297612b7d42646	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2fsunos-x64","integrity":null,"time":1715525908387,"size":"262","metadata":{"time":1715525908387,"url":"http://registry.npmmirror.com/@esbuild%2fsunos-x64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:28 GMT","location":"https://registry.npmmirror.com/@esbuild%2fsunos-x64"},"options":{"compress":true},"status":301}}

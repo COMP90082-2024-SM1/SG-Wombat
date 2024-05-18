@@ -1,0 +1,2 @@
+
+7326beabfd441ae3c0247e504707debf289afe79	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz","integrity":null,"time":1715526006955,"size":"262","metadata":{"time":1715526006955,"url":"http://registry.npmmirror.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz"},"options":{"compress":true},"status":301}}

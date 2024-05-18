@@ -1,0 +1,2 @@
+
+412f082a5f2f2392cfea5d16104796510271c459	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2flinux-arm","integrity":null,"time":1715525906925,"size":"262","metadata":{"time":1715525906925,"url":"http://registry.npmmirror.com/@esbuild%2flinux-arm","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:26 GMT","location":"https://registry.npmmirror.com/@esbuild%2flinux-arm"},"options":{"compress":true},"status":301}}

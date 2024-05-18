@@ -1,0 +1,2 @@
+
+653b2b5e509324b4dbda2a230e1c5f026ec31013	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/combined-stream/-/combined-stream-1.0.8.tgz","integrity":null,"time":1715526007548,"size":"262","metadata":{"time":1715526007548,"url":"http://registry.npmmirror.com/combined-stream/-/combined-stream-1.0.8.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/combined-stream/-/combined-stream-1.0.8.tgz"},"options":{"compress":true},"status":301}}

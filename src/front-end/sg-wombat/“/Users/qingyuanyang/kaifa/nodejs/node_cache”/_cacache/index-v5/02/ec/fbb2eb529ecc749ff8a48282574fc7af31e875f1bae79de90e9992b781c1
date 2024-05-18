@@ -1,0 +1,2 @@
+
+9214c3d710cfcce039d4eb93a3028610f37f81fd	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz","integrity":null,"time":1715526007106,"size":"262","metadata":{"time":1715526007106,"url":"http://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz"},"options":{"compress":true},"status":301}}

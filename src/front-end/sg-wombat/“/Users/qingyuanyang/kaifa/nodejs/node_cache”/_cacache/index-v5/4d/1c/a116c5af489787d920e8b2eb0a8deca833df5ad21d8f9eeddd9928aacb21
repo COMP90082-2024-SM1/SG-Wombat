@@ -1,0 +1,2 @@
+
+b04d484c253e868fada36d5dfd4d7d51d663bef9	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/element-plus/-/element-plus-2.6.3.tgz","integrity":null,"time":1715526007510,"size":"262","metadata":{"time":1715526007510,"url":"http://registry.npmmirror.com/element-plus/-/element-plus-2.6.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/element-plus/-/element-plus-2.6.3.tgz"},"options":{"compress":true},"status":301}}

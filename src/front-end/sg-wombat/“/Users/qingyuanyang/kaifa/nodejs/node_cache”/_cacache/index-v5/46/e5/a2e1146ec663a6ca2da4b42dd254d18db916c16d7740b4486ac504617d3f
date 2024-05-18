@@ -1,0 +1,2 @@
+
+77da8f6d53818c08a712a41b5ec493cb5b3283d0	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/he/-/he-1.2.0.tgz","integrity":null,"time":1715526007332,"size":"262","metadata":{"time":1715526007332,"url":"http://registry.npmmirror.com/he/-/he-1.2.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/he/-/he-1.2.0.tgz"},"options":{"compress":true},"status":301}}

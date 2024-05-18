@@ -1,0 +1,2 @@
+
+c3296fdeb0d28b08a8781dc5eba65ce0abda7a19	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@rollup%2frollup-darwin-arm64","integrity":null,"time":1715525909208,"size":"262","metadata":{"time":1715525909208,"url":"http://registry.npmmirror.com/@rollup%2frollup-darwin-arm64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:29 GMT","location":"https://registry.npmmirror.com/@rollup%2frollup-darwin-arm64"},"options":{"compress":true},"status":301}}

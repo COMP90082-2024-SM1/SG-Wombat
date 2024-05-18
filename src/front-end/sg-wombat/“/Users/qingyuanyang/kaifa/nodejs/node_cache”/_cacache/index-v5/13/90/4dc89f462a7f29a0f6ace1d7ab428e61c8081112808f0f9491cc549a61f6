@@ -1,0 +1,2 @@
+
+07f0932a2512dc09ffa4c43a7e5155f0b5a7e698	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/json5/-/json5-2.2.3.tgz","integrity":null,"time":1715526007249,"size":"262","metadata":{"time":1715526007249,"url":"http://registry.npmmirror.com/json5/-/json5-2.2.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/json5/-/json5-2.2.3.tgz"},"options":{"compress":true},"status":301}}

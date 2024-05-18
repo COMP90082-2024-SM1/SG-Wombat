@@ -1,0 +1,2 @@
+
+377fe507749971d7a4c21d4a146cee05109eac6a	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@rollup%2frollup-linux-powerpc64le-gnu","integrity":null,"time":1715525910579,"size":"262","metadata":{"time":1715525910579,"url":"http://registry.npmmirror.com/@rollup%2frollup-linux-powerpc64le-gnu","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:30 GMT","location":"https://registry.npmmirror.com/@rollup%2frollup-linux-powerpc64le-gnu"},"options":{"compress":true},"status":301}}

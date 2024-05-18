@@ -1,0 +1,2 @@
+
+e8d4b60f72326764cdead5c17a14b8f22acbf6ca	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/camelcase/-/camelcase-6.3.0.tgz","integrity":null,"time":1715526007622,"size":"262","metadata":{"time":1715526007622,"url":"http://registry.npmmirror.com/camelcase/-/camelcase-6.3.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/camelcase/-/camelcase-6.3.0.tgz"},"options":{"compress":true},"status":301}}

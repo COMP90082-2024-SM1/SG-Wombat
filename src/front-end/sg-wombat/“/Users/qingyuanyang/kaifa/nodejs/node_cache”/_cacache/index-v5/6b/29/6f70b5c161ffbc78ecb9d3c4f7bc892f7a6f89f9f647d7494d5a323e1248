@@ -1,0 +1,2 @@
+
+ce2dd73f2c2f4ea90796f567813a0cb519dcfa34	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/terser","integrity":null,"time":1715526005669,"size":"262","metadata":{"time":1715526005669,"url":"http://registry.npmmirror.com/terser","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:05 GMT","location":"https://registry.npmmirror.com/terser"},"options":{"compress":true},"status":301}}
