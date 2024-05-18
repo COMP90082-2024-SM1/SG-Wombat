@@ -1,7 +1,6 @@
 <template>
   <el-table :data="tableData2" style="width: 100%" @row-click="handleRowClick">
     <el-table-column label="Program Name" width="auto" prop="name" />
-
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
     <el-table-column width="auto" align="right">
@@ -46,14 +45,52 @@
         <el-input v-model="editedProgram.name" />
       </el-form-item>
 
-      <el-form-item label="Max People">
-        <el-input v-model="editedProgram.people" />
+      <el-form-item label="Maximum People">
+        <el-input-number v-model="editedProgram.people" :min="1" />
       </el-form-item>
 
-      <!-- Add other fields here -->
+      <el-form-item label="Tech Requirement">
+        <el-input v-model="editedProgram.techReq" />
+      </el-form-item>
+
+      <el-form-item label="Cost per Person">
+        <el-input-number v-model="editedProgram.costPerson" :min="0" />
+      </el-form-item>
+
+      <el-form-item label="Runtime">
+        <el-select v-model="editedProgram.duration" placeholder="Select runtime">
+          <el-option label="1 hour" value="1 hour" />
+          <el-option label="2 hours" value="2 hours" />
+          <el-option label="3 hours" value="3 hours" />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="Program Description">
+        <el-input type="textarea" v-model="editedProgram.description" />
+      </el-form-item>
+
+      <!-- Work Days checkbox group -->
+      <el-form-item label="Available Days">
+        <el-checkbox-group v-model="editedProgram.workDays">
+          <el-checkbox label="Monday">Monday</el-checkbox>
+          <el-checkbox label="Tuesday">Tuesday</el-checkbox>
+          <el-checkbox label="Wednesday">Wednesday</el-checkbox>
+          <el-checkbox label="Thursday">Thursday</el-checkbox>
+          <el-checkbox label="Friday">Friday</el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
+
+      <el-form-item label="Status">
+        <el-radio-group v-model="editedProgram.programState">
+          <el-radio label="active">Active</el-radio>
+          <el-radio label="archived">Archived</el-radio>
+          <el-radio label="upcoming">Upcoming</el-radio>
+        </el-radio-group>
+      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+        <el-button @click="onCancelEdit">Cancel</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>
@@ -61,31 +98,14 @@
   <!-- for view details by clicking on rows -->
   <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
     <el-descriptions :column="1" :size="large" border>
-      <el-descriptions-item label="Program Name">{{
-        ProgramDetails.name
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Maximum People">{{
-        ProgramDetails.maxCap
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Tech Requirement">{{
-        ProgramDetails.techReq
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Cost per Person">{{
-        ProgramDetails.costPerson
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Runtime">{{
-        ProgramDetails.duration
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Program Description">{{
-        ProgramDetails.description
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Available Days">{{
-        ProgramDetails.avaliableDays
-      }}</el-descriptions-item>
-      <el-descriptions-item label="Status">{{
-        ProgramDetails.status
-      }}</el-descriptions-item>
-
+      <el-descriptions-item label="Program Name">{{ ProgramDetails.name }}</el-descriptions-item>
+      <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxCap }}</el-descriptions-item>
+      <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
+      <el-descriptions-item label="Cost per Person">{{ ProgramDetails.costPerson }}</el-descriptions-item>
+      <el-descriptions-item label="Runtime">{{ ProgramDetails.duration }}</el-descriptions-item>
+      <el-descriptions-item label="Program Description">{{ ProgramDetails.description }}</el-descriptions-item>
+      <el-descriptions-item label="Available Days">{{ ProgramDetails.avaliableDays }}</el-descriptions-item>
+      <el-descriptions-item label="Status">{{ ProgramDetails.status }}</el-descriptions-item>
     </el-descriptions>
   </el-dialog>
 </template>
@@ -105,7 +125,7 @@ interface User {
   runtime: string;
   programDesc: string;
   hostDays: string;
-  programStatus:string;
+  programStatus: string;
   // Add other fields here to match your data structure
 }
 
@@ -135,13 +155,13 @@ const tableData: User[] = [
 const router = useRouter();
 const route = useRoute();
 const tableData2 = ref<User[]>([]);
-const ProgramDetails = ref<User>({})
+const ProgramDetails = ref<User>({});
 
 watch(
   () => route.name,
   (newRouteName) => {
     axios.get("/progs").then((r) => {
-      console.log(r.data.data)
+      console.log(r.data.data);
       tableData2.value = r.data.data;
     });
   },
@@ -149,13 +169,12 @@ watch(
 );
 
 const filterTableData = computed(() => {
-  console.log('call')
+  console.log('call');
   axios.get("/progs").then((r) => {
     console.log(r.data.data);
     tableData2.value = r.data.data;
   });
 });
-
 
 const detailsDialogVisible = ref(false);
 const editDialogVisible = ref(false);
@@ -167,8 +186,8 @@ const showProgramDetails = (program: User) => {
   // detailsDialogVisible.value = true;
   dialogDescVisible.value = true;
 
-  ProgramDetails.value = program
-  console.log(">"+JSON.stringify(program))
+  ProgramDetails.value = program;
+  console.log(">" + JSON.stringify(program));
 };
 
 const showEditForm = (program: User) => {
@@ -182,17 +201,17 @@ const saveChanges = () => {
   editDialogVisible.value = false;
 
   axios.put('progs', {
-    progId:editedProgram.value.progId,
+    progId: editedProgram.value.progId,
     name: editedProgram.value.name,        // 参数 firstName
     costPerson: editedProgram.value.costPerson
   })
-  .then(function (response) {
-    console.log(response);
-    window.location.reload()
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    .then(function (response) {
+      console.log(response);
+      window.location.reload();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const deleteProgram = (program: User) => {
@@ -204,13 +223,17 @@ const deleteProgram = (program: User) => {
 
   axios.delete(`progs/${program.progId}`)
     .then(function (response) {
-    console.log(response);
-     window.location.reload()
-   })
-   .catch(function (error) {
-    console.log(error);
-  });
+      console.log(response);
+      window.location.reload();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
+const onCancelEdit = () => {
+  editDialogVisible.value = false;
+  console.log("Edit cancelled");
 };
 
 // for view details by clicking on rows
@@ -221,5 +244,5 @@ const handleRowClick = (row: User) => {
   // dialogDescVisible.value = true
 };
 
-
 </script>
+
