@@ -1,9 +1,10 @@
 <template>
   <el-table :data="tableData2" style="width: 100%" @row-click="handleRowClick">
-    <el-table-column label="Program Name" prop="name" />
+    <el-table-column label="Program Name" width="auto" prop="name" />
+
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
-    <el-table-column align="right">
+    <el-table-column width="auto" align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
@@ -84,6 +85,7 @@
       <el-descriptions-item label="Status">{{
         ProgramDetails.status
       }}</el-descriptions-item>
+
     </el-descriptions>
   </el-dialog>
 </template>
@@ -218,5 +220,6 @@ const handleRowClick = (row: User) => {
   console.log("Clicked row:", row);
   // dialogDescVisible.value = true
 };
+
 
 </script>
