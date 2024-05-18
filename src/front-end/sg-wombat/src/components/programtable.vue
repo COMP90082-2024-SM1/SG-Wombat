@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%" @row-click="handleRowClick">
+  <el-table :data="tableData2" style="width: 100%" @row-click="handleRowClick">
     <el-table-column label="Program Name" prop="name" />
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
@@ -34,7 +34,6 @@
       </el-form-item>
 
       <!-- Add other fields here -->
-
     </el-form>
   </el-dialog>
 
@@ -60,61 +59,101 @@
 
   <!-- for view details by clicking on rows -->
   <el-dialog v-model="dialogDescVisible" title="Program Details" width="50%">
-    <el-descriptions :column="1" :size='large' border>
-      <el-descriptions-item label="Program Name">{{ ProgramDetails.programName }}</el-descriptions-item>
-      <el-descriptions-item label="Maximum People">{{ ProgramDetails.maxPpl }}</el-descriptions-item>
-      <el-descriptions-item label="Tech Requirement">{{ ProgramDetails.techReq }}</el-descriptions-item>
-      <el-descriptions-item label="Cost per Person">{{ ProgramDetails.cost }}</el-descriptions-item>
-      <el-descriptions-item label="Runtime">{{ ProgramDetails.runtime }}</el-descriptions-item>
-      <el-descriptions-item label="Program Description">{{ ProgramDetails.programDesc }}</el-descriptions-item>
-      <el-descriptions-item label="Available Days">{{ ProgramDetails.hostDays }}</el-descriptions-item>
-      <el-descriptions-item label="Status">{{ ProgramDetails.programStatus }}</el-descriptions-item>
+    <el-descriptions :column="1" :size="large" border>
+      <el-descriptions-item label="Program Name">{{
+        ProgramDetails.name
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Maximum People">{{
+        ProgramDetails.maxCap
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Tech Requirement">{{
+        ProgramDetails.techReq
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Cost per Person">{{
+        ProgramDetails.costPerson
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Runtime">{{
+        ProgramDetails.duration
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Program Description">{{
+        ProgramDetails.description
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Available Days">{{
+        ProgramDetails.avaliableDays
+      }}</el-descriptions-item>
+      <el-descriptions-item label="Status">{{
+        ProgramDetails.status
+      }}</el-descriptions-item>
     </el-descriptions>
-
   </el-dialog>
-
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, reactive } from 'vue';
+import { ref, computed, reactive, watch } from "vue";
+import axios from "axios";
+import { useRouter, useRoute } from "vue-router";
 
 interface User {
-  name: string
-  people: string
-  status: string
+  name: string;
+  people: string;
+  status: string;
+  maxPpl: string;
+  techReq: string;
+  cost: string;
+  runtime: string;
+  programDesc: string;
+  hostDays: string;
+  programStatus:string;
   // Add other fields here to match your data structure
 }
 
-const search = ref('');
+const search = ref("");
 const tableData: User[] = [
   {
-    name: 'Program A',
-    people: '20',
-    status: 'Active',
+    name: "Program A",
+    people: "20",
+    status: "Active",
     // Add other fields here to match your data structure
   },
   {
-    name: 'Program B',
-    people: '30',
-    status: 'Upcoming',
+    name: "Program B",
+    people: "30",
+    status: "Upcoming",
     // Add other fields here to match your data structure
   },
   {
-    name: 'Program C',
-    people: '40',
-    status: 'Archived',
+    name: "Program C",
+    people: "40",
+    status: "Archived",
     // Add other fields here to match your data structure
   },
   // Add more data as needed
 ];
 
-const filterTableData = computed(() =>
-  tableData.filter(
-    (data) =>
-      !search.value ||
-      data.name.toLowerCase().includes(search.value.toLowerCase())
-  )
+const router = useRouter();
+const route = useRoute();
+const tableData2 = ref<User[]>([]);
+const ProgramDetails = ref<User>({})
+
+watch(
+  () => route.name,
+  (newRouteName) => {
+    axios.get("/progs").then((r) => {
+      console.log(r.data.data)
+      tableData2.value = r.data.data;
+    });
+  },
+  { immediate: true }
 );
+
+const filterTableData = computed(() => {
+  console.log('call')
+  axios.get("/progs").then((r) => {
+    console.log(r.data.data);
+    tableData2.value = r.data.data;
+  });
+});
+
 
 const detailsDialogVisible = ref(false);
 const editDialogVisible = ref(false);
@@ -124,7 +163,10 @@ const editedProgram = ref<User | null>(null);
 const showProgramDetails = (program: User) => {
   selectedProgram.value = program;
   // detailsDialogVisible.value = true;
-  dialogDescVisible.value = true
+  dialogDescVisible.value = true;
+
+  ProgramDetails.value = program
+  console.log(">"+JSON.stringify(program))
 };
 
 const showEditForm = (program: User) => {
@@ -136,33 +178,45 @@ const saveChanges = () => {
   // Save changes to editedProgram
   console.log("Saved changes:", editedProgram.value);
   editDialogVisible.value = false;
+
+  axios.put('progs', {
+    progId:editedProgram.value.progId,
+    name: editedProgram.value.name,        // 参数 firstName
+    costPerson: editedProgram.value.costPerson
+  })
+  .then(function (response) {
+    console.log(response);
+    window.location.reload()
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 };
 
 const deleteProgram = (program: User) => {
   // Delete the program from tableData
-  const index = tableData.indexOf(program);
-  if (index !== -1) {
-    tableData.splice(index, 1);
-  }
+  // const index = tableData.indexOf(program);
+  // if (index !== -1) {
+  //   tableData.splice(index, 1);
+  // }
+
+  axios.delete(`progs/${program.progId}`)
+    .then(function (response) {
+    console.log(response);
+     window.location.reload()
+   })
+   .catch(function (error) {
+    console.log(error);
+  });
+
 };
 
 // for view details by clicking on rows
-const dialogDescVisible = ref(false)
+const dialogDescVisible = ref(false);
 // handleRowClick: to be deleted later if not use row click
 const handleRowClick = (row: User) => {
-  console.log('Clicked row:', row)
+  console.log("Clicked row:", row);
   // dialogDescVisible.value = true
-}
-
-const ProgramDetails = reactive({
-  programName: 'Program A',
-  maxPpl: 20,
-  techReq: "10 ipads",
-  cost: 20,
-  runtime: 3,
-  programDesc: "Some description texts. Experience speculative local and international projects dissolving the line between what is considered natural and not natural. Curiosity, amusement, disgust – we invite you to look closely at your reactions and the thoughts behind them. In a world that is always hurrying forwards towards tech-based solutions, pause and consider where you stand. ",
-  hostDays: "Tuesday, Wednesday, Thursday",
-  programStatus: "Active"
-})
+};
 
 </script>

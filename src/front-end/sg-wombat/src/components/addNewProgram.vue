@@ -10,18 +10,16 @@
         <el-input-number v-model="form.maxPeople" :min="1" />
       </el-form-item>
 
-
-
       <el-form-item label="Tech Requirement">
-        <el-input v-model="form.techRequirement" />
+        <el-input v-model="form.techReq" />
       </el-form-item>
 
       <el-form-item label="Cost per Person">
-        <el-input-number v-model="form.costPerPerson" :min="0" />
+        <el-input-number v-model="form.costPerson" :min="0" />
       </el-form-item>
 
       <el-form-item label="Runtime">
-        <el-select v-model="form.runtime" placeholder="Select runtime">
+        <el-select v-model="form.duration" placeholder="Select runtime">
           <el-option label="1 hour" value="1 hour" />
           <el-option label="2 hours" value="2 hours" />
           <el-option label="3 hours" value="3 hours" />
@@ -32,10 +30,10 @@
         <el-input type="textarea" v-model="form.description" />
       </el-form-item>
 
-
       <!-- Work Days checkbox group -->
       <el-form-item label="Available Days">
         <el-checkbox-group v-model="form.workDays">
+          <el-checkbox label="Monday">Monday</el-checkbox>
           <el-checkbox label="Tuesday">Tuesday</el-checkbox>
           <el-checkbox label="Wednesday">Wednesday</el-checkbox>
           <el-checkbox label="Thursday">Thursday</el-checkbox>
@@ -60,38 +58,50 @@
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue';
-import { defineProps, defineEmits } from 'vue';
+import { reactive, computed } from "vue";
+import { defineProps, defineEmits } from "vue";
+import axios from "axios";
 
 const props = defineProps({
-  formVisible: Boolean
+  formVisible: Boolean,
 });
 
-const emits = defineEmits(['update:formVisible']);
+const emits = defineEmits(["update:formVisible"]);
 
 const visible = computed({
   get: () => props.formVisible,
-  set: (value) => emits('update:formVisible', value)
+  set: (value) => emits("update:formVisible", value),
 });
 
 const form = reactive({
-  name: '',
+  name: "",
   maxPeople: 1,
-  techRequirement: '',
-  costPerPerson: 0,
-  runtime: '',
-  description: '',
-  status: 'active',
-  workDays: []  // Initialize the workDays array for checkboxes
+  techReq: "",
+  costPerson: 0,
+  duration: "",
+  description: "",
+  status: "active",
+  workDays: [], // Initialize the workDays array for checkboxes
 });
 
 const onSubmit = () => {
-  console.log('Submitted:', form);
-  visible.value = false;  // Close the dialog
+  console.log("Submitted:", form);
+  visible.value = false; // Close the dialog
+  form['status']=1
+
+  axios
+    .post("progs", form)
+    .then(function (response) {
+      console.log(response);
+     window.location.reload();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const onCancel = () => {
   visible.value = false;
-  console.log('Cancelled');
+  console.log("Cancelled");
 };
 </script>
