@@ -32,8 +32,8 @@ public interface ProgramMapper {
      * 新建program
      * @param program
      */
-    @Insert("INSERT into tb_program(name, max_cap, tech_req, cost_person, duration, status, Monday, Tuesday, Wednesday, Thursday, Friday, description) " +
-            "values(#{name}, #{maxCap}, #{techReq}, #{costPerson}, #{duration}, #{status}, #{Monday}, #{Tuesday}, #{Wednesday}, #{Thursday}, #{Friday}, #{description})")
+    @Insert("INSERT into tb_program(name, max_cap, tech_req, cost_person, duration, status, Monday, Tuesday, Wednesday, Thursday, Friday, description, category, fee_type) " +
+            "values(#{name}, #{maxCap}, #{techReq}, #{costPerson}, #{duration}, #{status}, #{Monday}, #{Tuesday}, #{Wednesday}, #{Thursday}, #{Friday}, #{description}, #{category}, #{feeType})")
     void insert(Program program);
 
 
