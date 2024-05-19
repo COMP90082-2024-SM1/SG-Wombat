@@ -55,18 +55,225 @@
     </el-dialog>
 
     <!-- Edit Program Dialog -->
-    <el-dialog v-model="editDialogVisible" title="Edit Program">
-        <el-form :model="editedProgram" label-width="auto">
-            <el-form-item label="Program Name">
-                <el-input v-model="editedProgram.name" />
-            </el-form-item>
-            <el-form-item label="Max People">
-                <el-input v-model="editedProgram.people" />
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="saveChanges">Save Changes</el-button>
-            </el-form-item>
-        </el-form>
+    <el-dialog v-model="editDialogVisible" title="Edit Program" width="80%">
+        <el-row gutter="20">
+            <!-- 左侧栏，保留现有内容 -->
+            <el-col :span="15">
+                <!-- steps to divide into different parts -->
+                <el-steps :active="currentStep" align-center process-status="finish" finish-status="process">
+                    <el-step title="Delivery" :icon="Document" @click="currentStep = 0" />
+                    <el-step title="Cohort" :icon="School" @click="currentStep = 1" />
+                    <el-step title="Contact" :icon="User" @click="currentStep = 2" />
+                    <el-step title="Bus" :icon="Van" @click="currentStep = 3" />
+                    <el-step title="Invoice" :icon="Memo" @click="currentStep = 4" />
+                </el-steps>
+                <br />
+                <!-- step 0 Delivery -->
+                <div v-show="currentStep === 0">
+                    <el-form :model="editedProgram" label-width="auto">
+                        <el-form-item label="Program Stream">
+                            <el-input v-model="editedProgram.programStream" />
+                        </el-form-item>
+                        <el-form-item label="Request Confirmed?">
+                            <el-input v-model="editedProgram.requestConfirmed" />
+                        </el-form-item>
+                        <el-form-item label="Status">
+                            <el-input v-model="editedProgram.status" />
+                        </el-form-item>
+                        <el-form-item label="Facilitators">
+                            <el-input v-model="editedProgram.facilitators" />
+                        </el-form-item>
+                        <el-form-item label="Delivery Location" span="2">
+                            <el-input v-model="editedProgram.deliveryLocation" />
+                        </el-form-item>
+                        <el-form-item label="School" span="2">
+                            <el-input v-model="editedProgram.school" />
+                        </el-form-item>
+                        <el-form-item label="1st Date Preference">
+                            <el-input v-model="editedProgram.prefDate1" />
+                        </el-form-item>
+                        <el-form-item label="2nd Date Preference">
+                            <el-input v-model="editedProgram.prefDate2" />
+                        </el-form-item>
+                        <el-form-item label="Program Date">
+                            <el-input v-model="editedProgram.programDate" />
+                        </el-form-item>
+                        <el-form-item label="Start Time">
+                            <el-input v-model="editedProgram.startTime" />
+                        </el-form-item>
+                        <el-form-item label="End Time">
+                            <el-input v-model="editedProgram.endTime" />
+                        </el-form-item>
+                        <el-form-item label="Run Time">
+                            <el-input v-model="editedProgram.runTime" />
+                        </el-form-item>
+                        <el-form-item label="Reporting>3hrs">
+                            <el-input v-model="editedProgram.reporting3hrs" />
+                        </el-form-item>
+                        <el-form-item label="Program Category">
+                            <el-input v-model="editedProgram.programCat" />
+                        </el-form-item>
+                        <el-form-item label="Modules" span="2">
+                            <el-input v-model="editedProgram.modules" />
+                        </el-form-item>
+                        <el-form-item label="Exhibition">
+                            <el-input v-model="editedProgram.exhibition" />
+                        </el-form-item>
+                        <el-form-item label="Bus Required?">
+                            <el-input v-model="editedProgram.busRequired" />
+                        </el-form-item>
+                        <el-form-item label="Bus Booked">
+                            <el-input v-model="editedProgram.busBooked" />
+                        </el-form-item>
+                        <el-form-item label="To-do list">
+                            <el-input v-model="editedProgram.todoListType" />
+                        </el-form-item>
+                        <el-form-item label="Notes" span="2">
+                            <el-input v-model="editedProgram.notes" />
+                        </el-form-item>
+                    </el-form>
+                </div>
+
+                <!-- step 1 Cohort -->
+                <div v-show="currentStep === 1">
+                    <el-form :model="editedProgram" label-width="auto">
+                        <el-form-item label="School" span="2">
+                            <el-input v-model="editedProgram.school" />
+                        </el-form-item>
+                        <el-form-item label="Partner School?">
+                            <el-input v-model="editedProgram.partnerSchool" />
+                        </el-form-item>
+                        <el-form-item label="Student Year">
+                            <el-input v-model="editedProgram.studentYear" />
+                        </el-form-item>
+                        <el-form-item label="Student # (Registered)">
+                            <el-input v-model="editedProgram.regStudentsNo" />
+                        </el-form-item>
+                        <el-form-item label="Student # (Attended)">
+                            <el-input v-model="editedProgram.attendedStudentsNo" />
+                        </el-form-item>
+                        <el-form-item label="Low SES" span="2">
+                            <el-input v-model="editedProgram.lowSes" />
+                        </el-form-item>
+                        <el-form-item label="Accessibility Needs" span="2">
+                            <el-input v-model="editedProgram.accNeeds" />
+                        </el-form-item>
+                        <el-form-item label="Allergens & Anaphylaxis" span="2">
+                            <el-input v-model="editedProgram.allergyNeeds" />
+                        </el-form-item>
+                        <el-form-item label="Teacher’s Notes" span="2">
+                            <el-input v-model="editedProgram.teacherNotes" />
+                        </el-form-item>
+                        <el-form-item label="Comments">
+                            <el-input v-model="editedProgram.commentsSG" />
+                        </el-form-item>
+                    </el-form>
+                </div>
+
+                <!-- step 2 Contact -->
+                <div v-show="currentStep === 2">
+                    <el-form :model="editedProgram" label-width="auto">
+                        <el-form-item label="First Name">
+                            <el-input v-model="editedProgram.firstName" />
+                        </el-form-item>
+                        <el-form-item label="Last Name">
+                            <el-input v-model="editedProgram.lastName" />
+                        </el-form-item>
+                        <el-form-item label="Email Address">
+                            <el-input v-model="editedProgram.emailAddress" />
+                        </el-form-item>
+                        <el-form-item label="Phone Number">
+                            <el-input v-model="editedProgram.phoneNumber" />
+                        </el-form-item>
+                        <el-form-item label="Teaching Area">
+                            <el-input v-model="editedProgram.teachingArea" />
+                        </el-form-item>
+                    </el-form>
+                </div>
+
+                <!-- step 3 Bus -->
+                <div v-show="currentStep === 3">
+                    <el-form :model="editedProgram" label-width="auto">
+                        <el-form-item label="Process Status">
+                            <el-input v-model="editedProgram.processStatus" />
+                        </el-form-item>
+                        <el-form-item label="Days Remaining">
+                            <el-input v-model="editedProgram.daysRemaining" />
+                        </el-form-item>
+                        <el-form-item label="Bus Status">
+                            <el-input v-model="editedProgram.busStatus" />
+                        </el-form-item>
+                        <el-form-item label="Quote #">
+                            <el-input v-model="editedProgram.quote" />
+                        </el-form-item>
+                        <el-form-item label="Price w/o GST">
+                            <el-input v-model="editedProgram.priceWoGST" />
+                        </el-form-item>
+                        <el-form-item label="Price in Full">
+                            <el-input v-model="editedProgram.priceFull" />
+                        </el-form-item>
+                        <el-form-item label="Credit Surcharge">
+                            <el-input v-model="editedProgram.creditSurcharge" />
+                        </el-form-item>
+                        <el-form-item label="Date Paid">
+                            <el-input v-model="editedProgram.datePaid" />
+                        </el-form-item>
+                        <el-form-item label="Card Owner">
+                            <el-input v-model="editedProgram.cardOwner" />
+                        </el-form-item>
+                        <el-form-item label="Bus Invoice #">
+                            <el-input v-model="editedProgram.busInvoiceNo" />
+                        </el-form-item>
+                        <el-form-item label="Saved Receipt">
+                            <el-input v-model="editedProgram.savedReceipt" />
+                        </el-form-item>
+                        <el-form-item label="Enter into Expense Master">
+                            <el-input v-model="editedProgram.expenseMaster" />
+                        </el-form-item>
+                        <el-form-item label="Pin/Categorise Email">
+                            <el-input v-model="editedProgram.pinEmail" />
+                        </el-form-item>
+                        <el-form-item label="Times in MSC">
+                            <el-input v-model="editedProgram.timesInMSC" />
+                        </el-form-item>
+                        <el-form-item label="Bus Notes">
+                            <el-input v-model="editedProgram.busNotes" />
+                        </el-form-item>
+                    </el-form>
+                </div>
+
+                <!-- step 4 Invoice -->
+                <div v-show="currentStep === 4">
+                    <el-form :model="editedProgram" label-width="auto">
+                        <el-form-item label="Amount">
+                            <el-input v-model="editedProgram.amount" />
+                        </el-form-item>
+                        <el-form-item label="ABN">
+                            <el-input v-model="editedProgram.abn" />
+                        </el-form-item>
+                        <el-form-item label="Invoice #" span="2">
+                            <el-input v-model="editedProgram.invoiceNo" />
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-col>
+            <!-- 右侧栏，新的 Checklist 内容 -->
+            <el-col :span="9">
+                <div class="todo-list">
+                    <div class="todo-header">TO DO LIST</div>
+                    <el-checkbox-group v-model="todoList">
+                        <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
+                        <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
+                        <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
+                        <!-- 更多 checkbox -->
+                    </el-checkbox-group>
+                </div>
+            </el-col>
+        </el-row>
+        <template #footer>
+            <el-button @click="closeDialog">Back</el-button>
+            <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+        </template>
     </el-dialog>
 
     <!-- for view details by clicking on view details button -->
@@ -574,3 +781,9 @@ const closeDialog = () => {
     cursor: pointer;
 }
 </style>
+
+
+
+
+
+
