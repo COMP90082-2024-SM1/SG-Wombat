@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%">
+  <el-table :data="currentPageData" style="width: 100%">
     <el-table-column label="School Name" prop="schoolname" />
     <el-table-column align="right">
       <template #header>
@@ -22,6 +22,17 @@
       </template>
     </el-table-column>
   </el-table>
+  
+  <el-pagination
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-sizes="[5, 10, 20]"
+    :page-size="pageSize"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="filterTableData.length"
+  ></el-pagination>
+
   <!-- Dialog for showing school details -->
   <el-dialog v-model="dialogVisible" title="School Details">
     <p>School Name: {{ selectedSchool?.schoolname }}</p>
@@ -29,6 +40,7 @@
     <p>ICSEA: {{ selectedSchool?.icsea }}</p>
     <p>ABN Number {{ selectedSchool?.number }}</p>
   </el-dialog>
+  
   <!-- Dialog for editing school details -->
   <el-dialog v-model="editDialogVisible" title="Edit School">
     <!-- Add form elements to edit school details here -->
@@ -60,12 +72,14 @@ interface School {
   schoolname: string
   postcode: string
   icsea: string
-  number:String
+  number: string
 }
 
 const search = ref('')
 const dialogVisible = ref(false);
 const editDialogVisible = ref(false);
+const currentPage = ref(1);
+const pageSize = ref(5);
 let selectedSchool: School | null = null;
 let editedSchool: School | null = null;
 
@@ -76,6 +90,20 @@ const filterTableData = computed(() =>
       data.schoolname.toLowerCase().includes(search.value.toLowerCase())
   )
 )
+
+const currentPageData = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  const end = start + pageSize.value;
+  return filterTableData.value.slice(start, end);
+})
+
+const handleSizeChange = (val: number) => {
+  pageSize.value = val;
+}
+
+const handleCurrentChange = (val: number) => {
+  currentPage.value = val;
+}
 
 const handleEdit = (index: number, row: School) => {
   selectedSchool = row;
@@ -104,28 +132,30 @@ const tableData: School[] = [
     schoolname: 'School A',
     postcode: '1234',
     icsea: '5',
-    number:'12'
+    number: '12'
   },
   {
     schoolname: 'School B',
     postcode: '2345',
     icsea: '4',
-    number:'12'
+    number: '12'
   },
   {
     schoolname: 'School C',
     postcode: '3456',
     icsea: '3',
-    number:'12'
+    number: '12'
   },
   {
     schoolname: 'School D',
     postcode: '4567',
     icsea: '2',
-    number:'12'
+    number: '12'
   },
+  // Add more schools if needed
 ]
 </script>
+
 
 
 
