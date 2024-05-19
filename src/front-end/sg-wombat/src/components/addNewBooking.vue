@@ -78,9 +78,14 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Program Category">
-                    <el-input v-model="form.programCat"></el-input>
+                    <!-- todo: data should come from program list;-->
+                    <el-select v-model="form.programCat" filterable placeholder="Select Program Category">
+                        <el-option label="Schools only Tuesday" value="Tuesday" />
+                        <el-option label="Other Workshops" value="Other" />
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="Modules">
+                    <!-- todo: data should be filtered based on program category selection? not necessary though-->
                     <el-select v-model="form.modules" multiple filterable placeholder="Select Modules"
                         :default-first-option="true">
                         <el-option v-for="option in moduleOptions" :key="option.value" :label="option.label"
@@ -142,10 +147,10 @@
                             VET</el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
-                <el-form-item label="Registered Students Number">
+                <el-form-item label="Students # (Registered)">
                     <el-input v-model="form.regStudentsNo" type="number"></el-input>
                 </el-form-item>
-                <el-form-item label="Attended Students Number">
+                <el-form-item label="Students # (Attended)">
                     <el-input v-model="form.attendedStudentsNo" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Low SES">
@@ -205,16 +210,16 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="Quote">
-                    <el-input v-model="form.quote"></el-input>
+                    <el-input v-model="form.quote" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Without GST">
-                    <el-input v-model="form.priceWoGST"></el-input>
+                    <el-input v-model="form.priceWoGST" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Full">
-                    <el-input v-model="form.priceFull"></el-input>
+                    <el-input v-model="form.priceFull" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Credit Surcharge">
-                    <el-input v-model="form.creditSurcharge"></el-input>
+                    <el-input v-model="form.creditSurcharge" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Date Paid">
                     <el-date-picker v-model="form.datePaid" type="date"></el-date-picker>
@@ -274,7 +279,8 @@
             <div class="form-bttns">
                 <el-button @click="currentStep--" v-show="currentStep > 0">Back</el-button>
                 <el-button @click="currentStep++" v-show="currentStep < 4">Next</el-button>
-                <el-button v-show="currentStep === 4" type="primary" @click="onSubmit">Create Booking</el-button>
+                <el-button type="primary" @click="onSubmit">Create Booking</el-button>
+                <!-- <el-button v-show="currentStep === 4" type="primary" @click="onSubmit">Create Booking</el-button> -->
             </div>
 
         </el-form>
