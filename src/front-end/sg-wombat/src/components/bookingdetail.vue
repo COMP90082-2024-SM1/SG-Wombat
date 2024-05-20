@@ -190,17 +190,14 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Student Year">
-                    <el-checkbox-group v-model="editedBooking.studentYear">
-                        <el-checkbox label="7">7</el-checkbox>
-                        <el-checkbox label="8">8</el-checkbox>
-                        <el-checkbox label="9">9</el-checkbox>
-                        <el-checkbox label="10">10</el-checkbox>
-                        <el-checkbox label="11">11</el-checkbox>
-                        <el-checkbox label="12">12</el-checkbox>
-                        <el-checkbox label="VCE">VCE</el-checkbox>
-                        <el-checkbox label="VCE Vocational Major or VET">VCE Vocational Major or
-                            VET</el-checkbox>
-                    </el-checkbox-group>
+                    <el-select v-model="editedBooking.studentYear" multiple>
+                        <el-option v-for="year in studentYears" :key="year" :label="year" :value="year"
+                            placeholder="Select Student Year"></el-option>
+                    </el-select>
+                    <!-- <el-checkbox-group v-model="editedBooking.studentYear">
+                        <el-checkbox v-for="year in studentYears" :key="year" :label="year">{{ year }}</el-checkbox>
+                    </el-checkbox-group> -->
+
                 </el-form-item>
                 <el-form-item label="Students # (Registered)">
                     <el-input v-model="editedBooking.regStudentsNo" type="number"></el-input>
@@ -256,9 +253,9 @@
                         <el-radio label="delivered">Delivered</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <!-- <el-form-item label="Days Remaining">
+                <el-form-item label="Days Remaining">
                     <el-input v-model="daysRemaining" readonly></el-input>
-                </el-form-item> -->
+                </el-form-item>
                 <el-form-item label="Bus Status">
                     <el-select v-model="editedBooking.busStatus" placeholder="Select Bus Status">
                         <el-option v-for="option in busStatusOptions" :key="option.value" :label="option.label"
@@ -504,7 +501,7 @@
 import { ref, computed, reactive, watch } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
 import { Document, School, Van, User, Memo } from '@element-plus/icons-vue'
-import { statusOptions, programStreamOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, parseTime, formatTime } from './bookingUtils';
+import { statusOptions, programStreamOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, studentYears, parseTime, formatTime } from './bookingUtils';
 
 interface User {
     bookingID: string
@@ -758,6 +755,13 @@ const resetCurrentStepEdit = () => {
     currentStepEdit.value = 0
 }
 
+const saveChanges = () => {
+    // Save changes to editedProgram
+    console.log("Saved changes:", editedBooking);
+    editDialogVisible.value = false;
+};
+
+// placeholder data for view details
 const bookingDetails = ref({
     programStream: 'SCoE: Excursions',
     requestConfirmed: 'Confirmed',
@@ -813,7 +817,7 @@ const bookingDetails = ref({
     invoiceNo: ''
 });
 
-// placeholder data
+// placeholder data for edit booking
 const form = ref({
     programStream: '',
     requestConfirmed: '',
@@ -875,6 +879,14 @@ const form = ref({
 
 })
 
+// todo: modules should come from program list (active + upcoming programs)
+const moduleOptions = ref([
+    { label: 'W: Future Food', value: 'W: Future Food' },
+    { label: 'W: Sustainable Communities', value: 'W: Sustainable Communities' },
+    { label: 'Module 3', value: 'Module 3' },
+])
+
+
 // compute run time, is it really needed?
 const runTime = computed(() => {
     if (editedBooking.value.startTime && editedBooking.value.endTime) {
@@ -893,6 +905,24 @@ const runTime = computed(() => {
 // watch for changes in run time and update form value
 watch(runTime, (newVal) => {
     editedBooking.value.runTime = newVal
+})
+
+// compute days remaining
+const daysRemaining = computed(() => {
+    if (!editedBooking.value.programDate) {
+        return 0
+    }
+
+    const programDate = new Date(editedBooking.value.programDate)
+    const today = new Date()
+
+    programDate.setHours(0, 0, 0, 0)
+    today.setHours(0, 0, 0, 0)
+
+    const diffTime = programDate.getTime() - today.getTime()
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
+
+    return diffDays
 })
 
 const dialogDescVisible = ref(false);

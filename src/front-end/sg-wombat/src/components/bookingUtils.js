@@ -73,6 +73,9 @@ const busStatusOptions = ref([
     { label: 'Split Payement', value: 'SplitPayement' },
 ]);
 
+const studentYears = ref(['7', '8', '9', '10', '11', '12', 'VCE', 'VCE Vocational Major or VET']);
+
+
 const parseTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number)
     return hours * 3600 + minutes * 60
@@ -84,4 +87,4 @@ const formatTime = (seconds) => {
     return `${h}:${m}`
 }
 
-export { programStreamOptions, statusOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, parseTime, formatTime};
+export { programStreamOptions, statusOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, studentYears, parseTime, formatTime};
