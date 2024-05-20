@@ -43,7 +43,7 @@
     <el-button @click="clearFilter">Reset All</el-button>
 
     <!-- Program Details Dialog -->
-    <el-dialog v-model="detailsDialogVisible" title="Booking Details">
+    <!-- <el-dialog v-model="detailsDialogVisible" title="Booking Details">
         <el-form :model="selectedProgram" label-width="120px">
             <el-form-item label="Program Name">
                 <el-input v-model="selectedProgram.name" disabled />
@@ -52,9 +52,9 @@
                 <el-input v-model="selectedProgram.people" disabled />
             </el-form-item>
         </el-form>
-    </el-dialog>
+    </el-dialog> -->
 
-    <!-- Edit Program Dialog -->
+    <!-- Edit Booking Dialog -->
     <el-dialog v-model="editDialogVisible" title="Edit Program" width="50%" @closed="resetCurrentStepEdit">
         <!-- steps to divide into different parts -->
         <el-steps :active="currentStepEdit" align-center process-status="finish" finish-status="process">
@@ -65,138 +65,282 @@
             <el-step title="Invoice" :icon="Memo" @click="currentStepEdit = 4" />
         </el-steps>
         <br />
-        <!-- step 0 Delivery -->
-        <div v-show="currentStepEdit === 0">
-            <el-form-item label="Program Stream">
-                <el-select v-model="editedBooking.programStream" filterable clearable
-                    placeholder="Select Program Stream" :default-first-option="true">
-                    <el-option v-for="option in programStreamOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
+        <el-form :model="form" label-width="auto">
+            <!-- step 0 Delivery -->
+            <div v-show="currentStepEdit === 0">
+                <el-form-item label="Program Stream">
+                    <el-select v-model="editedBooking.programStream" filterable clearable
+                        placeholder="Select Program Stream" :default-first-option="true">
+                        <el-option v-for="option in programStreamOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
 
-            <el-form-item label="Request Confirmed?">
-                <el-radio-group v-model="editedBooking.requestConfirmed">
-                    <el-radio label="confirmed">Confirmed</el-radio>
-                    <el-radio label="unconfirmed">Unconfirmed</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="Status">
-                <el-select v-model="editedBooking.status" filterable placeholder="Select Status"
-                    :default-first-option="true">
-                    <el-option v-for="option in statusOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
+                <el-form-item label="Request Confirmed?">
+                    <el-radio-group v-model="editedBooking.requestConfirmed">
+                        <el-radio label="confirmed">Confirmed</el-radio>
+                        <el-radio label="unconfirmed">Unconfirmed</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Status">
+                    <el-select v-model="editedBooking.status" filterable placeholder="Select Status"
+                        :default-first-option="true">
+                        <el-option v-for="option in statusOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
 
-            <el-form-item label="Facilitators">
-                <el-input v-model="editedBooking.facilitators"></el-input>
-            </el-form-item>
-            <el-form-item label="Delivery Location">
-                <el-select v-model="editedBooking.deliveryLocation" multiple filterable
-                    placeholder="Select Delivery Location" :default-first-option="true">
-                    <el-option v-for="option in deliveryLocationOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
+                <el-form-item label="Facilitators">
+                    <el-input v-model="editedBooking.facilitators"></el-input>
+                </el-form-item>
+                <el-form-item label="Delivery Location">
+                    <el-select v-model="editedBooking.deliveryLocation" multiple filterable
+                        placeholder="Select Delivery Location" :default-first-option="true">
+                        <el-option v-for="option in deliveryLocationOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
 
-            <el-form-item label="School">
-                <el-input v-model="editedBooking.school"></el-input>
-            </el-form-item>
-            <el-form-item label="Preferred Date 1">
-                <el-date-picker v-model="editedBooking.prefDate1" type="date"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="Preferred Date 2">
-                <el-date-picker v-model="editedBooking.prefDate2" type="date"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="Program Date">
-                <el-date-picker v-model="editedBooking.programDate" type="date"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="Start Time">
-                <el-time-select v-model="editedBooking.startTime" placeholder="Start Time" start="08:30" step="00:05"
-                    end="18:30"></el-time-select>
-            </el-form-item>
+                <el-form-item label="School">
+                    <el-input v-model="editedBooking.school"></el-input>
+                </el-form-item>
+                <el-form-item label="Preferred Date 1">
+                    <el-date-picker v-model="editedBooking.prefDate1" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Preferred Date 2">
+                    <el-date-picker v-model="editedBooking.prefDate2" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Program Date">
+                    <el-date-picker v-model="editedBooking.programDate" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Start Time">
+                    <el-time-select v-model="editedBooking.startTime" placeholder="Start Time" start="08:30"
+                        step="00:05" end="18:30"></el-time-select>
+                </el-form-item>
 
-            <el-form-item label="End Time">
-                <el-time-select v-model="editedBooking.endTime" placeholder="End Time" start="08:30" step="00:05"
-                    end="18:30"></el-time-select>
-            </el-form-item>
-            <!-- read only computed field-->
-            <el-form-item label="Run Time">
-                <el-input v-model="editedBooking.runTime" readonly></el-input>
-            </el-form-item>
-            <el-form-item label="Reporting>3hrs">
-                <el-radio-group v-model="editedBooking.reporting3hrs">
-                    <el-radio label="Y">Yes</el-radio>
-                    <el-radio label="N">No</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="Program Category">
-                <!-- todo: data should come from program list;-->
-                <el-select v-model="editedBooking.programCat" filterable placeholder="Select Program Category">
-                    <el-option label="Schools only Tuesday" value="Tuesday" />
-                    <el-option label="Other Workshops" value="Other" />
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Modules">
-                <!-- todo: data should be filtered based on program category selection? not necessary though-->
-                <el-select v-model="editedBooking.modules" multiple filterable placeholder="Select Modules"
-                    :default-first-option="true">
-                    <el-option v-for="option in moduleOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Exhibition">
-                <el-select v-model="editedBooking.exhibition" filterable allow-create placeholder="Select Exhibition"
-                    :default-first-option="true">
-                    <el-option v-for="option in exhibitionOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Bus Required">
-                <el-radio-group v-model="editedBooking.busRequired">
-                    <el-radio label="Y">Yes</el-radio>
-                    <el-radio label="N">No</el-radio>
-                    <el-radio label="NA">NA</el-radio>
-                </el-radio-group>
-            </el-form-item>
+                <el-form-item label="End Time">
+                    <el-time-select v-model="editedBooking.endTime" placeholder="End Time" start="08:30" step="00:05"
+                        end="18:30"></el-time-select>
+                </el-form-item>
+                <!-- read only computed field-->
+                <el-form-item label="Run Time">
+                    <el-input v-model="editedBooking.runTime" readonly></el-input>
+                </el-form-item>
+                <el-form-item label="Reporting>3hrs">
+                    <el-radio-group v-model="editedBooking.reporting3hrs">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Program Category">
+                    <!-- todo: data should come from program list;-->
+                    <el-select v-model="editedBooking.programCat" filterable placeholder="Select Program Category">
+                        <el-option label="Schools only Tuesday" value="Tuesday" />
+                        <el-option label="Other Workshops" value="Other" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Modules">
+                    <!-- todo: data should be filtered based on program category selection? not necessary though-->
+                    <el-select v-model="editedBooking.modules" multiple filterable placeholder="Select Modules"
+                        :default-first-option="true">
+                        <el-option v-for="option in moduleOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Exhibition">
+                    <el-select v-model="editedBooking.exhibition" filterable allow-create
+                        placeholder="Select Exhibition" :default-first-option="true">
+                        <el-option v-for="option in exhibitionOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Bus Required">
+                    <el-radio-group v-model="editedBooking.busRequired">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
 
-            <el-form-item label="Bus Booked">
-                <el-radio-group v-model="editedBooking.busBooked">
-                    <el-radio label="Y">Yes</el-radio>
-                    <el-radio label="N">No</el-radio>
-                    <el-radio label="NA">NA</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="To-Do List Type">
-                <el-select v-model="editedBooking.todoListType" placeholder="Select To-Do List Type">
-                    <el-option v-for="option in todoListTypeOptions" :key="option.value" :label="option.label"
-                        :value="option.value"></el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Notes">
-                <el-input type="textarea" v-model="editedBooking.notes"></el-input>
-            </el-form-item>
+                <el-form-item label="Bus Booked">
+                    <el-radio-group v-model="editedBooking.busBooked">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="To-Do List Type">
+                    <el-select v-model="editedBooking.todoListType" placeholder="Select To-Do List Type">
+                        <el-option v-for="option in todoListTypeOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Notes">
+                    <el-input type="textarea" v-model="editedBooking.notes"></el-input>
+                </el-form-item>
 
-        </div>
+            </div>
 
-        <!-- step 1 Cohort -->
+            <!-- step 1 Cohort -->
+            <div v-show="currentStepEdit === 1">
+                <el-form-item label="Partner School">
+                    <el-radio-group v-model="editedBooking.partnerSchool">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Student Year">
+                    <el-checkbox-group v-model="editedBooking.studentYear">
+                        <el-checkbox label="7">7</el-checkbox>
+                        <el-checkbox label="8">8</el-checkbox>
+                        <el-checkbox label="9">9</el-checkbox>
+                        <el-checkbox label="10">10</el-checkbox>
+                        <el-checkbox label="11">11</el-checkbox>
+                        <el-checkbox label="12">12</el-checkbox>
+                        <el-checkbox label="VCE">VCE</el-checkbox>
+                        <el-checkbox label="VCE Vocational Major or VET">VCE Vocational Major or
+                            VET</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+                <el-form-item label="Students # (Registered)">
+                    <el-input v-model="editedBooking.regStudentsNo" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Students # (Attended)">
+                    <el-input v-model="editedBooking.attendedStudentsNo" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Low SES">
+                    <el-radio-group v-model="editedBooking.lowSes">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Accessibility Needs">
+                    <el-input type="textarea" v-model="editedBooking.accNeeds"></el-input>
+                </el-form-item>
+                <el-form-item label="Allergy Needs">
+                    <el-input type="textarea" v-model="editedBooking.allergyNeeds"></el-input>
+                </el-form-item>
+                <el-form-item label="Teacher Notes">
+                    <el-input type="textarea" v-model="editedBooking.teacherNotes"></el-input>
+                </el-form-item>
+                <el-form-item label="Comments">
+                    <el-input type="textarea" v-model="editedBooking.commentsSG"></el-input>
+                </el-form-item>
+            </div>
 
 
-        <!-- step 2 Contact -->
+            <!-- step 2 Contact -->
+            <div v-show="currentStepEdit === 2">
+                <el-form-item label="First Name">
+                    <el-input v-model="editedBooking.firstName"></el-input>
+                </el-form-item>
+                <el-form-item label="Last Name">
+                    <el-input v-model="editedBooking.lastName"></el-input>
+                </el-form-item>
+                <el-form-item label="Email Address">
+                    <el-input v-model="editedBooking.emailAddress"></el-input>
+                </el-form-item>
+                <el-form-item label="Phone Number">
+                    <el-input v-model="editedBooking.phoneNumber"></el-input>
+                </el-form-item>
+                <el-form-item label="Teaching Area">
+                    <el-input v-model="editedBooking.teachingArea"></el-input>
+                </el-form-item>
+            </div>
 
-        <!-- step 3 Bus -->
+            <!-- step 3 Bus -->
+            <div v-show="currentStepEdit === 3">
+                <el-form-item label="Process Status">
+                    <el-radio-group v-model="editedBooking.processStatus">
+                        <el-radio label="contact">Contact Teacher</el-radio>
+                        <el-radio label="delivered">Delivered</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <!-- <el-form-item label="Days Remaining">
+                    <el-input v-model="daysRemaining" readonly></el-input>
+                </el-form-item> -->
+                <el-form-item label="Bus Status">
+                    <el-select v-model="editedBooking.busStatus" placeholder="Select Bus Status">
+                        <el-option v-for="option in busStatusOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Quote">
+                    <el-input v-model="editedBooking.quote" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Price Without GST">
+                    <el-input v-model="editedBooking.priceWoGST" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Price Full">
+                    <el-input v-model="editedBooking.priceFull" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Credit Surcharge">
+                    <el-input v-model="editedBooking.creditSurcharge" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Date Paid">
+                    <el-date-picker v-model="editedBooking.datePaid" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Card Owner">
+                    <el-input v-model="editedBooking.cardOwner"></el-input>
+                </el-form-item>
+                <el-form-item label="Bus Invoice No">
+                    <el-input v-model="editedBooking.busInvoiceNo"></el-input>
+                </el-form-item>
+                <el-form-item label="Saved Receipt">
+                    <el-radio-group v-model="editedBooking.savedReceipt">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Expense Master">
+                    <el-radio-group v-model="editedBooking.expenseMaster">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="PIN Email">
+                    <el-radio-group v-model="editedBooking.pinEmail">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Times in MSC">
+                    <el-radio-group v-model="editedBooking.timesInMSC">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Bus Notes">
+                    <el-input type="textarea" v-model="editedBooking.busNotes"></el-input>
+                </el-form-item>
+            </div>
 
 
+            <!-- step 4 Invoice -->
+            <div v-show="currentStepEdit === 4">
+                <el-form-item label="Amount">
+                    <el-input v-model="editedBooking.amount"></el-input>
+                </el-form-item>
+                <el-form-item label="ABN">
+                    <el-input v-model="editedBooking.abn"></el-input>
+                </el-form-item>
+                <el-form-item label="Invoice No">
+                    <el-input v-model="editedBooking.invoiceNo"></el-input>
+                </el-form-item>
+            </div>
 
-        <!-- step 4 Invoice -->
 
+            <div class="form-bttns">
+                <el-button @click="currentStepEdit--" v-show="currentStepEdit > 0">Back</el-button>
+                <el-button @click="currentStepEdit++" v-show="currentStepEdit < 4">Next</el-button>
+                <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+            </div>
 
-        <div class="form-bttns">
-            <el-button @click="currentStepEdit--" v-show="currentStepEdit > 0">Back</el-button>
-            <el-button @click="currentStepEdit++" v-show="currentStepEdit < 4">Next</el-button>
-            <el-button type="primary" @click="saveChanges">Save Changes</el-button>
-        </div>
+        </el-form>
 
 
         <!-- <template #footer>
@@ -686,7 +830,7 @@ const form = ref({
     reporting3hrs: '',
     programCat: 'Other Workshops',
     modules: ['W: Future Food', 'W: Sustainable Communities'],
-    exhibition: 'Non-Exhbition Linked',
+    exhibition: 'Non-Exhibition Linked',
     busRequired: 'N',
     busBooked: 'NA',
     todoListType: 'Todo List Template1',

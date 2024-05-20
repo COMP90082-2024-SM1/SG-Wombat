@@ -328,7 +328,7 @@ const form = ref({
     reporting3hrs: '',
     programCat: 'Other Workshops',
     modules: ['W: Future Food', 'W: Sustainable Communities'],
-    exhibition: 'Non-Exhbition Linked',
+    exhibition: 'Non-Exhibition Linked',
     busRequired: 'N',
     busBooked: 'NA',
     todoListType: 'Todo List Template1',
@@ -441,7 +441,7 @@ const moduleOptions = ref([
 const exhibitionOptions = ref([
     { label: 'Not Natural', value: 'Not Natural' },
     { label: 'Ancient Lives', value: 'Ancient Lives' },
-    { label: 'Non-Exhibition Linked', value: 'Non-Exhbition Linked' },
+    { label: 'Non-Exhibition Linked', value: 'Non-Exhibition Linked' },
     { label: 'Science Fiction', value: 'Science Fiction' },
     { label: 'Nadine Christensen', value: 'Nadine Christensen' },
     { label: 'The Arena', value: 'The Arena' },

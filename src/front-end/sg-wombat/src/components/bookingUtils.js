@@ -51,7 +51,7 @@ const deliveryLocationOptions = ref([
 const exhibitionOptions = ref([
     { label: 'Not Natural', value: 'Not Natural' },
     { label: 'Ancient Lives', value: 'Ancient Lives' },
-    { label: 'Non-Exhbition Linked', value: 'Non-Exhbition Linked' },
+    { label: 'Non-Exhibition Linked', value: 'Non-Exhibition Linked' },
     { label: 'Science Fiction', value: 'Science Fiction' },
     { label: 'Nadine Christensen', value: 'Nadine Christensen' },
     { label: 'The Arena', value: 'The Arena' },
