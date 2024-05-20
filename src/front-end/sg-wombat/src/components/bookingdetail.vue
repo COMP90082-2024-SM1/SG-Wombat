@@ -8,9 +8,9 @@
         <el-table-column prop="school" label="School" width="120" />
 
         <el-table-column prop="tag" label="All Bookings" width="150" :filters="[
-        { text: 'Confirmed Bookings', value: 'Confirmed' },
-        { text: 'Other Bookings', value: 'Other' },
-    ]" :filter-method="filterTag" filter-placement="bottom-end">
+            { text: 'Confirmed Bookings', value: 'Confirmed' },
+            { text: 'Other Bookings', value: 'Other' },
+        ]" :filter-method="filterTag" filter-placement="bottom-end">
             <template #default="scope">
                 <el-tag :type="scope.row.tag === 'Other' ? '' : 'success'" disable-transitions>{{ scope.row.tag
                     }}</el-tag>
@@ -43,7 +43,7 @@
     <el-button @click="clearFilter">Reset All</el-button>
 
     <!-- Program Details Dialog -->
-    <el-dialog v-model="detailsDialogVisible" title="Booking Details">
+    <!-- <el-dialog v-model="detailsDialogVisible" title="Booking Details">
         <el-form :model="selectedProgram" label-width="120px">
             <el-form-item label="Program Name">
                 <el-input v-model="selectedProgram.name" disabled />
@@ -52,21 +52,298 @@
                 <el-input v-model="selectedProgram.people" disabled />
             </el-form-item>
         </el-form>
-    </el-dialog>
+    </el-dialog> -->
 
-    <!-- Edit Program Dialog -->
-    <el-dialog v-model="editDialogVisible" title="Edit Program">
-        <el-form :model="editedProgram" label-width="auto">
-            <el-form-item label="Program Name">
-                <el-input v-model="editedProgram.name" />
-            </el-form-item>
-            <el-form-item label="Max People">
-                <el-input v-model="editedProgram.people" />
-            </el-form-item>
-            <el-form-item>
+    <!-- Edit Booking Dialog -->
+    <el-dialog v-model="editDialogVisible" title="Edit Program" width="50%" @closed="resetCurrentStepEdit">
+        <!-- steps to divide into different parts -->
+        <el-steps :active="currentStepEdit" align-center process-status="finish" finish-status="process">
+            <el-step title="Delivery" :icon="Document" @click="currentStepEdit = 0" />
+            <el-step title="Cohort" :icon="School" @click="currentStepEdit = 1" />
+            <el-step title="Contact" :icon="User" @click="currentStepEdit = 2" />
+            <el-step title="Bus" :icon="Van" @click="currentStepEdit = 3" />
+            <el-step title="Invoice" :icon="Memo" @click="currentStepEdit = 4" />
+        </el-steps>
+        <br />
+        <el-form :model="form" label-width="auto">
+            <!-- step 0 Delivery -->
+            <div v-show="currentStepEdit === 0">
+                <el-form-item label="Program Stream">
+                    <el-select v-model="editedBooking.programStream" filterable clearable
+                        placeholder="Select Program Stream" :default-first-option="true">
+                        <el-option v-for="option in programStreamOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="Request Confirmed?">
+                    <el-radio-group v-model="editedBooking.requestConfirmed">
+                        <el-radio label="confirmed">Confirmed</el-radio>
+                        <el-radio label="unconfirmed">Unconfirmed</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Status">
+                    <el-select v-model="editedBooking.status" filterable placeholder="Select Status"
+                        :default-first-option="true">
+                        <el-option v-for="option in statusOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="Facilitators">
+                    <el-input v-model="editedBooking.facilitators"></el-input>
+                </el-form-item>
+                <el-form-item label="Delivery Location">
+                    <el-select v-model="editedBooking.deliveryLocation" multiple filterable
+                        placeholder="Select Delivery Location" :default-first-option="true">
+                        <el-option v-for="option in deliveryLocationOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="School">
+                    <el-input v-model="editedBooking.school"></el-input>
+                </el-form-item>
+                <el-form-item label="Preferred Date 1">
+                    <el-date-picker v-model="editedBooking.prefDate1" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Preferred Date 2">
+                    <el-date-picker v-model="editedBooking.prefDate2" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Program Date">
+                    <el-date-picker v-model="editedBooking.programDate" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Start Time">
+                    <el-time-select v-model="editedBooking.startTime" placeholder="Start Time" start="08:30"
+                        step="00:05" end="18:30"></el-time-select>
+                </el-form-item>
+
+                <el-form-item label="End Time">
+                    <el-time-select v-model="editedBooking.endTime" placeholder="End Time" start="08:30" step="00:05"
+                        end="18:30"></el-time-select>
+                </el-form-item>
+                <!-- read only computed field-->
+                <el-form-item label="Run Time">
+                    <el-input v-model="editedBooking.runTime" readonly></el-input>
+                </el-form-item>
+                <el-form-item label="Reporting>3hrs">
+                    <el-radio-group v-model="editedBooking.reporting3hrs">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Program Category">
+                    <!-- todo: data should come from program list;-->
+                    <el-select v-model="editedBooking.programCat" filterable placeholder="Select Program Category">
+                        <el-option label="Schools only Tuesday" value="Tuesday" />
+                        <el-option label="Other Workshops" value="Other" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Modules">
+                    <!-- todo: data should be filtered based on program category selection? not necessary though-->
+                    <el-select v-model="editedBooking.modules" multiple filterable placeholder="Select Modules"
+                        :default-first-option="true">
+                        <el-option v-for="option in moduleOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Exhibition">
+                    <el-select v-model="editedBooking.exhibition" filterable allow-create
+                        placeholder="Select Exhibition" :default-first-option="true">
+                        <el-option v-for="option in exhibitionOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Bus Required">
+                    <el-radio-group v-model="editedBooking.busRequired">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+
+                <el-form-item label="Bus Booked">
+                    <el-radio-group v-model="editedBooking.busBooked">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="To-Do List Type">
+                    <el-select v-model="editedBooking.todoListType" placeholder="Select To-Do List Type">
+                        <el-option v-for="option in todoListTypeOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Notes">
+                    <el-input type="textarea" v-model="editedBooking.notes"></el-input>
+                </el-form-item>
+
+            </div>
+
+            <!-- step 1 Cohort -->
+            <div v-show="currentStepEdit === 1">
+                <el-form-item label="Partner School">
+                    <el-radio-group v-model="editedBooking.partnerSchool">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Student Year">
+                    <el-select v-model="editedBooking.studentYear" multiple>
+                        <el-option v-for="year in studentYears" :key="year" :label="year" :value="year"
+                            placeholder="Select Student Year"></el-option>
+                    </el-select>
+                    <!-- <el-checkbox-group v-model="editedBooking.studentYear">
+                        <el-checkbox v-for="year in studentYears" :key="year" :label="year">{{ year }}</el-checkbox>
+                    </el-checkbox-group> -->
+
+                </el-form-item>
+                <el-form-item label="Students # (Registered)">
+                    <el-input v-model="editedBooking.regStudentsNo" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Students # (Attended)">
+                    <el-input v-model="editedBooking.attendedStudentsNo" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Low SES">
+                    <el-radio-group v-model="editedBooking.lowSes">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Accessibility Needs">
+                    <el-input type="textarea" v-model="editedBooking.accNeeds"></el-input>
+                </el-form-item>
+                <el-form-item label="Allergy Needs">
+                    <el-input type="textarea" v-model="editedBooking.allergyNeeds"></el-input>
+                </el-form-item>
+                <el-form-item label="Teacher Notes">
+                    <el-input type="textarea" v-model="editedBooking.teacherNotes"></el-input>
+                </el-form-item>
+                <el-form-item label="Comments">
+                    <el-input type="textarea" v-model="editedBooking.commentsSG"></el-input>
+                </el-form-item>
+            </div>
+
+
+            <!-- step 2 Contact -->
+            <div v-show="currentStepEdit === 2">
+                <el-form-item label="First Name">
+                    <el-input v-model="editedBooking.firstName"></el-input>
+                </el-form-item>
+                <el-form-item label="Last Name">
+                    <el-input v-model="editedBooking.lastName"></el-input>
+                </el-form-item>
+                <el-form-item label="Email Address">
+                    <el-input v-model="editedBooking.emailAddress"></el-input>
+                </el-form-item>
+                <el-form-item label="Phone Number">
+                    <el-input v-model="editedBooking.phoneNumber"></el-input>
+                </el-form-item>
+                <el-form-item label="Teaching Area">
+                    <el-input v-model="editedBooking.teachingArea"></el-input>
+                </el-form-item>
+            </div>
+
+            <!-- step 3 Bus -->
+            <div v-show="currentStepEdit === 3">
+                <el-form-item label="Process Status">
+                    <el-radio-group v-model="editedBooking.processStatus">
+                        <el-radio label="contact">Contact Teacher</el-radio>
+                        <el-radio label="delivered">Delivered</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Days Remaining">
+                    <el-input v-model="daysRemaining" readonly></el-input>
+                </el-form-item>
+                <el-form-item label="Bus Status">
+                    <el-select v-model="editedBooking.busStatus" placeholder="Select Bus Status">
+                        <el-option v-for="option in busStatusOptions" :key="option.value" :label="option.label"
+                            :value="option.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Quote">
+                    <el-input v-model="editedBooking.quote" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Price Without GST">
+                    <el-input v-model="editedBooking.priceWoGST" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Price Full">
+                    <el-input v-model="editedBooking.priceFull" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Credit Surcharge">
+                    <el-input v-model="editedBooking.creditSurcharge" type="number"></el-input>
+                </el-form-item>
+                <el-form-item label="Date Paid">
+                    <el-date-picker v-model="editedBooking.datePaid" type="date"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="Card Owner">
+                    <el-input v-model="editedBooking.cardOwner"></el-input>
+                </el-form-item>
+                <el-form-item label="Bus Invoice No">
+                    <el-input v-model="editedBooking.busInvoiceNo"></el-input>
+                </el-form-item>
+                <el-form-item label="Saved Receipt">
+                    <el-radio-group v-model="editedBooking.savedReceipt">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Expense Master">
+                    <el-radio-group v-model="editedBooking.expenseMaster">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="PIN Email">
+                    <el-radio-group v-model="editedBooking.pinEmail">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Times in MSC">
+                    <el-radio-group v-model="editedBooking.timesInMSC">
+                        <el-radio label="Y">Yes</el-radio>
+                        <el-radio label="N">No</el-radio>
+                        <el-radio label="NA">NA</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Bus Notes">
+                    <el-input type="textarea" v-model="editedBooking.busNotes"></el-input>
+                </el-form-item>
+            </div>
+
+
+            <!-- step 4 Invoice -->
+            <div v-show="currentStepEdit === 4">
+                <el-form-item label="Amount">
+                    <el-input v-model="editedBooking.amount"></el-input>
+                </el-form-item>
+                <el-form-item label="ABN">
+                    <el-input v-model="editedBooking.abn"></el-input>
+                </el-form-item>
+                <el-form-item label="Invoice No">
+                    <el-input v-model="editedBooking.invoiceNo"></el-input>
+                </el-form-item>
+            </div>
+
+
+            <div class="form-bttns">
+                <el-button @click="currentStepEdit--" v-show="currentStepEdit > 0">Back</el-button>
+                <el-button @click="currentStepEdit++" v-show="currentStepEdit < 4">Next</el-button>
                 <el-button type="primary" @click="saveChanges">Save Changes</el-button>
-            </el-form-item>
+            </div>
+
         </el-form>
+
+
+        <!-- <template #footer>
+            <el-button @click="closeDialog">Back</el-button>
+            <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+        </template> -->
     </el-dialog>
 
     <!-- for view details by clicking on view details button -->
@@ -224,6 +501,7 @@
 import { ref, computed, reactive, watch } from 'vue';
 import type { TableColumnCtx, TableInstance } from 'element-plus'
 import { Document, School, Van, User, Memo } from '@element-plus/icons-vue'
+import { statusOptions, programStreamOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, studentYears, parseTime, formatTime } from './bookingUtils';
 
 interface User {
     bookingID: string
@@ -434,7 +712,9 @@ const handleCurrentChange = (newPage) => {
 
 const selectedProgram = ref<User | null>(null);
 
-const editedProgram = ref<User | null>(null);
+// const editedProgram = ref<User | null>(null);
+// const editedBooking = ref<User | null>(null);
+const editedBooking = ref({});
 const editDialogVisible = ref(false);
 
 const checklistStates = reactive(new Map<string, string[]>());
@@ -458,15 +738,30 @@ const showDetails = (program: User) => {
 };
 
 const showEditForm = (program: User) => {
-    editedProgram.value = { ...program };
+    // editedBooking.value = { ...program };
+    editedBooking.value = { ...form.value };
     editDialogVisible.value = true;
 };
 
+// for view datails el-step
 const currentStep = ref(0)
 const resetCurrentStep = () => {
     currentStep.value = 0
 }
 
+// for edit booking el-step
+const currentStepEdit = ref(0)
+const resetCurrentStepEdit = () => {
+    currentStepEdit.value = 0
+}
+
+const saveChanges = () => {
+    // Save changes to editedProgram
+    console.log("Saved changes:", editedBooking);
+    editDialogVisible.value = false;
+};
+
+// placeholder data for view details
 const bookingDetails = ref({
     programStream: 'SCoE: Excursions',
     requestConfirmed: 'Confirmed',
@@ -522,6 +817,114 @@ const bookingDetails = ref({
     invoiceNo: ''
 });
 
+// placeholder data for edit booking
+const form = ref({
+    programStream: '',
+    requestConfirmed: '',
+    status: '',
+    facilitators: 'Teacher Delivered',
+    deliveryLocation: ['SGM: SGMT'],
+    school: 'Aireys Inlet Primary School',
+    prefDate1: '2024-06-18',
+    prefDate2: '2024-06-20',
+    programDate: '2024-06-18',
+    startTime: '09:00',
+    endTime: '',
+    runTime: '',
+    reporting3hrs: '',
+    programCat: 'Other Workshops',
+    modules: ['W: Future Food', 'W: Sustainable Communities'],
+    exhibition: 'Non-Exhibition Linked',
+    busRequired: 'N',
+    busBooked: 'NA',
+    todoListType: 'Todo List Template1',
+    notes: 'TBC whether SCoE paying for buses',
+    // cohort
+    partnerSchool: 'Y',
+    studentYear: ['11', '12'],
+    regStudentsNo: 50,
+    attendedStudentsNo: 43,
+    lowSes: 'N',
+    accNeeds: 'NA',
+    allergyNeeds: 'NA',
+    teacherNotes: 'NA',
+    commentsSG: '',
+    // contact
+    firstName: 'Bob',
+    lastName: 'Ross',
+    emailAddress: 'bobross@gmail.com',
+    phoneNumber: '0412345678',
+    teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
+    // bus
+    processStatus: '',
+    // no need to send it to database?
+    // daysRemaining: '',
+    busStatus: '',
+    quote: '',
+    priceWoGST: '',
+    priceFull: '',
+    creditSurcharge: '',
+    datePaid: '',
+    cardOwner: '',
+    busInvoiceNo: '',
+    savedReceipt: '',
+    expenseMaster: '',
+    pinEmail: '',
+    timesInMSC: '',
+    busNotes: '',
+    // invoice
+    amount: '',
+    abn: '',
+    invoiceNo: ''
+
+})
+
+// todo: modules should come from program list (active + upcoming programs)
+const moduleOptions = ref([
+    { label: 'W: Future Food', value: 'W: Future Food' },
+    { label: 'W: Sustainable Communities', value: 'W: Sustainable Communities' },
+    { label: 'Module 3', value: 'Module 3' },
+])
+
+
+// compute run time, is it really needed?
+const runTime = computed(() => {
+    if (editedBooking.value.startTime && editedBooking.value.endTime) {
+        const start = parseTime(editedBooking.value.startTime)
+        const end = parseTime(editedBooking.value.endTime)
+        const diff = end - start
+        if (diff >= 0) {
+            return formatTime(diff)
+        } else {
+            return '00:00'
+        }
+    }
+    return '00:00'
+})
+
+// watch for changes in run time and update form value
+watch(runTime, (newVal) => {
+    editedBooking.value.runTime = newVal
+})
+
+// compute days remaining
+const daysRemaining = computed(() => {
+    if (!editedBooking.value.programDate) {
+        return 0
+    }
+
+    const programDate = new Date(editedBooking.value.programDate)
+    const today = new Date()
+
+    programDate.setHours(0, 0, 0, 0)
+    today.setHours(0, 0, 0, 0)
+
+    const diffTime = programDate.getTime() - today.getTime()
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
+
+    return diffDays
+})
+
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
 
@@ -572,5 +975,15 @@ const closeDialog = () => {
 
 .el-step {
     cursor: pointer;
+}
+
+.el-form {
+    padding: 0 10px 0 10px;
+}
+
+.form-bttns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
