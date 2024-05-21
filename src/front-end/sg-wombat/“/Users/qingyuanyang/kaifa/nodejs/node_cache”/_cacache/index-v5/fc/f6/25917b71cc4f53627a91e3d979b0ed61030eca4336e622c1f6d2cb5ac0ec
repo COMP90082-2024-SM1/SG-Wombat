@@ -1,2 +1,0 @@
-
-91a4f92c30676bc19ea5be49a2facf563b7f036c	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/lru-cache/-/lru-cache-5.1.1.tgz","integrity":null,"time":1715526007172,"size":"262","metadata":{"time":1715526007172,"url":"http://registry.npmmirror.com/lru-cache/-/lru-cache-5.1.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/lru-cache/-/lru-cache-5.1.1.tgz"},"options":{"compress":true},"status":301}}

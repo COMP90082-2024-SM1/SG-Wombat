@@ -1,2 +1,0 @@
-
-1b4f084a14d8cf75ef0461e6dd99721cc3f15288	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/stylus","integrity":null,"time":1715526004012,"size":"262","metadata":{"time":1715526004012,"url":"http://registry.npmmirror.com/stylus","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:03 GMT","location":"https://registry.npmmirror.com/stylus"},"options":{"compress":true},"status":301}}

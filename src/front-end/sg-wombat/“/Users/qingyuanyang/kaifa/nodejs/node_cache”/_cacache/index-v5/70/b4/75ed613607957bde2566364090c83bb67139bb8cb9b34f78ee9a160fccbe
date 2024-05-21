@@ -1,2 +1,0 @@
-
-8aa5b62639ea054016a9de46e87ec6d2ae820009	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/node-releases/-/node-releases-2.0.14.tgz","integrity":null,"time":1715526007098,"size":"262","metadata":{"time":1715526007098,"url":"http://registry.npmmirror.com/node-releases/-/node-releases-2.0.14.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/node-releases/-/node-releases-2.0.14.tgz"},"options":{"compress":true},"status":301}}

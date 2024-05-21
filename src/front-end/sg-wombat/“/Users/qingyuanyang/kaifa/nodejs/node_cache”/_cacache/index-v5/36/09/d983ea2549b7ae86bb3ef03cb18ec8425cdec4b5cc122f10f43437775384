@@ -1,2 +1,0 @@
-
-ad96564eb9b2b39693b4a332a4ef32d43d01ad86	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2flinux-loong64","integrity":null,"time":1715525907659,"size":"262","metadata":{"time":1715525907659,"url":"http://registry.npmmirror.com/@esbuild%2flinux-loong64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:27 GMT","location":"https://registry.npmmirror.com/@esbuild%2flinux-loong64"},"options":{"compress":true},"status":301}}

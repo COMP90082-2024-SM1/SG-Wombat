@@ -1,2 +1,0 @@
-
-ae6d6443cfb7bb09d4a7fbe269226ed0dfeb1174	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/muggle-string/-/muggle-string-0.4.1.tgz","integrity":null,"time":1715526007115,"size":"262","metadata":{"time":1715526007115,"url":"http://registry.npmmirror.com/muggle-string/-/muggle-string-0.4.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/muggle-string/-/muggle-string-0.4.1.tgz"},"options":{"compress":true},"status":301}}

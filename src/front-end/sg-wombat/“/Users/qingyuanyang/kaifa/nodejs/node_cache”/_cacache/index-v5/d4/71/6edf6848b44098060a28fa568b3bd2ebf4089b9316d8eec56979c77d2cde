@@ -1,2 +1,0 @@
-
-c7babd8e380b3acc0a934b6a0ccf8c4e96e7408e	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@types%2festree","integrity":null,"time":1715525909155,"size":"262","metadata":{"time":1715525909155,"url":"http://registry.npmmirror.com/@types%2festree","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:29 GMT","location":"https://registry.npmmirror.com/@types%2festree"},"options":{"compress":true},"status":301}}

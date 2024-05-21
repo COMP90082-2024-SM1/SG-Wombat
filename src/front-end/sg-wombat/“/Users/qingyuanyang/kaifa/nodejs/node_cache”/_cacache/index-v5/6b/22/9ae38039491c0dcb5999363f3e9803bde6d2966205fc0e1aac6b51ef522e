@@ -1,2 +1,0 @@
-
-d64a3d239760631846c280e6e5d5ebf01db0db5c	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2faix-ppc64","integrity":null,"time":1715525906235,"size":"262","metadata":{"time":1715525906235,"url":"http://registry.npmmirror.com/@esbuild%2faix-ppc64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:26 GMT","location":"https://registry.npmmirror.com/@esbuild%2faix-ppc64"},"options":{"compress":true},"status":301}}

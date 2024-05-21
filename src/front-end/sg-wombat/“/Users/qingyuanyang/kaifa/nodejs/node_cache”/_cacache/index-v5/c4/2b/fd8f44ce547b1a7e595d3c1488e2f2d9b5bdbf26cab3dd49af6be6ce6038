@@ -1,2 +1,0 @@
-
-be0bac77c1765d6911695c9a35055a9020f168b1	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/immutable/-/immutable-4.3.5.tgz","integrity":null,"time":1715526007319,"size":"262","metadata":{"time":1715526007319,"url":"http://registry.npmmirror.com/immutable/-/immutable-4.3.5.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/immutable/-/immutable-4.3.5.tgz"},"options":{"compress":true},"status":301}}

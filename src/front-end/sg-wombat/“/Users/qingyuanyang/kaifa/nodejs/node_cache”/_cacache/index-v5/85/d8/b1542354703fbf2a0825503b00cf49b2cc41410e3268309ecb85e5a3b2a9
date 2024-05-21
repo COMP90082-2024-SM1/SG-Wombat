@@ -1,2 +1,0 @@
-
-51595d0613788068e8005ab69e768c8363a6d0ad	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@babel/parser/-/parser-7.24.1.tgz","integrity":null,"time":1715526008148,"size":"262","metadata":{"time":1715526008148,"url":"http://registry.npmmirror.com/@babel/parser/-/parser-7.24.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:08 GMT","location":"https://registry.npmmirror.com/@babel/parser/-/parser-7.24.1.tgz"},"options":{"compress":true},"status":301}}

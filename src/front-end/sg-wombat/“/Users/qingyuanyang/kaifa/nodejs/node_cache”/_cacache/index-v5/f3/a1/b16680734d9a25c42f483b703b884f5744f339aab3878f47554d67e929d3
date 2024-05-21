@@ -1,2 +1,0 @@
-
-c879f6a17bf97c6cab9724f630516bbc110ac5f9	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/magic-string/-/magic-string-0.30.8.tgz","integrity":null,"time":1715526007175,"size":"262","metadata":{"time":1715526007175,"url":"http://registry.npmmirror.com/magic-string/-/magic-string-0.30.8.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/magic-string/-/magic-string-0.30.8.tgz"},"options":{"compress":true},"status":301}}

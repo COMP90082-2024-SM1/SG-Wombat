@@ -26,8 +26,7 @@
           </div>
         </div>
         <div class="buttoncontainer">
-          <!-- <button @click="login"> -->
-            <button @click="goToTargetPage">
+          <button @click="login">
             Log In
           </button>
         </div>
@@ -41,31 +40,28 @@ import { reactive } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 const router = useRouter();
-function goToTargetPage() {
-    router.push({ name: 'dashboardPage' });
-}
 const loginForm = reactive({
   username: '',
   password: ''
 });
 
-// const login = async () => {
-//   try {
-//       const response = await axios.post('/login', loginForm);
-//       console.log(JSON.stringify(response))
-//       console.log(response?.data.msg)
-//       if (response?.data.msg==='success') {
-//           console.log('Logged in successfully, JWT:', response.data.data);
-//           localStorage.setItem('jwt', response.data.data);  // 保存 JWT 到 localStorage
-//           router.push({ name: 'dashboardPage' });
-//       } else {
-//           alert('Login failed: ' + response.data.message);
-//       }
-//   } catch (error) {
-//       console.error('Login error:', error);
-//       alert('Login failed, please check the console for more information.');
-//   }
-// };
+const login = async () => {
+  try {
+      const response = await axios.post('/login', loginForm);
+      console.log(JSON.stringify(response))
+      console.log(response?.data.msg)
+      if (response?.data.msg==='success') {
+          console.log('Logged in successfully, JWT:', response.data.data);
+          localStorage.setItem('jwt', response.data.data);  // 保存 JWT 到 localStorage
+          router.push({ name: 'dashboardPage' });
+      } else {
+          alert('Login failed: ' + response.data.message);
+      }
+  } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed, please check the console for more information.');
+  }
+};
 
 </script>
 
