@@ -1,2 +1,0 @@
-
-34b79d169be5f08d0daf19f8a1526cf7918ae872	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/ansi-styles/-/ansi-styles-6.2.1.tgz","integrity":null,"time":1715526008409,"size":"262","metadata":{"time":1715526008408,"url":"http://registry.npmmirror.com/ansi-styles/-/ansi-styles-6.2.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:08 GMT","location":"https://registry.npmmirror.com/ansi-styles/-/ansi-styles-6.2.1.tgz"},"options":{"compress":true},"status":301}}

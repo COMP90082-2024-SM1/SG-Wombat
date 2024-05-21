@@ -1,2 +1,0 @@
-
-b6b004b7d03eb2eb00f440bf0a9a2563fe149f75	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/source-map-js","integrity":null,"time":1715525909098,"size":"262","metadata":{"time":1715525909098,"url":"http://registry.npmmirror.com/source-map-js","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:29 GMT","location":"https://registry.npmmirror.com/source-map-js"},"options":{"compress":true},"status":301}}

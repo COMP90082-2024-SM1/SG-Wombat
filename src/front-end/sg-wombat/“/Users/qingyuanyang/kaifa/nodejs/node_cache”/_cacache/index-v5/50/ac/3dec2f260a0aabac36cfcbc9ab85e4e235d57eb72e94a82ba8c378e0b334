@@ -1,2 +1,0 @@
-
-5ea04c058b59599816e63456adc960d94f9ac18f	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.6.tgz","integrity":null,"time":1715526007403,"size":"262","metadata":{"time":1715526007403,"url":"http://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.6.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.6.tgz"},"options":{"compress":true},"status":301}}

@@ -1,2 +1,0 @@
-
-9c4713c11249acf234b459eba1a824e593745d78	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/rollup/-/rollup-4.13.0.tgz","integrity":null,"time":1715526006955,"size":"262","metadata":{"time":1715526006955,"url":"http://registry.npmmirror.com/rollup/-/rollup-4.13.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/rollup/-/rollup-4.13.0.tgz"},"options":{"compress":true},"status":301}}

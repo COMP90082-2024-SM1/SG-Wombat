@@ -1,2 +1,0 @@
-
-005a4d7b335d8b0bae5877bee001e10d2849cd7e	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@rollup%2frollup-android-arm-eabi","integrity":null,"time":1715525909940,"size":"262","metadata":{"time":1715525909940,"url":"http://registry.npmmirror.com/@rollup%2frollup-android-arm-eabi","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:29 GMT","location":"https://registry.npmmirror.com/@rollup%2frollup-android-arm-eabi"},"options":{"compress":true},"status":301}}

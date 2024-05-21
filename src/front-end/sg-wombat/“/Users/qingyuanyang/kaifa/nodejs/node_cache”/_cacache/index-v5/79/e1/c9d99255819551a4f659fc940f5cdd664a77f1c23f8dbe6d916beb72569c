@@ -1,2 +1,0 @@
-
-4bc0495c2d9d3802cc07f6b38cebd7aa9e3f2785	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@rollup%2frollup-win32-x64-msvc","integrity":null,"time":1715525910759,"size":"262","metadata":{"time":1715525910759,"url":"http://registry.npmmirror.com/@rollup%2frollup-win32-x64-msvc","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:30 GMT","location":"https://registry.npmmirror.com/@rollup%2frollup-win32-x64-msvc"},"options":{"compress":true},"status":301}}

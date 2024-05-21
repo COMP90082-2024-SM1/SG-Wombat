@@ -1,2 +1,0 @@
-
-a1719ba6ea9ac5bc14c47a8e0033b5def0f71a6a	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/is-binary-path/-/is-binary-path-2.1.0.tgz","integrity":null,"time":1715526007325,"size":"262","metadata":{"time":1715526007324,"url":"http://registry.npmmirror.com/is-binary-path/-/is-binary-path-2.1.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/is-binary-path/-/is-binary-path-2.1.0.tgz"},"options":{"compress":true},"status":301}}

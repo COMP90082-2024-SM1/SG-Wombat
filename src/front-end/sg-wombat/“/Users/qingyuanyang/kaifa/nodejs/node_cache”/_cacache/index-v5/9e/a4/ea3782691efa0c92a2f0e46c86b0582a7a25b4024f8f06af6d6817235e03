@@ -1,2 +1,0 @@
-
-331dc6151ec0a98942bf2a037818661cc3c4c8d4	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001600.tgz","integrity":null,"time":1715526007621,"size":"262","metadata":{"time":1715526007621,"url":"http://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001600.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001600.tgz"},"options":{"compress":true},"status":301}}

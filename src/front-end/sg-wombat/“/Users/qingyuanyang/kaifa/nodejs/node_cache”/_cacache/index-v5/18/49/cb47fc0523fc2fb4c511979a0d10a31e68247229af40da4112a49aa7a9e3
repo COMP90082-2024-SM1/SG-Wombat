@@ -1,2 +1,0 @@
-
-a3f16ed52559214de7f0dc80e80ee5d244a3efd8	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/sugarss","integrity":null,"time":1715526004805,"size":"262","metadata":{"time":1715526004805,"url":"http://registry.npmmirror.com/sugarss","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:04 GMT","location":"https://registry.npmmirror.com/sugarss"},"options":{"compress":true},"status":301}}

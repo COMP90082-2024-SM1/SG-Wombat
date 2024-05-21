@@ -1,2 +1,0 @@
-
-5cc933f69cb6d4b567a80b77853c101e3b8b71bc	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/npm-run-all2/-/npm-run-all2-6.1.2.tgz","integrity":null,"time":1715526007097,"size":"262","metadata":{"time":1715526007097,"url":"http://registry.npmmirror.com/npm-run-all2/-/npm-run-all2-6.1.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/npm-run-all2/-/npm-run-all2-6.1.2.tgz"},"options":{"compress":true},"status":301}}

@@ -1,2 +1,0 @@
-
-1d5a35bea1bea31c19ce707bf3c08660fe326cbc	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/vue-tsc/-/vue-tsc-2.0.7.tgz","integrity":null,"time":1715526006801,"size":"262","metadata":{"time":1715526006801,"url":"http://registry.npmmirror.com/vue-tsc/-/vue-tsc-2.0.7.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:06 GMT","location":"https://registry.npmmirror.com/vue-tsc/-/vue-tsc-2.0.7.tgz"},"options":{"compress":true},"status":301}}

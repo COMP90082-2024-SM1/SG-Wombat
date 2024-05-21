@@ -1,2 +1,0 @@
-
-b086f1007b8d994a6088c12bddb7633836443320	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.4.21.tgz","integrity":null,"time":1715526007841,"size":"262","metadata":{"time":1715526007841,"url":"http://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.4.21.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.4.21.tgz"},"options":{"compress":true},"status":301}}

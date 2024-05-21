@@ -1,2 +1,0 @@
-
-ced3c38c69686a79eaf3e567a91cae6191d32550	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@vue/runtime-dom/-/runtime-dom-3.4.21.tgz","integrity":null,"time":1715526007801,"size":"262","metadata":{"time":1715526007801,"url":"http://registry.npmmirror.com/@vue/runtime-dom/-/runtime-dom-3.4.21.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@vue/runtime-dom/-/runtime-dom-3.4.21.tgz"},"options":{"compress":true},"status":301}}

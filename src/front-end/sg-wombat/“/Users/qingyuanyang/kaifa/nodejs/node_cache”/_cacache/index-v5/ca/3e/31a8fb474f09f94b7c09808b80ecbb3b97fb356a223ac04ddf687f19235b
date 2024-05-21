@@ -1,2 +1,0 @@
-
-bbc9435e837815fc67cdfc0d54eede32503d08e3	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz","integrity":null,"time":1715526007098,"size":"262","metadata":{"time":1715526007098,"url":"http://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz"},"options":{"compress":true},"status":301}}

@@ -1,2 +1,0 @@
-
-f4ac7b84a296928d70d69e968d902b78910d1978	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@esbuild%2fopenbsd-x64","integrity":null,"time":1715525908340,"size":"262","metadata":{"time":1715525908340,"url":"http://registry.npmmirror.com/@esbuild%2fopenbsd-x64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 14:58:28 GMT","location":"https://registry.npmmirror.com/@esbuild%2fopenbsd-x64"},"options":{"compress":true},"status":301}}

@@ -1,2 +1,0 @@
-
-b72c4b4588db41885de24c085c25fbf4d6999214	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz","integrity":null,"time":1715526007514,"size":"262","metadata":{"time":1715526007514,"url":"http://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz"},"options":{"compress":true},"status":301}}

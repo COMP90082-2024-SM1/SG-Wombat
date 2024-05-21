@@ -1,2 +1,0 @@
-
-96be0e9662b01854bba24afd6ec4ab707f88d3ef	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@volar/source-map/-/source-map-2.1.5.tgz","integrity":null,"time":1715526007919,"size":"262","metadata":{"time":1715526007919,"url":"http://registry.npmmirror.com/@volar/source-map/-/source-map-2.1.5.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/@volar/source-map/-/source-map-2.1.5.tgz"},"options":{"compress":true},"status":301}}

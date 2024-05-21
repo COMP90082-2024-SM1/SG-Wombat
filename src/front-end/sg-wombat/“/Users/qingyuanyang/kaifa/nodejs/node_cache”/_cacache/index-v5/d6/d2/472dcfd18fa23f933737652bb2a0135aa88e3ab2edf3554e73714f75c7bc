@@ -1,2 +1,0 @@
-
-f9eaac093265c65fd75d8f67c9d7656d7d512571	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/lightningcss","integrity":null,"time":1715526002605,"size":"262","metadata":{"time":1715526002604,"url":"http://registry.npmmirror.com/lightningcss","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:02 GMT","location":"https://registry.npmmirror.com/lightningcss"},"options":{"compress":true},"status":301}}

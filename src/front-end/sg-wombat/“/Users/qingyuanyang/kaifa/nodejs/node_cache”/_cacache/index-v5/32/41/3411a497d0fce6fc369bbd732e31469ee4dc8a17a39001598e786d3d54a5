@@ -1,2 +1,0 @@
-
-e43026f26950457578c107afd12fe708d5ba7147	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/gensync/-/gensync-1.0.0-beta.2.tgz","integrity":null,"time":1715526007382,"size":"262","metadata":{"time":1715526007382,"url":"http://registry.npmmirror.com/gensync/-/gensync-1.0.0-beta.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Sun, 12 May 2024 15:00:07 GMT","location":"https://registry.npmmirror.com/gensync/-/gensync-1.0.0-beta.2.tgz"},"options":{"compress":true},"status":301}}
