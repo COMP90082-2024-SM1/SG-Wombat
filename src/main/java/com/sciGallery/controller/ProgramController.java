@@ -43,7 +43,7 @@ public class ProgramController {
 
     @GetMapping("/progs/{id}")
     public Result getById(@PathVariable Integer id){
-        log.info("根据id查询员工信息， id：{}", id);
+        log.info("根据id查询program信息， id：{}", id);
         Program program = programService.getById(id);
         return Result.success(program);
     }

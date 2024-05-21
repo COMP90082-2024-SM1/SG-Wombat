@@ -39,6 +39,7 @@
             <if test="Thursday != null">
                 Thursday = #{Thursday},
             </if>
+
             <if test="Friday != null">
                 Friday = #{Friday},
             </if>
