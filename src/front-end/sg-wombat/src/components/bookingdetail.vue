@@ -16,7 +16,7 @@
                     }}</el-tag>
             </template>
         </el-table-column>
-        <el-table-column align="right">
+        <el-table-column align="right" fixed="right" width="260px">
             <template #header>
                 <el-input v-model="search" size="small" placeholder="Type to search" />
             </template>
