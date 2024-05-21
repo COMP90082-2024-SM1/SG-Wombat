@@ -25,12 +25,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         String url = request.getRequestURL().toString();
         log.info("URL: {}", url);
 
-
         if(url.contains("login")) {
             log.info("Login, 放行");
             return true;
         }
-
 
         String jwt = request.getHeader("token");
         if(!StringUtils.hasLength(jwt)){
@@ -52,11 +50,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-
         log.info("令牌校验成功，放行");
         return true;
-
-
     }
 
     @Override

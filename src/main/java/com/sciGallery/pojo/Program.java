@@ -27,5 +27,7 @@ public class Program {
     private Integer Thursday;
     private Integer Friday;
     private String description;
+    private String category;
+    private String feeType;
 
 }

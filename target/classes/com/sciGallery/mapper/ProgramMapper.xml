@@ -45,6 +45,12 @@
             <if test="description != null">
                 description = #{description},
             </if>
+            <if test="category != null">
+                category = #{category},
+            </if>
+            <if test="feeType != null">
+                fee_type = #{feeType},
+            </if>
         </set>
         WHERE prog_id = #{progId}
     </update>
