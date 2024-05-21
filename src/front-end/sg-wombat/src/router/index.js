@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '@/components/login.vue';
 import dashboardPage from '@/views/dashboardView.vue';
 // import bookingpage from '../src/components/bookingpage.vue';
-import bookingpage from '@/views/bookingView.vue'
+import bookingpage from '@/views/bookingView.vue';
 // import roompage from '../src/components/roompage.vue';
-import schoolpage from '@/components/schoolpage.vue';
+import schoolpage from '@/views/schoolView.vue';
+// import schoolpage from '@/components/schoolpage.vue';
 // import programpage from '../src/components/programpage.vue';
 import newbar from '@/components/newbar.vue';
 import teacherpage from '@/components/teacherpage.vue';
@@ -39,6 +40,12 @@ const routes = [
                 component: bookingpage
             },
 
+            {
+                path: '/school',
+                name: 'schoolpage',
+                component: schoolpage
+            },
+
         ]
     },
 
@@ -52,11 +59,11 @@ const routes = [
     //     name: 'bookingpage',
     //     component: bookingpage
     // },
-    {
-        path: '/school',
-        name: 'schoolpage',
-        component: schoolpage
-    },
+    // {
+    //     path: '/school',
+    //     name: 'schoolpage',
+    //     component: schoolpage
+    // },
     // {
     //     path: '/program',
     //     name: 'programpage',
