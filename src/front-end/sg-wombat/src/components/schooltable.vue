@@ -1,6 +1,8 @@
 <template>
   <el-table :data="currentPageData" style="width: 100%">
+
     <el-table-column label="School Name" prop="name" />
+
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -33,7 +35,9 @@
     :page-sizes="[5, 10, 20]"
     :page-size="pageSize"
     layout="total, sizes, prev, pager, next, jumper"
+
     :total="filterTableData?.length"
+
   ></el-pagination>
 
   <!-- Dialog for showing school details -->
@@ -74,10 +78,12 @@ import { useRouter, useRoute } from "vue-router";
 import axios from "axios";
 
 interface School {
+
   schoolname: string;
   postcode: string;
   icsea: string;
   number: string;
+
 }
 
 const search = ref("");
@@ -85,6 +91,7 @@ const dialogVisible = ref(false);
 const editDialogVisible = ref(false);
 const currentPage = ref(1);
 const pageSize = ref(5);
+
 const selectedSchool = ref<School | null>(null);
 const editedSchool = ref<School | null>(null);
 // let selectedSchool: School | null = null;
@@ -105,6 +112,7 @@ watch(
   },
   { immediate: true }
 );
+
 
 const filterTableData = computed(() =>{
 console.log(JSON.stringify(tableData.value)+" ??")
@@ -130,6 +138,20 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   currentPage.value = val;
 };
+
+const currentPageData = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  const end = start + pageSize.value;
+  return filterTableData.value.slice(start, end);
+})
+
+const handleSizeChange = (val: number) => {
+  pageSize.value = val;
+}
+
+const handleCurrentChange = (val: number) => {
+  currentPage.value = val;
+}
 
 const handleEdit = (index: number, row: School) => {
   console.log('edit')
@@ -180,3 +202,4 @@ const saveEdit = () => {
 };
 
 </script>
+
