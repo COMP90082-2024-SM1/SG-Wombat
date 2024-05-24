@@ -1,137 +1,134 @@
 <template>
-    <el-container class="layout-container">
-        <!-- navigation sidebar -->
-        <el-aside width="400px">
-            <div class="science">
-                Science Gallery
+  <el-container class="layout-container">
+    <!-- navigation sidebar -->
+    <el-aside width="400px">
+      <div class="science">Science Gallery</div>
+      <!-- el-menu -->
+      <navigationMenu class="navigation-panel" />
+    </el-aside>
+
+    <!-- main content area on the right side-->
+    <el-container class="main-content">
+      <!-- header area -->
+      <el-header>
+        <div>Booking Management System</div>
+        <!-- user logout menu -->
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            Admin User
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>Logout</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </el-header>
+
+      <!-- main content -->
+      <el-main>
+        <!-- Insert schooltable component here -->
+        <el-card>
+          <template #header>
+            <div class="card-header">
+              <span>Schools</span>
+              <!-- <el-button>button</el-button> -->
+              <el-button @click="showAddNewSchoolForm"
+                >Add New School</el-button
+              >
+              <addNewSchool v-model:formVisible="isFormVisible" />
+              <!-- v-model'deault props is modelValue -->
             </div>
-            <!-- el-menu -->
-            <navigationMenu class="navigation-panel" />
-        </el-aside>
+          </template>
 
-        <!-- main content area on the right side-->
-        <el-container class="main-content">
-            <!-- header area -->
-            <el-header>
-                <div>Booking Management System</div>
-                <!-- user logout menu -->
-                <el-dropdown>
-                    <span class="el-dropdown-link">
-                        Admin User
-                        <el-icon class="el-icon--right">
-                            <arrow-down />
-                        </el-icon>
-                    </span>
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <el-dropdown-item>Logout</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
-            </el-header>
+          <div class="card-content">
+            <schooltable class="listbox" />
+          </div>
+        </el-card>
+      </el-main>
 
-            <!-- main content -->
-            <el-main>
-                <!-- Insert schooltable component here -->
-                <el-card>
-                    <template #header>
-                        <div class="card-header">
-                            <span>Schools</span>
-                            <!-- <el-button>button</el-button> -->
-                            <el-button @click="showAddNewSchoolForm">Add New School</el-button>
-                            <addNewSchool v-model:formVisible="isFormVisible" />
-                            <!-- v-model'deault props is modelValue -->
-                        </div>
-                    </template>
-
-                    <div class="card-content">
-                        <schooltable class="listbox" />
-                    </div>
-                </el-card>
-            </el-main>
-
-            <el-footer>
-                Science Gallery Booking Management System @2024 Created by Unimelb Team Wombat
-            </el-footer>
-
-        </el-container>
-
+      <el-footer>
+        Science Gallery Booking Management System @2024 Created by Unimelb Team
+        Wombat
+      </el-footer>
     </el-container>
+  </el-container>
 </template>
 
-
 <script lang="ts" setup>
-import { ArrowDown } from '@element-plus/icons-vue'
-import navigationMenu from './navBarNew.vue';
-import schooltable from './schooltable.vue';
-import addNewSchool from './addNewSchool.vue';
-import { ref } from 'vue';
-let isFormVisible = ref(false)
+import { ArrowDown } from "@element-plus/icons-vue";
+import navigationMenu from "./navBarNew.vue";
+import schooltable from "./schooltable.vue";
+import addNewSchool from "./addNewSchool.vue";
+import { ref } from "vue";
+let isFormVisible = ref(false);
 const showAddNewSchoolForm = () => {
-    console.log("Attempting to show form");
-    isFormVisible.value = true;
-    console.log("Form visibility should now be true:", isFormVisible.value);
-}
+  console.log("Attempting to show form");
+  isFormVisible.value = true;
+  console.log("Form visibility should now be true:", isFormVisible.value);
+};
 </script>
 
 <style scoped>
 .layout-container {
-    height: 100vh;
-    position: relative;
+  height: 100vh;
+  position: relative;
 }
 
 .navigation-panel {
-    z-index: 1000;
+  z-index: 1000;
 }
 
 .layout-container .el-aside {
-    background-color: #2E4DD4;
-    color: #fff;
-    border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
+  background-color: #2e4dd4;
+  color: #fff;
+  border-radius: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
 .layout-container .el-header {
-    font-size: 30px;
-    margin-top: 30px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  font-size: 30px;
+  margin-top: 30px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .layout-container .el-footer {
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: grey;
-    font-size: 15px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  font-size: 15px;
 }
 
 .layout-container .el-main {
 }
 
 .science {
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .main-content {
-    z-index: 1001;
+  z-index: 1001;
 }
 
 .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
-

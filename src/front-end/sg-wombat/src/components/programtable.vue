@@ -1,7 +1,6 @@
 <template>
   <el-table :data="tableData2" style="width: 100%" @row-click="handleRowClick">
     <el-table-column label="Program Name" width="auto" prop="name" />
-
     <el-table-column label="Maximum People" prop="people" />
     <el-table-column label="Status" prop="status" />
     <el-table-column width="auto" align="right">
@@ -31,7 +30,7 @@
       </el-form-item>
 
       <el-form-item label="Max People">
-        <el-input v-model="selectedProgram.people" disabled />
+        <el-input v-model="selectedProgram.maxCap" disabled />
       </el-form-item>
 
       <!-- Add other fields here -->
@@ -46,14 +45,52 @@
         <el-input v-model="editedProgram.name" />
       </el-form-item>
 
-      <el-form-item label="Max People">
-        <el-input v-model="editedProgram.people" />
+      <el-form-item label="Maximum People">
+        <el-input-number v-model="editedProgram.maxCap" :min="1" />
       </el-form-item>
 
-      <!-- Add other fields here -->
+      <el-form-item label="Tech Requirement">
+        <el-input v-model="editedProgram.techReq" />
+      </el-form-item>
+
+      <el-form-item label="Cost per Person">
+        <el-input-number v-model="editedProgram.costPerson" :min="0" />
+      </el-form-item>
+
+      <el-form-item label="Runtime">
+        <el-select v-model="editedProgram.duration" placeholder="Select runtime">
+          <el-option label="1 hour" value="1 hour" />
+          <el-option label="2 hours" value="2 hours" />
+          <el-option label="3 hours" value="3 hours" />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="Program Description">
+        <el-input type="textarea" v-model="editedProgram.description" />
+      </el-form-item>
+
+      <!-- Work Days checkbox group -->
+      <el-form-item label="Available Days">
+        <el-checkbox-group v-model="editedProgram.avaliableDays">
+          <el-checkbox label="Monday">Monday</el-checkbox>
+          <el-checkbox label="Tuesday">Tuesday</el-checkbox>
+          <el-checkbox label="Wednesday">Wednesday</el-checkbox>
+          <el-checkbox label="Thursday">Thursday</el-checkbox>
+          <el-checkbox label="Friday">Friday</el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
+
+      <el-form-item label="Status">
+        <el-radio-group v-model="editedProgram.status">
+          <el-radio label="active">Active</el-radio>
+          <el-radio label="archived">Archived</el-radio>
+          <el-radio label="upcoming">Upcoming</el-radio>
+        </el-radio-group>
+      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+        <el-button @click="onCancelEdit">Cancel</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>
@@ -94,6 +131,7 @@
 import { ref, computed, reactive, watch } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
+import type { workerData } from "worker_threads";
 
 interface User {
   name: string;
@@ -106,43 +144,36 @@ interface User {
   programDesc: string;
   hostDays: string;
   programStatus:string;
+  workDays:string[];
   // Add other fields here to match your data structure
 }
 
 const search = ref("");
-const tableData: User[] = [
-  {
-    name: "Program A",
-    people: "20",
-    status: "Active",
-    // Add other fields here to match your data structure
-  },
-  {
-    name: "Program B",
-    people: "30",
-    status: "Upcoming",
-    // Add other fields here to match your data structure
-  },
-  {
-    name: "Program C",
-    people: "40",
-    status: "Archived",
-    // Add other fields here to match your data structure
-  },
-  // Add more data as needed
-];
 
 const router = useRouter();
 const route = useRoute();
 const tableData2 = ref<User[]>([]);
 const ProgramDetails = ref<User>({})
+const statusmap = {
+    "active":1,
+    "archived":2,
+    "upcoming":3
+}
 
 watch(
   () => route.name,
   (newRouteName) => {
     axios.get("/progs").then((r) => {
       console.log(r.data.data)
-      tableData2.value = r.data.data;
+      //tableData2.value = r.data.data;
+      r.data.data.forEach(y=>{
+        for(let o in statusmap){
+          if(statusmap[o]===y.status){
+            y.status=o
+          }
+        }
+      })
+      tableData2.value = r.data.data
     });
   },
   { immediate: true }
@@ -172,8 +203,9 @@ const showProgramDetails = (program: User) => {
 };
 
 const showEditForm = (program: User) => {
-  editedProgram.value = { ...program }; // Clone the program object
   editDialogVisible.value = true;
+  editedProgram.value = program; // Clone the program object
+  editedProgram.value.avaliableDays = editedProgram.value.avaliableDays.split(",")
 };
 
 const saveChanges = () => {
@@ -184,7 +216,14 @@ const saveChanges = () => {
   axios.put('progs', {
     progId:editedProgram.value.progId,
     name: editedProgram.value.name,        // 参数 firstName
-    costPerson: editedProgram.value.costPerson
+    costPerson: editedProgram.value.costPerson,
+    maxCap: editedProgram.value.maxCap,
+    techReq: editedProgram.value.techReq,
+    duration: editedProgram.value.duration,
+    description: editedProgram.value.description,
+    workDays: editedProgram.value.avaliableDays,
+    status: statusmap[editedProgram.value.status]
+    //avaliableDays:editedProgram.value.availableDays,
   })
   .then(function (response) {
     console.log(response);

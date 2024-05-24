@@ -26,7 +26,8 @@
           </div>
         </div>
         <div class="buttoncontainer">
-          <button @click="login">
+          <!-- <button @click="login"> -->
+            <button @click="login">
             Log In
           </button>
         </div>
@@ -40,6 +41,9 @@ import { reactive } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+// function goToTargetPage() {
+//     router.push({ name: 'dashboardPage' });
+// }
 const loginForm = reactive({
   username: '',
   password: ''
