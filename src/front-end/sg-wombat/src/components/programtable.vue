@@ -30,7 +30,7 @@
       </el-form-item>
 
       <el-form-item label="Max People">
-        <el-input v-model="selectedProgram.people" disabled />
+        <el-input v-model="selectedProgram.maxCap" disabled />
       </el-form-item>
 
       <!-- Add other fields here -->
@@ -46,7 +46,9 @@
       </el-form-item>
 
       <el-form-item label="Maximum People">
-        <el-input-number v-model="editedProgram.people" :min="1" />
+
+        <el-input-number v-model="editedProgram.maxCap" :min="1" />
+
       </el-form-item>
 
       <el-form-item label="Tech Requirement">
@@ -71,7 +73,9 @@
 
       <!-- Work Days checkbox group -->
       <el-form-item label="Available Days">
-        <el-checkbox-group v-model="editedProgram.workDays">
+
+        <el-checkbox-group v-model="editedProgram.avaliableDays">
+
           <el-checkbox label="Monday">Monday</el-checkbox>
           <el-checkbox label="Tuesday">Tuesday</el-checkbox>
           <el-checkbox label="Wednesday">Wednesday</el-checkbox>
@@ -81,7 +85,9 @@
       </el-form-item>
 
       <el-form-item label="Status">
-        <el-radio-group v-model="editedProgram.programState">
+
+        <el-radio-group v-model="editedProgram.status">
+
           <el-radio label="active">Active</el-radio>
           <el-radio label="archived">Archived</el-radio>
           <el-radio label="upcoming">Upcoming</el-radio>
@@ -114,6 +120,7 @@
 import { ref, computed, reactive, watch } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
+import type { workerData } from "worker_threads";
 
 interface User {
   name: string;
@@ -125,44 +132,43 @@ interface User {
   runtime: string;
   programDesc: string;
   hostDays: string;
-  programStatus: string;
+
+  programStatus:string;
+  workDays:string[];
+
   // Add other fields here to match your data structure
 }
 
 const search = ref("");
-const tableData: User[] = [
-  {
-    name: "Program A",
-    people: "20",
-    status: "Active",
-    // Add other fields here to match your data structure
-  },
-  {
-    name: "Program B",
-    people: "30",
-    status: "Upcoming",
-    // Add other fields here to match your data structure
-  },
-  {
-    name: "Program C",
-    people: "40",
-    status: "Archived",
-    // Add other fields here to match your data structure
-  },
-  // Add more data as needed
-];
 
 const router = useRouter();
 const route = useRoute();
 const tableData2 = ref<User[]>([]);
-const ProgramDetails = ref<User>({});
+
+const ProgramDetails = ref<User>({})
+const statusmap = {
+    "active":1,
+    "archived":2,
+    "upcoming":3
+}
+
 
 watch(
   () => route.name,
   (newRouteName) => {
     axios.get("/progs").then((r) => {
-      console.log(r.data.data);
-      tableData2.value = r.data.data;
+
+      console.log(r.data.data)
+      //tableData2.value = r.data.data;
+      r.data.data.forEach(y=>{
+        for(let o in statusmap){
+          if(statusmap[o]===y.status){
+            y.status=o
+          }
+        }
+      })
+      tableData2.value = r.data.data
+
     });
   },
   { immediate: true }
@@ -191,8 +197,9 @@ const showProgramDetails = (program: User) => {
 };
 
 const showEditForm = (program: User) => {
-  editedProgram.value = { ...program }; // Clone the program object
   editDialogVisible.value = true;
+  editedProgram.value = program; // Clone the program object
+  editedProgram.value.avaliableDays = editedProgram.value.avaliableDays.split(",")
 };
 
 const saveChanges = () => {
@@ -203,7 +210,14 @@ const saveChanges = () => {
   axios.put('progs', {
     progId: editedProgram.value.progId,
     name: editedProgram.value.name,        // 参数 firstName
-    costPerson: editedProgram.value.costPerson
+    costPerson: editedProgram.value.costPerson,
+    maxCap: editedProgram.value.maxCap,
+    techReq: editedProgram.value.techReq,
+    duration: editedProgram.value.duration,
+    description: editedProgram.value.description,
+    workDays: editedProgram.value.avaliableDays,
+    status: statusmap[editedProgram.value.status]
+    //avaliableDays:editedProgram.value.availableDays,
   })
     .then(function (response) {
       console.log(response);
