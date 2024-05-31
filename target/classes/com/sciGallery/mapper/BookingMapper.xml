@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sciGallery.mapper.BookingMapper">
+    <insert id="insert" parameterType="com.sciGallery.pojo.Booking">
+        INSERT INTO tb_booking (
+            program_stream, request_confirmed, status, facilitators, school, pref_date1, pref_date2,
+            program_date, start_time, end_time, run_time, reporting_3hrs, program_cat, exhibition,
+            bus_required, bus_booked, todo_list_type, notes, partner_school, reg_students_no,
+            attended_students_no, low_ses, acc_needs, allergy_needs, teacher_notes, comments_sg,
+            first_name, last_name, email_address, phone_number, teaching_area, process_status,
+            bus_status, quote, price_wo_gst, price_full, credit_surcharge, date_paid, card_owner,
+            bus_invoice_no, saved_receipt, expense_master, pin_email, times_in_msc, bus_notes,
+            amount, abn, invoice_no, create_time, student_year, modules, delivery_location,
+            checklist_status
+        ) VALUES (
+                     #{programStream}, #{requestConfirmed}, #{status}, #{facilitators}, #{school}, #{prefDate1},
+                     #{prefDate2}, #{programDate}, #{startTime}, #{endTime}, #{runTime}, #{reporting3hrs},
+                     #{programCat}, #{exhibition}, #{busRequired}, #{busBooked}, #{todoListType}, #{notes},
+                     #{partnerSchool}, #{regStudentsNo}, #{attendedStudentsNo}, #{lowSes}, #{accNeeds},
+                     #{allergyNeeds}, #{teacherNotes}, #{commentsSg}, #{firstName}, #{lastName}, #{emailAddress},
+                     #{phoneNumber}, #{teachingArea}, #{processStatus}, #{busStatus}, #{quote}, #{priceWoGst},
+                     #{priceFull}, #{creditSurcharge}, #{datePaid}, #{cardOwner}, #{busInvoiceNo}, #{savedReceipt},
+                     #{expenseMaster}, #{pinEmail}, #{timesInMsc}, #{busNotes}, #{amount}, #{abn}, #{invoiceNo},
+                     #{createTime}, #{studentYearJson}, #{modulesJson}, #{deliveryLocationJson}, #{checklistStatusJson}
+                 )
+    </insert>
+
+    <select id="list" resultType="com.sciGallery.pojo.Booking">
+        select
+            booking_id,
+            program_stream,
+            request_confirmed,
+            status,
+            facilitators,
+            school,
+            pref_date1,
+            pref_date2,
+            program_date,
+            start_time,
+            end_time,
+            run_time,
+            reporting_3hrs,
+            program_cat,
+            exhibition,
+            bus_required,
+            bus_booked,
+            todo_list_type,
+            notes,
+            partner_school,
+            reg_students_no,
+            attended_students_no,
+            low_ses,
+            acc_needs,
+            allergy_needs,
+            teacher_notes,
+            comments_sg,
+            first_name,
+            last_name,
+            email_address,
+            phone_number,
+            teaching_area,
+            process_status,
+            bus_status,
+            quote,
+            price_wo_gst,
+            price_full,
+            credit_surcharge,
+            date_paid,
+            card_owner,
+            bus_invoice_no,
+            saved_receipt,
+            expense_master,
+            pin_email,
+            times_in_msc,
+            bus_notes,
+            amount,
+            abn,
+            invoice_no,
+            create_time,
+            student_year AS studentYearJson,
+            modules AS modulesJson,
+            delivery_location AS deliveryLocationJson,
+            checklist_status AS checklistStatusJson
+        from tb_booking
+        <where>
+            <if test="requestConfirmed != null">
+                request_confirmed = #{requestConfirmed}
+            </if>
+        </where>
+
+
+
+    </select>
+    <select id="selectById" resultType="com.sciGallery.pojo.Booking">
+        select
+        booking_id,
+        program_stream,
+        request_confirmed,
+        status,
+        facilitators,
+        school,
+        pref_date1,
+        pref_date2,
+        program_date,
+        start_time,
+        end_time,
+        run_time,
+        reporting_3hrs,
+        program_cat,
+        exhibition,
+        bus_required,
+        bus_booked,
+        todo_list_type,
+        notes,
+        partner_school,
+        reg_students_no,
+        attended_students_no,
+        low_ses,
+        acc_needs,
+        allergy_needs,
+        teacher_notes,
+        comments_sg,
+        first_name,
+        last_name,
+        email_address,
+        phone_number,
+        teaching_area,
+        process_status,
+        bus_status,
+        quote,
+        price_wo_gst,
+        price_full,
+        credit_surcharge,
+        date_paid,
+        card_owner,
+        bus_invoice_no,
+        saved_receipt,
+        expense_master,
+        pin_email,
+        times_in_msc,
+        bus_notes,
+        amount,
+        abn,
+        invoice_no,
+        create_time,
+        student_year AS studentYearJson,
+        modules AS modulesJson,
+        delivery_location AS deliveryLocationJson,
+        checklist_status AS checklistStatusJson
+        from tb_booking
+        <where>
+            booking_id = #{bookingId}
+        </where>
+    </select>
+
+
+    <update id="update" parameterType="com.sciGallery.pojo.Booking">
+        UPDATE tb_booking
+        <set>
+            <if test="programStream != null">
+                program_stream = #{programStream},
+            </if>
+            <if test="requestConfirmed != null">
+                request_confirmed = #{requestConfirmed},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="facilitators != null">
+                facilitators = #{facilitators},
+            </if>
+            <if test="school != null">
+                school = #{school},
+            </if>
+            <if test="prefDate1 != null">
+                pref_date1 = #{prefDate1},
+            </if>
+            <if test="prefDate2 != null">
+                pref_date2 = #{prefDate2},
+            </if>
+            <if test="programDate != null">
+                program_date = #{programDate},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="runTime != null">
+                run_time = #{runTime},
+            </if>
+            <if test="reporting3hrs != null">
+                reporting_3hrs = #{reporting3hrs},
+            </if>
+            <if test="programCat != null">
+                program_cat = #{programCat},
+            </if>
+            <if test="exhibition != null">
+                exhibition = #{exhibition},
+            </if>
+            <if test="busRequired != null">
+                bus_required = #{busRequired},
+            </if>
+            <if test="busBooked != null">
+                bus_booked = #{busBooked},
+            </if>
+            <if test="todoListType != null">
+                todo_list_type = #{todoListType},
+            </if>
+            <if test="notes != null">
+                notes = #{notes},
+            </if>
+            <if test="partnerSchool != null">
+                partner_school = #{partnerSchool},
+            </if>
+            <if test="regStudentsNo != null">
+                reg_students_no = #{regStudentsNo},
+            </if>
+            <if test="attendedStudentsNo != null">
+                attended_students_no = #{attendedStudentsNo},
+            </if>
+            <if test="lowSes != null">
+                low_ses = #{lowSes},
+            </if>
+            <if test="accNeeds != null">
+                acc_needs = #{accNeeds},
+            </if>
+            <if test="allergyNeeds != null">
+                allergy_needs = #{allergyNeeds},
+            </if>
+            <if test="teacherNotes != null">
+                teacher_notes = #{teacherNotes},
+            </if>
+            <if test="commentsSg != null">
+                comments_sg = #{commentsSg},
+            </if>
+            <if test="firstName != null">
+                first_name = #{firstName},
+            </if>
+            <if test="lastName != null">
+                last_name = #{lastName},
+            </if>
+            <if test="emailAddress != null">
+                email_address = #{emailAddress},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="teachingArea != null">
+                teaching_area = #{teachingArea},
+            </if>
+            <if test="processStatus != null">
+                process_status = #{processStatus},
+            </if>
+            <if test="busStatus != null">
+                bus_status = #{busStatus},
+            </if>
+            <if test="quote != null">
+                quote = #{quote},
+            </if>
+            <if test="priceWoGst != null">
+                price_wo_gst = #{priceWoGst},
+            </if>
+            <if test="priceFull != null">
+                price_full = #{priceFull},
+            </if>
+            <if test="creditSurcharge != null">
+                credit_surcharge = #{creditSurcharge},
+            </if>
+            <if test="datePaid != null">
+                date_paid = #{datePaid},
+            </if>
+            <if test="cardOwner != null">
+                card_owner = #{cardOwner},
+            </if>
+            <if test="busInvoiceNo != null">
+                bus_invoice_no = #{busInvoiceNo},
+            </if>
+            <if test="savedReceipt != null">
+                saved_receipt = #{savedReceipt},
+            </if>
+            <if test="expenseMaster != null">
+                expense_master = #{expenseMaster},
+            </if>
+            <if test="pinEmail != null">
+                pin_email = #{pinEmail},
+            </if>
+            <if test="timesInMsc != null">
+                times_in_msc = #{timesInMsc},
+            </if>
+            <if test="busNotes != null">
+                bus_notes = #{busNotes},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="abn != null">
+                abn = #{abn},
+            </if>
+            <if test="invoiceNo != null">
+                invoice_no = #{invoiceNo},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="studentYearJson != null">
+                student_year = #{studentYearJson},
+            </if>
+            <if test="modulesJson != null">
+                modules = #{modulesJson},
+            </if>
+            <if test="deliveryLocationJson != null">
+                delivery_location = #{deliveryLocationJson},
+            </if>
+            <if test="checklistStatusJson != null">
+                checklist_status = #{checklistStatusJson},
+            </if>
+        </set>
+        WHERE booking_id = #{bookingId}
+    </update>
+
+
+</mapper>
