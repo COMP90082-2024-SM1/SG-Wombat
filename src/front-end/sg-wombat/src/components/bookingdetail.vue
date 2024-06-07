@@ -1,18 +1,19 @@
 <template>
-    <el-table ref="tableRef" row-key="bookingID" :data="paginatedData" style="width: 100%">
-        <el-table-column prop="bookingID" label="Booking ID" sortable width="120" column-key="bookingID" />
+    <el-table ref="tableRef" row-key="bookingId" :data="tableData" style="width: 100%" @filter-change="filterTag">
+        <el-table-column prop="bookingId" label="Booking ID" sortable width="120" column-key="bookingId" />
         <el-table-column prop="programStream" label="Program Stream" width="120" />
         <el-table-column prop="requestTime" label="Request Time" width="120" />
         <el-table-column prop="programDate" label="Program Date" width="120" />
         <el-table-column prop="startTime" label="Start Time" width="120" />
         <el-table-column prop="school" label="School" width="120" />
 
-        <el-table-column prop="tag" label="All Bookings" width="150" :filters="[
+        <el-table-column prop="requestConfirmed" label="All Bookings" width="150" :filters="[
             { text: 'Confirmed Bookings', value: 'Confirmed' },
-            { text: 'Other Bookings', value: 'Other' },
-        ]" :filter-method="filterTag" filter-placement="bottom-end">
+            { text: 'Other Bookings', value: 'Unconfirmed' },
+        ]"  filter-placement="bottom-end">
             <template #default="scope">
-                <el-tag :type="scope.row.tag === 'Other' ? '' : 'success'" disable-transitions>{{ scope.row.tag
+                <el-tag :type="scope.row.requestConfirmed === 'Confirmed' ? 'success' : ''" disable-transitions>{{ 
+                    scope.row.requestConfirmed
                     }}</el-tag>
             </template>
         </el-table-column>
@@ -34,10 +35,10 @@
         </el-table-column>
     </el-table>
 
-    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+    <!-- <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
         :page-sizes="[10, 20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
         :total="filteredData.length">
-    </el-pagination>
+    </el-pagination> -->
 
     <el-button @click="resetDateFilter">Reset Date</el-button>
     <el-button @click="clearFilter">Reset All</el-button>
@@ -78,8 +79,8 @@
 
                 <el-form-item label="Request Confirmed?">
                     <el-radio-group v-model="editedBooking.requestConfirmed">
-                        <el-radio label="confirmed">Confirmed</el-radio>
-                        <el-radio label="unconfirmed">Unconfirmed</el-radio>
+                        <el-radio label="Confirmed">Confirmed</el-radio>
+                        <el-radio label="Unconfirmed">Unconfirmed</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Status">
@@ -128,8 +129,8 @@
                 </el-form-item>
                 <el-form-item label="Reporting>3hrs">
                     <el-radio-group v-model="editedBooking.reporting3hrs">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='NO'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Program Category">
@@ -156,17 +157,17 @@
                 </el-form-item>
                 <el-form-item label="Bus Required">
                     <el-radio-group v-model="editedBooking.busRequired">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
 
                 <el-form-item label="Bus Booked">
                     <el-radio-group v-model="editedBooking.busBooked">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="To-Do List Type">
@@ -185,8 +186,8 @@
             <div v-show="currentStepEdit === 1">
                 <el-form-item label="Partner School">
                     <el-radio-group v-model="editedBooking.partnerSchool">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Student Year">
@@ -207,8 +208,8 @@
                 </el-form-item>
                 <el-form-item label="Low SES">
                     <el-radio-group v-model="editedBooking.lowSes">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Accessibility Needs">
@@ -221,7 +222,7 @@
                     <el-input type="textarea" v-model="editedBooking.teacherNotes"></el-input>
                 </el-form-item>
                 <el-form-item label="Comments">
-                    <el-input type="textarea" v-model="editedBooking.commentsSG"></el-input>
+                    <el-input type="textarea" v-model="editedBooking.commentsSg"></el-input>
                 </el-form-item>
             </div>
 
@@ -266,7 +267,7 @@
                     <el-input v-model="editedBooking.quote" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Without GST">
-                    <el-input v-model="editedBooking.priceWoGST" type="number"></el-input>
+                    <el-input v-model="editedBooking.priceWoGst" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Full">
                     <el-input v-model="editedBooking.priceFull" type="number"></el-input>
@@ -285,30 +286,30 @@
                 </el-form-item>
                 <el-form-item label="Saved Receipt">
                     <el-radio-group v-model="editedBooking.savedReceipt">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Expense Master">
                     <el-radio-group v-model="editedBooking.expenseMaster">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="PIN Email">
                     <el-radio-group v-model="editedBooking.pinEmail">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                         <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Times in MSC">
-                    <el-radio-group v-model="editedBooking.timesInMSC">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                    <el-radio-group v-model="editedBooking.timesInMsc">
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Bus Notes">
@@ -365,8 +366,9 @@
                     <el-descriptions :column="2" size="large" border>
                         <el-descriptions-item label="Program Stream">{{ bookingDetails.programStream
                             }}</el-descriptions-item>
-                        <el-descriptions-item label="Request Confirmed?">{{ bookingDetails.requestConfirmed
-                            }}</el-descriptions-item>
+                        <el-descriptions-item label="Request Confirmed?">{{ 
+                            bookingDetails.requestConfirmed
+                        }}</el-descriptions-item>
                         <el-descriptions-item label="Status">{{ bookingDetails.status }}</el-descriptions-item>
                         <el-descriptions-item label="Facilitators">{{ bookingDetails.facilitators
                             }}</el-descriptions-item>
@@ -382,7 +384,8 @@
                         <el-descriptions-item label="Start Time">{{ bookingDetails.startTime }}</el-descriptions-item>
                         <el-descriptions-item label="End Time">{{ bookingDetails.endTime }}</el-descriptions-item>
                         <el-descriptions-item label="Run Time">{{ bookingDetails.runTime }}</el-descriptions-item>
-                        <el-descriptions-item label="Reporting>3hrs">{{ bookingDetails.reporting3hrs
+                        <el-descriptions-item label="Reporting>3hrs">{{ 
+                            bookingDetails.reporting3hrs
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Program Category">{{ bookingDetails.programCat
                             }}</el-descriptions-item>
@@ -418,7 +421,7 @@
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Teacher’s Notes" span="2">{{ bookingDetails.teacherNotes
                             }}</el-descriptions-item>
-                        <el-descriptions-item label="Comments">{{ bookingDetails.commentsSG }}</el-descriptions-item>
+                        <el-descriptions-item label="Comments">{{ bookingDetails.commentsSg }}</el-descriptions-item>
                     </el-descriptions>
                 </div>
 
@@ -441,11 +444,11 @@
                     <el-descriptions :column="2" size="large" border>
                         <el-descriptions-item label="Process Status">{{ bookingDetails.processStatus
                             }}</el-descriptions-item>
-                        <el-descriptions-item label="Days Remaining">{{ bookingDetails.daysRemaining
+                        <el-descriptions-item label="Days Remaining">{{ daysRemaining
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Bus Status">{{ bookingDetails.busStatus }}</el-descriptions-item>
                         <el-descriptions-item label="Quote #">{{ bookingDetails.quote }}</el-descriptions-item>
-                        <el-descriptions-item label="Price w/o GST">{{ bookingDetails.priceWoGST
+                        <el-descriptions-item label="Price w/o GST">{{ bookingDetails.priceWoGst
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Price in Full">{{ bookingDetails.priceFull
                             }}</el-descriptions-item>
@@ -461,7 +464,7 @@
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Pin/Categorise Email">{{ bookingDetails.pinEmail
                             }}</el-descriptions-item>
-                        <el-descriptions-item label="Times in MSC">{{ bookingDetails.timesInMSC
+                        <el-descriptions-item label="Times in MSC">{{ bookingDetails.timesInMsc
                             }}</el-descriptions-item>
                         <el-descriptions-item label="Bus Notes">{{ bookingDetails.busNotes }}</el-descriptions-item>
                     </el-descriptions>
@@ -481,10 +484,14 @@
             <el-col :span="9">
                 <div class="todo-list">
                     <div class="todo-header">TO DO LIST</div>
+                    
                     <el-checkbox-group v-model="todoList">
-                        <el-checkbox label="Item 1" name="type">Item 1</el-checkbox>
-                        <el-checkbox label="Item 2" name="type">Item 2</el-checkbox>
-                        <el-checkbox label="Item 3" name="type">Item 3</el-checkbox>
+                        <el-checkbox    
+                          v-for="item in todoListOption"
+                                :key="item"
+                                :label="item"
+                        ></el-checkbox> 
+                        <!-- <el-checkbox label="Item 1" name="type">Item 1</el-checkbox> -->
                         <!-- 更多 checkbox -->
                     </el-checkbox-group>
                 </div>
@@ -499,12 +506,14 @@
 
 <script lang="ts" setup>
 import { ref, computed, reactive, watch } from 'vue';
+import { useRouter, useRoute } from "vue-router";
 import type { TableColumnCtx, TableInstance } from 'element-plus'
 import { Document, School, Van, User, Memo } from '@element-plus/icons-vue'
 import { statusOptions, programStreamOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, studentYears, parseTime, formatTime } from './bookingUtils';
+import axios from "axios";
 
 interface User {
-    bookingID: string
+    bookingId: string
     programStream: string
     requestTime: string
     programDate: string
@@ -532,7 +541,13 @@ const clearFilter = () => {
 }
 
 const filterTag = (value: string, row: User) => {
-    return row.tag === value
+    axios.get("/booking?requestConfirmed="+Object.values(value)[0][0]).then((r) => {
+      //console.log(r?.data?.data.rows);
+      let rd = r.data.data.rows
+      tableData.value = rd
+    });
+
+    //return row.tag === value
 }
 
 const filterHandler = (
@@ -544,161 +559,50 @@ const filterHandler = (
     return row[property] === value
 }
 
-const tableData: User[] = reactive([
-    {
-        bookingID: 'B001',
-        programStream: 'Science',
-        requestTime: '10:00 AM',
-        programDate: '2024-06-01',
-        startTime: '10:30 AM',
-        school: 'School A',
-        tag: 'Confirmed',
-    },
-    {
-        bookingID: 'B002',
-        programStream: 'Math',
-        requestTime: '11:00 AM',
-        programDate: '2024-06-02',
-        startTime: '11:30 AM',
-        school: 'School B',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B003',
-        programStream: 'History',
-        requestTime: '12:00 PM',
-        programDate: '2024-06-03',
-        startTime: '12:30 PM',
-        school: 'School C',
-        tag: 'Confirmed',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    }, {
-        bookingID: 'B004',
-        programStream: 'Geography',
-        requestTime: '01:00 PM',
-        programDate: '2024-06-04',
-        startTime: '01:30 PM',
-        school: 'School D',
-        tag: 'Other',
-    },
-    {
-        bookingID: 'B001',
-        programStream: 'Science',
-        requestTime: '10:00 AM',
-        programDate: '2024-06-01',
-        startTime: '10:30 AM',
-        school: 'School A',
-        tag: 'Confirmed',
-    },
-]);
+
+const router = useRouter();
+const route = useRoute();
+const tableData = ref<User[]>([]);
+watch(
+  () => route.name,
+  (newRouteName) => {
+    axios.get("/booking").then((r) => {
+      console.log(r?.data?.data.rows);
+      let rd = r.data.data.rows
+      tableData.value = rd
+    });
+  },
+  { immediate: true }
+);
+
 
 const currentPage = ref(1);
 const pageSize = ref(10);
 
-const filteredData = computed(() => {
-    return tableData.filter((item) => {
-        return item.bookingID.includes(search.value) ||
-            item.programStream.toLowerCase().includes(search.value.toLowerCase()) ||
-            item.requestTime.toLowerCase().includes(search.value.toLowerCase()) ||
-            item.programDate.toLowerCase().includes(search.value.toLowerCase()) ||
-            item.startTime.toLowerCase().includes(search.value.toLowerCase()) ||
-            item.school.toLowerCase().includes(search.value.toLowerCase()) ||
-            item.tag.toLowerCase().includes(search.value.toLowerCase());
-    });
-});
+// const filteredData = computed(() => {
+//     return tableData.filter((item) => {
+//         return item.bookingID.includes(search.value) ||
+//             item.programStream.toLowerCase().includes(search.value.toLowerCase()) ||
+//             item.requestTime.toLowerCase().includes(search.value.toLowerCase()) ||
+//             item.programDate.toLowerCase().includes(search.value.toLowerCase()) ||
+//             item.startTime.toLowerCase().includes(search.value.toLowerCase()) ||
+//             item.school.toLowerCase().includes(search.value.toLowerCase()) ||
+//             item.tag.toLowerCase().includes(search.value.toLowerCase());
+//     });
+// });
 
-const paginatedData = computed(() => {
-    const start = (currentPage.value - 1) * pageSize.value;
-    const end = start + pageSize.value;
-    return filteredData.value.slice(start, end);
-});
+// const paginatedData = computed(() => {
+//     const start = (currentPage.value - 1) * pageSize.value;
+//     const end = start + pageSize.value;
+//     return filteredData.value.slice(start, end);
+// });
 
-watch([currentPage, pageSize, filteredData], () => {
-    console.log('Current Page:', currentPage.value);
-    console.log('Page Size:', pageSize.value);
-    console.log('Filtered Data Length:', filteredData.value.length);
-    console.log('Paginated Data:', paginatedData.value);
-});
+// watch([currentPage, pageSize, filteredData], () => {
+//     console.log('Current Page:', currentPage.value);
+//     console.log('Page Size:', pageSize.value);
+//     console.log('Filtered Data Length:', filteredData.value.length);
+//     console.log('Paginated Data:', paginatedData.value);
+// });
 
 const handleSizeChange = (newSize) => {
     pageSize.value = newSize;
@@ -720,9 +624,22 @@ const editDialogVisible = ref(false);
 const checklistStates = reactive(new Map<string, string[]>());
 
 const saveTodoList = () => {
-    if (selectedProgram.value) {
-        checklistStates.set(selectedProgram.value.bookingID, todoList.value);
-        console.log('Saved ToDo List for', selectedProgram.value.bookingID, ':', todoList.value);
+    if (todoList.value) {
+        let res = {}
+        let req = todoListOption.value.map(e=>{
+            res[e]=todoList.value.includes(e)
+        })
+        axios
+            .put("/booking/todolist", res)
+            .then(function (response) {
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        //checklistStates.set(selectedProgram.value.bookingId, todoList.value);
+        console.log('Saved ToDo List for', selectedProgram.value.bookingId, ':', todoList.value);
         closeDialog();
     }
 };
@@ -731,17 +648,36 @@ const showDetails = (program: User) => {
     selectedProgram.value = program;
     dialogDescVisible.value = true;
 
-    if (!checklistStates.has(program.bookingID)) {
-        checklistStates.set(program.bookingID, []);
+    if (!checklistStates.has(program.bookingId)) {
+        checklistStates.set(program.bookingId, []);
     }
-    todoList.value = checklistStates.get(program.bookingID) || [];
+    bookingDetails.value = program
+
+    let optionTemp = Object.entries(program.checklistStatus)
+    todoList.value = optionTemp.filter(e=>e[1]===true).map(e=>e[0])
+    todoListOption.value = optionTemp.map(e=>e[0])
+    todoListOption.value.sort((a,b)=>{return a[0].localeCompare(b[0])});
 };
 
 const showEditForm = (program: User) => {
     // editedBooking.value = { ...program };
-    editedBooking.value = { ...form.value };
+    editedBooking.value = program;
     editDialogVisible.value = true;
 };
+
+const deleteProgram = (program: User) => {
+    // editedBooking.value = { ...program };
+     axios
+            .delete('/booking/'+program.bookingId)
+            .then(function (response) {
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    console.log(program.bookingId)
+};
+
 
 // for view datails el-step
 const currentStep = ref(0)
@@ -758,67 +694,82 @@ const resetCurrentStepEdit = () => {
 const saveChanges = () => {
     // Save changes to editedProgram
     console.log("Saved changes:", editedBooking);
+            axios
+            .put("/booking", editedBooking.value)
+            .then(function (response) {
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     editDialogVisible.value = false;
 };
 
 // placeholder data for view details
-const bookingDetails = ref({
-    programStream: 'SCoE: Excursions',
-    requestConfirmed: 'Confirmed',
-    status: 'Processing',
-    facilitators: 'Teacher Delivered',
-    deliveryLocation: 'SGM: SGMT',
-    school: 'Aireys Inlet Primary School',
-    prefDate1: '2024-06-18',
-    prefDate2: '2024-06-20',
-    programDate: '2024-06-18',
-    startTime: '',
-    endTime: '',
-    runTime: '',
-    reporting3hrs: '',
-    programCat: 'Other Workshops',
-    modules: 'W: Future Food; W: Sustainable Communities',
-    exhibition: 'Non-Exhbition Linked',
-    busRequired: 'N',
-    busBooked: 'NA',
-    todoListType: 'Todo List Template1',
-    notes: 'TBC whether SCoE paying for buses',
-    partnerSchool: 'Y',
-    studentYear: '11,12',
-    regStudentsNo: 50,
-    attendedStudentsNo: 43,
-    lowSes: 'N',
-    accNeeds: 'NA',
-    allergyNeeds: 'NA',
-    teacherNotes: 'NA',
-    commentsSG: '',
-    firstName: 'Bob',
-    lastName: 'Ross',
-    emailAddress: 'bobross@gmail.com',
-    phoneNumber: '0412345678',
-    teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
-    processStatus: '',
-    daysRemaining: '',
-    busStatus: '',
-    quote: '',
-    priceWoGST: '',
-    priceFull: '',
-    creditSurcharge: '',
-    datePaid: '',
-    cardOwner: '',
-    busInvoiceNo: '',
-    savedReceipt: '',
-    expenseMaster: '',
-    pinEmail: '',
-    timesInMSC: '',
-    busNotes: '',
-    amount: '',
-    abn: '',
-    invoiceNo: ''
-});
+interface Detail {
+
+}
+const bookingDetails = ref<Detail>({})
+
+
+// const bookingDetails = ref({
+//     programStream: 'SCoE: Excursions',
+//     requestConfirmed: 'Confirmed',
+//     status: 'Processing',
+//     facilitators: 'Teacher Delivered',
+//     deliveryLocation: 'SGM: SGMT',
+//     school: 'Aireys Inlet Primary School',
+//     prefDate1: '2024-06-18',
+//     prefDate2: '2024-06-20',
+//     programDate: '2024-06-18',
+//     startTime: '',
+//     endTime: '',
+//     runTime: '',
+//     reporting3hrs: '',
+//     programCat: 'Other Workshops',
+//     modules: 'W: Future Food; W: Sustainable Communities',
+//     exhibition: 'Non-Exhbition Linked',
+//     busRequired: 'N',
+//     busBooked: 'NA',
+//     todoListType: 'Todo List Template1',
+//     notes: 'TBC whether SCoE paying for buses',
+//     partnerSchool: 'Y',
+//     studentYear: '11,12',
+//     regStudentsNo: 50,
+//     attendedStudentsNo: 43,
+//     lowSes: 'N',
+//     accNeeds: 'NA',
+//     allergyNeeds: 'NA',
+//     teacherNotes: 'NA',
+//     commentsSG: '',
+//     firstName: 'Bob',
+//     lastName: 'Ross',
+//     emailAddress: 'bobross@gmail.com',
+//     phoneNumber: '0412345678',
+//     teachingArea: 'Humanities Leader, Geography & Psychology Teacher',
+//     processStatus: '',
+//     daysRemaining: '',
+//     busStatus: '',
+//     quote: '',
+//     priceWoGST: '',
+//     priceFull: '',
+//     creditSurcharge: '',
+//     datePaid: '',
+//     cardOwner: '',
+//     busInvoiceNo: '',
+//     savedReceipt: '',
+//     expenseMaster: '',
+//     pinEmail: '',
+//     timesInMSC: '',
+//     busNotes: '',
+//     amount: '',
+//     abn: '',
+//     invoiceNo: ''
+// });
 
 // placeholder data for edit booking
 const form = ref({
+    bookingId:0,
     programStream: '',
     requestConfirmed: '',
     status: '',
@@ -848,7 +799,7 @@ const form = ref({
     accNeeds: 'NA',
     allergyNeeds: 'NA',
     teacherNotes: 'NA',
-    commentsSG: '',
+    commentsSg: '',
     // contact
     firstName: 'Bob',
     lastName: 'Ross',
@@ -870,7 +821,7 @@ const form = ref({
     savedReceipt: '',
     expenseMaster: '',
     pinEmail: '',
-    timesInMSC: '',
+    timesInMsc: '',
     busNotes: '',
     // invoice
     amount: '',
@@ -909,11 +860,7 @@ watch(runTime, (newVal) => {
 
 // compute days remaining
 const daysRemaining = computed(() => {
-    if (!editedBooking.value.programDate) {
-        return 0
-    }
-
-    const programDate = new Date(editedBooking.value.programDate)
+    const programDate = new Date(bookingDetails?.value?.programDate)
     const today = new Date()
 
     programDate.setHours(0, 0, 0, 0)
@@ -927,11 +874,12 @@ const daysRemaining = computed(() => {
 
 const dialogDescVisible = ref(false);
 const todoList = ref([]);
+const todoListOption = ref([])
 
 const closeDialog = () => {
     dialogDescVisible.value = false;
     if (selectedProgram.value) {
-        todoList.value = checklistStates.get(selectedProgram.value.bookingID) || [];
+        todoList.value = checklistStates.get(selectedProgram.value.bookingId) || [];
     }
 };
 </script>
