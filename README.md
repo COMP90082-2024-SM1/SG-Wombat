@@ -22,6 +22,8 @@ The README file is constantly updated to explain our GitHub structure and genera
 
 ### Prototype Link:https://js.design/v?i=0G-ElJ&p=7MfmZw5wEX&f=0:1
 
+### Final Presentation Link: https://prezi.com/view/2IAx6UP27neaLNVbOsML/
+
 
 ## Background
 
@@ -185,6 +187,7 @@ This changelog represents our efforts to not only expand our project’s feature
 
 ### What we will do:
 In Sprint 3, our goal is to develop core functionalities of the booking management system, including booking request management, to-do checklist, and reporting of booking data. By the end of this sprint, we aim to enable science gallery staff to efficiently manage booking requests from school teachers, by developing features including create, view, edit and delete bookings. We also target to complete the to-do list features. These functionalities have high priority and can help our client streamline the booking management process, improving operational efficiency. Additionally, we will implement features for managing the program list to ensure the system is flexible for future changes in programs. If time allows, we will discuss with client and implement some of the could-have features.
+
 
 
 
