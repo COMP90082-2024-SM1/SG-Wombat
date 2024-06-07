@@ -18,6 +18,9 @@ The README file is constantly updated to explain our GitHub structure and genera
 
 [Science Gallery Booking System URL](http://18.208.189.107/)
 
+Username: admin
+Password: 123456
+
 ## Important Documents
 
 ### Confluence Page:https://comp90082-2024-sg-wombat.atlassian.net/wiki/x/2AAI
