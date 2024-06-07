@@ -21,6 +21,6 @@ app.use(ElementPlus);
 app.use(router);
 
 app.mount('#app');
-axios.defaults.baseURL = 'http://127.0.0.1:8080'; // 适当调整为您的后端服务地址
+axios.defaults.baseURL = 'http://18.208.189.107:8080'; // 适当调整为您的后端服务地址
 app.config.globalProperties.$axios = axios;
 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`
