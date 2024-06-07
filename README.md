@@ -14,7 +14,9 @@ The src folder is where we commit all our code. It was initiated for use in spri
 
 The README file is constantly updated to explain our GitHub structure and generate changelogs for each sprint before tagging it.
 
+## Product
 
+[Science Gallery Booking System URL](http://18.208.189.107/)
 
 ## Important Documents
 
