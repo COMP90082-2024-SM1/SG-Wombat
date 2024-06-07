@@ -58,9 +58,12 @@ const exhibitionOptions = ref([
 ]);
 
 const todoListTypeOptions = ref([
-    { label: 'Todo List Template1', value: 'Todo List Template1' },
-    { label: 'Todo List Template2', value: 'Todo List Template2' },
-    { label: 'Todo List Template3', value: 'Todo List Template3' },
+    { label: 'Paid workshop', value: 'Paid workshop' },
+    { label: 'Guided tour', value: 'Guided tour' },
+    { label: 'Free unguided tour', value: 'Free unguided tour' },
+    { label: 'Buxton Contemporary tour', value: 'Buxton Contemporary tour' },
+    { label: 'Indigenous STEM program', value: 'Indigenous STEM program' },
+    { label: 'Partner school booking', value: 'Partner school booking' },
 ])
 
 

@@ -23,8 +23,8 @@
 
                 <el-form-item label="Request Confirmed?">
                     <el-radio-group v-model="form.requestConfirmed">
-                        <el-radio label="confirmed">Confirmed</el-radio>
-                        <el-radio label="unconfirmed">Unconfirmed</el-radio>
+                        <el-radio label="Confirmed">Confirmed</el-radio>
+                        <el-radio label="Unconfirmed">Unconfirmed</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Status">
@@ -69,12 +69,12 @@
                 </el-form-item>
                 <!-- read only computed field-->
                 <el-form-item label="Run Time">
-                    <el-input v-model="form.runTime" readonly></el-input>
+                    <el-input v-model="runTime"></el-input>
                 </el-form-item>
                 <el-form-item label="Reporting>3hrs">
                     <el-radio-group v-model="form.reporting3hrs">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Program Category">
@@ -101,16 +101,16 @@
                 </el-form-item>
                 <el-form-item label="Bus Required">
                     <el-radio-group v-model="form.busRequired">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label="Yes">Yes</el-radio>
+                        <el-radio label="No">No</el-radio>
                         <el-radio label="NA">NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
 
                 <el-form-item label="Bus Booked">
                     <el-radio-group v-model="form.busBooked">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label="Yes">Yes</el-radio>
+                        <el-radio label="No">No</el-radio>
                         <el-radio label="NA">NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
@@ -130,8 +130,8 @@
             <div v-show="currentStep === 1">
                 <el-form-item label="Partner School">
                     <el-radio-group v-model="form.partnerSchool">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Student Year">
@@ -148,8 +148,8 @@
                 </el-form-item>
                 <el-form-item label="Low SES">
                     <el-radio-group v-model="form.lowSes">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Accessibility Needs">
@@ -162,7 +162,7 @@
                     <el-input type="textarea" v-model="form.teacherNotes"></el-input>
                 </el-form-item>
                 <el-form-item label="Comments">
-                    <el-input type="textarea" v-model="form.commentsSG"></el-input>
+                    <el-input type="textarea" v-model="form.commentsSg"></el-input>
                 </el-form-item>
             </div>
 
@@ -206,7 +206,7 @@
                     <el-input v-model="form.quote" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Without GST">
-                    <el-input v-model="form.priceWoGST" type="number"></el-input>
+                    <el-input v-model="form.priceWoGst" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="Price Full">
                     <el-input v-model="form.priceFull" type="number"></el-input>
@@ -225,30 +225,30 @@
                 </el-form-item>
                 <el-form-item label="Saved Receipt">
                     <el-radio-group v-model="form.savedReceipt">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Expense Master">
                     <el-radio-group v-model="form.expenseMaster">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="PIN Email">
                     <el-radio-group v-model="form.pinEmail">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Times in MSC">
-                    <el-radio-group v-model="form.timesInMSC">
-                        <el-radio label="Y">Yes</el-radio>
-                        <el-radio label="N">No</el-radio>
-                        <el-radio label="NA">NA</el-radio>
+                    <el-radio-group v-model="form.timesInMsc">
+                        <el-radio label='Yes'>Yes</el-radio>
+                        <el-radio label='No'>No</el-radio>
+                        <el-radio label='NA'>NA</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="Bus Notes">
@@ -288,7 +288,7 @@ import { ref, reactive, computed, watch } from 'vue';
 import { defineProps, defineEmits } from 'vue';
 import { Document, School, Van, User, Memo } from '@element-plus/icons-vue'
 import { statusOptions, programStreamOptions, deliveryLocationOptions, exhibitionOptions, todoListTypeOptions, busStatusOptions, studentYears, parseTime, formatTime } from './bookingUtils';
-
+import axios from "axios";
 
 const props = defineProps({
     formVisible: Boolean
@@ -323,20 +323,20 @@ const form = ref({
     programCat: 'Other Workshops',
     modules: ['W: Future Food', 'W: Sustainable Communities'],
     exhibition: 'Non-Exhibition Linked',
-    busRequired: 'N',
-    busBooked: 'NA',
+    busRequired: '',
+    busBooked: -1,
     todoListType: 'Todo List Template1',
     notes: 'TBC whether SCoE paying for buses',
     // cohort
-    partnerSchool: 'Y',
+    partnerSchool: -1,
     studentYear: ['11', '12'],
     regStudentsNo: 50,
     attendedStudentsNo: 43,
-    lowSes: 'N',
-    accNeeds: 'NA',
-    allergyNeeds: 'NA',
-    teacherNotes: 'NA',
-    commentsSG: '',
+    lowSes: 0,
+    accNeeds: -1,
+    allergyNeeds: 1,
+    teacherNotes: 1,
+    commentsSg: '',
     // contact
     firstName: 'Bob',
     lastName: 'Ross',
@@ -349,7 +349,7 @@ const form = ref({
     // daysRemaining: '',
     busStatus: '',
     quote: '',
-    priceWoGST: '',
+    priceWoGst: '',
     priceFull: '',
     creditSurcharge: '',
     datePaid: '',
@@ -358,7 +358,7 @@ const form = ref({
     savedReceipt: '',
     expenseMaster: '',
     pinEmail: '',
-    timesInMSC: '',
+    timesInMsc: '',
     busNotes: '',
     // invoice
     amount: '',
@@ -369,8 +369,18 @@ const form = ref({
 
 
 const onSubmit = () => {
-    console.log('Submitted:', form);
+    console.log('Submitted:', form.value);
+    console.log('???=>'+form?.value['teachingArea'])
     visible.value = false;  // Close the dialog
+
+    axios
+    .post("booking", form.value)
+    .then(function (response) {
+      window.location.reload();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const onCancel = () => {
