@@ -192,6 +192,14 @@ In Sprint 3, our goal is to develop core functionalities of the booking manageme
 
 
 
+## Sprint 4
+
+### Trello Link:  https://trello.com/invite/b/WdrvUMHN/ATTIe982d4271b510a602886d9423c37ae2bDC59BFC0/sg-booking-system-sprint-4
+
+### What we will do:
+In Sprint 4，our goal is to connect the front-end with the back-end database and deploy it. As well as improve the remaining functions such as adding, deleting, checking and changing the booking page, as well as exporting.After refining the functionality and completing the database connection, the database is deployed to the cloud database. And deploy the website from local to cloud so that users can use our project directly through the website address.
+
+
 
 
 
